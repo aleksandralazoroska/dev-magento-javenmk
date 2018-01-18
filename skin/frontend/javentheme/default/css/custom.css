@@ -1,0 +1,64 @@
+.page-header {
+  max-width: 1200px;
+}
+
+.page-header-top {
+  max-width: 1200px;
+  height: 60px;
+  position: relative;
+}
+
+.page-header-container {
+  height: 600px;
+  background-color: gainsboro;
+  text-align: center;
+}
+
+.skip-links {
+  clear: none;
+}
+
+#header-search {
+  top: 350px;
+  width: 100%;
+}
+
+#search {
+  width: 528px;
+  height: 64px;
+}
+
+.form-search .button {
+  width: 64px;
+  height: 64px;
+}
+
+.main-container {
+  padding-top: 20px;
+  max-width: 1200px;
+  box-sizing: border-box;
+
+}
+
+.home-container-za-biznisite {
+  float: left;
+  font-size: 12px;
+  width: 50%;
+  height: 200px;
+  box-sizing: border-box;
+  padding-right: 30px;
+
+}
+
+.home-container-za-korisnicite {
+  float: right;
+  font-size: 12px;
+  width: 50%;
+  height: 200px;
+  box-sizing: border-box;
+  padding-left: 70px;
+}
+
+.button {
+  background-color: #FF9800;
+}
