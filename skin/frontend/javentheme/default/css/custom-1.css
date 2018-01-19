@@ -1,0 +1,48 @@
+#header-nav {
+  border-bottom: 0;
+}
+
+.page-header-container .store-language-container {
+  float: left;
+  padding: 0;
+  margin-right: 40px;
+}
+
+.page-header-container .store-language-container select {
+  background-color: white;
+  border: 0;
+  background: url('../images/makedonski.svg')left no-repeat;
+  background-size: 40px 30px;
+  padding-left: 40px;
+  margin-top: 6px;
+}
+
+.page-header-container .store-language-container option {
+  background: url('../images/makedonski.svg')top;
+  background-size: 15px 15px;
+}
+
+.form-language {
+  float: left;
+}
+
+.langs-wrapper{float:right;height:15px;margin-right:20px;}
+.lang-flag{border:1px solid transparent;display:inline-block;height:13px;}
+.lang-flag:hover{border:1px solid #FFF;}
+
+.account-cart-wrapper {
+  margin-top: 13px;
+}
+
+.account-cart-wrapper a.button {
+  padding: 7px 20px;
+  border-radius: 5px;
+  height: 32px;
+  margin-right: 20px;
+}
+
+#login-button {
+  background-color: white;
+  border: 1px solid #FF9800;
+  color: #FF9800;
+}

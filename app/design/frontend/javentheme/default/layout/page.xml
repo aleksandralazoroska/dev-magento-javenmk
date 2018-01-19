@@ -77,6 +77,7 @@
                 <action method="addItem"><type>skin_css</type><name>css/styles.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
                 <action method="addItem"><type>skin_css</type><name>css/madisonisland.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
                 <action method="addItem"><type>skin_css</type><name>css/custom.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
+                <action method="addItem"><type>skin_css</type><name>css/custom-1.css</name><params/><if><![CDATA[<!--[if (gte IE 9) | (IEMobile)]><!-->]]></if></action>
 
                 <!-- Sets viewport meta tag using text block -->
                 <block type="core/text" name="head.viewport">
@@ -177,6 +178,7 @@
                 <action method="addCss"><stylesheet>css/styles.css</stylesheet></action>
                 <action method="addCss"><stylesheet>css/widgets.css</stylesheet></action>
                 <action method="addCss"><stylesheet>css/custom.css</stylesheet></action>
+                <action method="addCss"><stylesheet>css/custom-1.css</stylesheet></action>
 
                 <action method="addItem"><type>js</type><name>lib/ds-sleight.js</name><params/><if>lt IE 7</if></action>
                 <!--<action method="addItem"><type>skin_js</type><name>js/iehover-fix.js</name><params/><if>lt IE 7</if></action>-->
@@ -207,6 +209,7 @@
             <!-- Mark root page block that template is applied -->
             <action method="setIsHandle"><applied>1</applied></action>
             <action method="setLayoutCode"><name>one_column</name></action>
+            <block name="container" template="page/container.phtml" type="core/template" />
         </reference>
     </page_one_column>
 

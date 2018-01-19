@@ -1,17 +1,11 @@
 .page-header {
   max-width: 1200px;
+  height: 60px;
+  padding: 0;
 }
 
 .page-header-top {
-  max-width: 1200px;
-  height: 60px;
   position: relative;
-}
-
-.page-header-container {
-  height: 600px;
-  background-color: gainsboro;
-  text-align: center;
 }
 
 .skip-links {
@@ -34,9 +28,10 @@
 }
 
 .main-container {
-  padding-top: 20px;
-  max-width: 1200px;
+  width: 1200px;
+  padding: 0;
   box-sizing: border-box;
+
 
 }
 
@@ -47,6 +42,7 @@
   height: 200px;
   box-sizing: border-box;
   padding-right: 30px;
+  border-style: groove;
 
 }
 
@@ -57,6 +53,8 @@
   height: 200px;
   box-sizing: border-box;
   padding-left: 70px;
+  border-style: groove;
+
 }
 
 .button {
