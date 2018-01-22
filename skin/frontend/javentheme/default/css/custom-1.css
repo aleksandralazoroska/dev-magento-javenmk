@@ -46,3 +46,33 @@
   border: 1px solid #FF9800;
   color: #FF9800;
 }
+
+.home-container-categories {
+  width: 1200px;
+  float: left;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  padding-left: 60px;
+}
+
+.home-container-categories li {
+  float: left;
+  width: 150px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.home-container-categories a {
+  width: 64px;
+  height: 64px;
+  display: block;
+  margin: 0 auto;
+  background-color: #ff8a65;
+  border-radius: 50%;
+  padding-top: 19px;
+}
+
+.home-container-categories img {
+  display: inherit;
+  margin: 0 auto;
+}

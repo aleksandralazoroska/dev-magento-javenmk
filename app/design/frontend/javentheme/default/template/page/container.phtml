@@ -1,3 +1,21 @@
-<div id="header-search" class="skip-content">
-    <?php echo $this->getChildHtml('topSearch') ?>
+
+<!-- Categories -->
+<?php
+    $_helper = Mage::helper('catalog/category');
+    $categories = $_helper->getStoreCategories();
+?>
+<div class="home-container-categories">
+  <ol>
+    <?php foreach ($categories as $_category): ?>
+      <?php
+        $category = Mage::getModel('catalog/category')->load($_category->getId());
+      ?>
+          <li>
+            <a style="background-color: <?php echo $category->getDescription() ?>" href="<?php echo $category->getURL(); ?>">
+              <img src="<?php echo Mage::getBaseUrl('media').'catalog/category/' . $category->getImage() ?>" />
+            </a>
+            <p style="color: <?php echo $category->getDescription() ?>" ><?php echo $category->getName() ?></p>
+          </li>
+    <?php endforeach; ?>
+  </ol>
 </div>

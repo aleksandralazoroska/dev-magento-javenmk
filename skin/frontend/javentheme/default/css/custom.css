@@ -1,3 +1,11 @@
+h4 {
+  text-transform: none;
+}
+
+h1 {
+  text-transform: none;
+}
+
 .page-header {
   max-width: 1200px;
   height: 60px;
@@ -31,30 +39,52 @@
   width: 1200px;
   padding: 0;
   box-sizing: border-box;
+}
+.home-container-za h4,p {
+  text-align: center;
+  margin-top: 20px;
 
+}
 
+.home-container-za p {
+  text-align: center;
+  margin-top: 20px !important;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.home-container-border {
+  width: 1080px;
+  float: left;
+  margin-left: 60px;
+  border-top: 1px solid grey;
+}
+
+.home-container-za {
+  width: 100%;
+  float: left;
+  padding-left: 60px;
+  padding-right: 60px;
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
 
 .home-container-za-biznisite {
   float: left;
-  font-size: 12px;
-  width: 50%;
-  height: 200px;
-  box-sizing: border-box;
-  padding-right: 30px;
-  border-style: groove;
-
+  font-size: 14px;
+  width: 49%;
+  border: 1px solid grey;
+  border-radius: 5px;
+  min-height: 320px;
 }
 
 .home-container-za-korisnicite {
   float: right;
-  font-size: 12px;
-  width: 50%;
-  height: 200px;
-  box-sizing: border-box;
-  padding-left: 70px;
-  border-style: groove;
-
+  font-size: 14px;
+  width: 49%;
+  border: 1px solid grey;
+  border-radius: 5px;
+  min-height: 320px;
 }
 
 .button {
