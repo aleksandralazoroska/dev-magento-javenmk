@@ -176,25 +176,36 @@ h1 {
   display: block;
 }
 
+.footer-custom-left {
+  float: left;
+}
+
+.footer-custom-left li {
+    float: left;
+    padding: 30px;
+}
+
+.footer-custom-right {
+  float: left;
+}
+
 .footer-custom-left a  {
-  font-size: 12px;
+  font-size: 14px;
   color: grey;
-  padding:30px;
   float: left;
 }
 
 .footer-custom-right-kontakt  {
   font-size: 18px;
-  text-align: center;
   color: grey;
   padding-top: 20px;
-  padding-right: 400px;
+  padding-left: 50px;
+  float: left;
 }
 
 .footer-custom-right-fb {
   float: right;
-  padding-right: 250px;
-  line-height: 23px;
+  padding-left: 100px;
 }
 
 .footer-custom-right-fb h6 {
@@ -213,8 +224,8 @@ h1 {
 
 .footer-custom-right p {
   font-size: 15px;
-  padding-left: 400px;
   padding-top: 10px;
+  text-align: left;
 }
 
 .footer-custom-right-up {
