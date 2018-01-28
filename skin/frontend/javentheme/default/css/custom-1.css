@@ -26,6 +26,10 @@
   float: left;
 }
 
+.logo {
+  min-height: 0;
+}
+
 .langs-wrapper{float:right;height:15px;margin-right:20px;}
 .lang-flag{border:1px solid transparent;display:inline-block;height:13px;}
 .lang-flag:hover{border:1px solid #FFF;}
@@ -47,6 +51,61 @@
   color: #FF9800;
 }
 
+body.cms-home .main-container {
+  padding-top: 0;
+}
+
+.home-container-poznat {
+  width: 1200px;
+  float: left;
+  height: 600px;
+  background-color: #D0D0D0;
+  text-align: center;
+}
+
+.home-container-poznat-search {
+  width: 100%;
+  text-align: center;
+  margin-top: 350px;
+}
+
+#search {
+  width: 528px;
+  height: 64px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.home-container-poznat-search .search-input {
+  border: 0;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-right: 20px;
+}
+
+.home-container-poznat-search .search-select {
+  width: 528px;
+  height: 64px;
+  border: 0;
+  border-radius: 5px;
+  background-color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-right: 20px;
+  font-size: 18px;
+  font-family: "Roboto Condensed";
+}
+
+.home-container-poznat-search .search-submit {
+  height: 64px;
+  width: 64px;
+  border: 0;
+  border-radius: 5px;
+  background-color: #FF9800;
+  background-image: url("../images/search.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .home-container-categories {
   width: 1200px;
   float: left;
@@ -75,4 +134,67 @@
 .home-container-categories img {
   display: inherit;
   margin: 0 auto;
+}
+
+.home-container-packages-container h2 {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  text-transform: none;
+  font-size: 24px;
+}
+
+.home-container-packages {
+  width: 1200px;
+  float: left;
+  margin-bottom: 60px;
+  text-align: center;
+  display: inline-block;
+}
+
+.home-container-packages-container {
+  margin: 0 auto;
+  width: 960px;
+}
+
+.home-container-packages-box {
+  width: 300px;
+  float: left;
+  text-align: center;
+  margin-right: 20px;
+}
+
+.home-container-promotions {
+  width: 1200px;
+  float: left;
+  text-align: center;
+  display: inline-block;
+  background-color: #00bfa5;
+  height: 300px;
+  padding-top: 60px;
+}
+
+.home-container-promotions-container h2 {
+  text-transform: none;
+  font-size: 24px;
+  color: white;
+}
+
+.footer {
+  padding-top: 0px;
+}
+
+.footer-custom {
+  width: 1200px;
+  background-color: #e0e0e0;
+}
+
+.footer-container {
+  padding: 0;
+}
+
+.footer address {
+  border-top: none;
+  margin-top: 0px;
+  padding: 7px 0 0 0;
+  height: 30px;
 }

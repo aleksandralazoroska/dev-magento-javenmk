@@ -1,0 +1,26 @@
+<!-- Packages -->
+<?php
+  $attrSetName = 'Packages';
+  $attributeSetId = Mage::getModel('eav/entity_attribute_set')
+      ->load($attrSetName, 'attribute_set_name')
+      ->getAttributeSetId();
+
+  $products = Mage::getModel('catalog/product')->getCollection();
+  $products->addAttributeToFilter('attribute_set_id',$attributeSetId);
+
+  $products->addAttributeToSelect('*');
+
+  $products->load();
+?>
+
+<div class="home-container-packages-container">
+  <h2><?php echo $this->__("Odberete paket i pretplatete se vednas") ?></h2>
+  <?php foreach ($products as $prod): ?>
+    <div class="home-container-packages-box" style="background-color: <?php echo $prod->getData("css_color"); ?>">
+      <h3><?php echo $prod->getName() ?></h3>
+      <p><?php echo $prod->getPrice(); ?></p>
+      <p><?php echo $prod->getShortDescription(); ?></p>
+      <a href="<?php echo Mage::getBaseUrl() . $prod->getUrlKey(); ?>">More</a>
+    </div>
+  <?php endforeach; ?>
+</div>
