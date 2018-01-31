@@ -111,7 +111,7 @@ body.cms-home .main-container {
   float: left;
   margin-top: 60px;
   margin-bottom: 20px;
-  padding-left: 60px;
+  padding-left: 65px;
 }
 
 .home-container-categories li {
@@ -126,6 +126,7 @@ body.cms-home .main-container {
   height: 64px;
   display: block;
   margin: 0 auto;
+  margin-bottom: 10px;
   background-color: #ff8a65;
   border-radius: 50%;
   padding-top: 19px;
@@ -161,6 +162,22 @@ body.cms-home .main-container {
   float: left;
   text-align: center;
   margin-right: 20px;
+  padding-top: 20px;
+}
+
+.package-box-name {
+  color: white;
+  text-transform: none;
+  font-size: 18px;
+}
+
+.package-box-price {
+  color: white;
+  font-size: 36px;
+}
+
+.package-box-desc {
+  color: white;
 }
 
 .home-container-promotions {

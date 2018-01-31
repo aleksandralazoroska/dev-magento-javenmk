@@ -17,9 +17,9 @@
   <h2><?php echo $this->__("Odberete paket i pretplatete se vednas") ?></h2>
   <?php foreach ($products as $prod): ?>
     <div class="home-container-packages-box" style="background-color: <?php echo $prod->getData("css_color"); ?>">
-      <h3><?php echo $prod->getName() ?></h3>
-      <p><?php echo $prod->getPrice(); ?></p>
-      <p><?php echo $prod->getShortDescription(); ?></p>
+      <h3 class="package-box-name" ><?php echo $prod->getName() ?></h3>
+      <p class="package-box-price" ><?php echo round($prod->getPrice(), 0) . " " . $this->__("denari"); ?></p>
+      <p class="package-box-desc" ><?php echo $prod->getShortDescription(); ?></p>
       <a href="<?php echo Mage::getBaseUrl() . $prod->getUrlKey(); ?>">More</a>
     </div>
   <?php endforeach; ?>

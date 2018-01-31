@@ -47,19 +47,34 @@
 <?php
     $_helper = Mage::helper('catalog/category');
     $categories = $_helper->getStoreCategories();
+    $i = 0;
 ?>
 <div class="home-container-categories">
   <ol>
     <?php foreach ($categories as $_category): ?>
       <?php
         $category = Mage::getModel('catalog/category')->load($_category->getId());
+        $i++;
       ?>
+        <?php if($i == 8): ?>
+          <li>
+          </li>
+        <?php else: ?>
           <li>
             <a style="background-color: <?php echo $category->getDescription() ?>" href="<?php echo $category->getURL(); ?>">
               <img src="<?php echo Mage::getBaseUrl('media').'catalog/category/' . $category->getImage() ?>" />
             </a>
-            <p style="color: <?php echo $category->getDescription() ?>" ><?php echo $category->getName() ?></p>
+            <p style="color: <?php echo $category->getDescription() ?>" ><?php echo $this->__($category->getName()) ?></p>
           </li>
+        <?php endif; ?>
     <?php endforeach; ?>
+    <!-- Because we missed the 8th category -->
+    <?php $category = Mage::getModel('catalog/category')->load(14); ?>
+      <li>
+        <a style="background-color: <?php echo $category->getDescription() ?>" href="<?php echo $category->getURL(); ?>">
+          <img src="<?php echo Mage::getBaseUrl('media').'catalog/category/' . $category->getImage() ?>" />
+        </a>
+        <p style="color: <?php echo $category->getDescription() ?>" ><?php echo $this->__($category->getName()) ?></p>
+      </li>
   </ol>
 </div>
