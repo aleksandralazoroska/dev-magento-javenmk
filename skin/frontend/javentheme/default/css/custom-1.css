@@ -236,8 +236,40 @@ body.cms-home .main-container {
 .product-img-box {
   width: 100%;
   padding: 0;
+  position: relative;
+}
+
+.product-img-box .product-name {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.product-img-box .product-name .h1 {
+  color: white;
+  font-size: 30px;
+  border: none;
+  text-transform: none;
 }
 
 .product-image {
   border: 0;
+}
+
+.product-view .product-shop {
+  padding-left: 0;
+  width: 100%;
+  float: left;
+}
+
+.product-shop-information {
+  float: left;
+  width: 300px;
+}
+
+.product-shop-working-hours {
+  float: left;
+  width: 300px;
 }

@@ -38,6 +38,9 @@
 ?>
 <div class="product-image product-image-zoom">
     <div class="product-image-gallery">
+        <div class="product-name">
+          <span class="h1"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span>
+        </div>
         <img id="image-main"
              class="gallery-image visible"
              src="<?php echo $this->helper('catalog/image')->init($_product, 'image') ?>"

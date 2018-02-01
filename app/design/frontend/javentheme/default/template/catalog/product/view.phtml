@@ -54,25 +54,38 @@
             </div>
 
             <div class="product-shop">
+                <!--
                 <div class="product-name">
-                    <span class="h1"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span>
+                    <span class="h1"><?php //echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span>
                 </div>
+                -->
 
+                <!--
                 <div class="extra-info">
-                    <?php echo $this->getReviewsSummaryHtml($_product, 'default', false)?>
-                    <?php echo $this->getChildHtml('product_type_availability'); ?>
+                    <?php //echo $this->getReviewsSummaryHtml($_product, 'default', false)?>
+                    <?php //echo $this->getChildHtml('product_type_availability'); ?>
+                </div>
+                -->
+
+                <?php //echo $this->getChildHtml('alert_urls') ?>
+                <div class="product-shop-information" >
+                  <h4><?php echo $this->__("Information"); ?></h4>
+                  <p><?php echo $_product->getData('phone'); ?></p>
+                  <p><?php echo $_product->getData('email'); ?></p>
+                  <p><?php echo $_product->getData('address'); ?></p>
+                  <p><?php echo $_product->getData('city'); ?></p>
                 </div>
 
-                <?php echo $this->getChildHtml('alert_urls') ?>
-
-                <?php if ($_product->getShortDescription()):?>
-                    <div class="short-description">
-                        <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
-                    </div>
-                <?php endif;?>
-
-
-
+                <div class="product-shop-working-hours">
+                  <h4><?php echo $this->__("Working hours"); ?></h4>
+                  <p><?php echo $this->__($_product->getResource()->getAttribute('monday')->getFrontendLabel()) . " " . $_product->getData('monday'); ?></p>
+                  <p><?php echo $this->__($_product->getResource()->getAttribute('tuesday')->getFrontendLabel()) . " " . $_product->getData('tuesday'); ?></p>
+                  <p><?php echo $this->__($_product->getResource()->getAttribute('wednesday')->getFrontendLabel()) . " " . $_product->getData('wednesday'); ?></p>
+                  <p><?php echo $this->__($_product->getResource()->getAttribute('thursday')->getFrontendLabel()) . " " . $_product->getData('thursday'); ?></p>
+                  <p><?php echo $this->__($_product->getResource()->getAttribute('friday')->getFrontendLabel()) . " " . $_product->getData('friday'); ?></p>
+                  <p><?php echo $this->__($_product->getResource()->getAttribute('saturday')->getFrontendLabel()) . " " . $_product->getData('saturday'); ?></p>
+                  <p><?php echo $this->__($_product->getResource()->getAttribute('sunday')->getFrontendLabel()) . " " . $_product->getData('sunday'); ?></p>
+                </div>
 
                 <?php echo $this->getChildHtml('other');?>
 
@@ -81,6 +94,12 @@
                 <?php endif;?>
 
             </div>
+
+            <?php if ($_product->getShortDescription()):?>
+                <div class="short-description">
+                    <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+                </div>
+            <?php endif;?>
 
             <?php echo $this->getChildHtml('related_products') ?>
 
@@ -142,20 +161,22 @@
         </script>
     </div>
 
+    <!--
     <div class="product-collateral toggle-content tabs">
-        <?php if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')):?>
+        <?php //if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')):?>
             <dl id="collateral-tabs" class="collateral-tabs">
-                <?php foreach ($detailedInfoGroup as $alias => $html):?>
-                    <dt class="tab"><span><?php echo $this->escapeHtml($this->getChildData($alias, 'title')) ?></span></dt>
+                <?php //foreach ($detailedInfoGroup as $alias => $html):?>
+                    <dt class="tab"><span><?php //echo $this->escapeHtml($this->getChildData($alias, 'title')) ?></span></dt>
                     <dd class="tab-container">
-                        <div class="tab-content"><?php echo $html ?></div>
+                        <div class="tab-content"><?php //echo $html ?></div>
                     </dd>
-                <?php endforeach;?>
+                <?php //endforeach;?>
             </dl>
-        <?php endif; ?>
+        <?php //endif; ?>
     </div>
+    -->
 
     <?php echo $this->getChildHtml('upsell_products') ?>
-    <?php echo $this->getChildHtml('product_additional_data') ?>
+    <?php //echo $this->getChildHtml('product_additional_data') ?>
 
 </div>
