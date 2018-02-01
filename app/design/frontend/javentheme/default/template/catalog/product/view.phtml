@@ -87,6 +87,36 @@
                   <p><?php echo $this->__($_product->getResource()->getAttribute('sunday')->getFrontendLabel()) . " " . $_product->getData('sunday'); ?></p>
                 </div>
 
+                <?php
+                  $_helper = $this->helper('catalog/output');
+                  $lat = $_product->getData('map_lat');
+                  $lng = $_product->getData('map_lng');
+                ?>
+
+                <!-- Google Map location -->
+                <div id="map" class="product-shop-google-map"></div>
+                <script async defer
+                  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTtEBEusRONeeNTQmL9f3LLLHHJYneHvU&callback=initMap">
+                </script>
+                <script type="text/javascript">
+                  window.onload = function() {
+
+                     var myLatLng = {lat: <?php echo $lat; ?>, lng: <?php echo $lng; ?>};
+
+                     var map = new google.maps.Map(document.getElementById('map'), {
+                       zoom: 15,
+                       center: myLatLng
+                     });
+
+                     var marker = new google.maps.Marker({
+                       position: myLatLng,
+                       map: map,
+                       title: 'Hello World!'
+                     });
+
+                  };
+                </script>
+
                 <?php echo $this->getChildHtml('other');?>
 
                 <?php if ($_product->isSaleable() && $this->hasOptions()):?>

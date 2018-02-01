@@ -273,3 +273,9 @@ body.cms-home .main-container {
   float: left;
   width: 300px;
 }
+
+.product-shop-google-map {
+  float: left;
+  width: 600px;
+  height: 300px;
+}
