@@ -9,6 +9,10 @@ h1 {
 .button {
   background-color: #FF9800;
 }
+
+.button:hover {
+  background-color: none;
+}
 .page-header {
   max-width: 1200px;
   height: 60px;
@@ -85,6 +89,7 @@ h1 {
   border: 1px solid grey;
   border-radius: 5px;
   min-height: 320px;
+  padding-top: 20px;
 }
 
 .home-container-za-korisnicite {
@@ -94,6 +99,7 @@ h1 {
   border: 1px solid grey;
   border-radius: 5px;
   min-height: 320px;
+  padding-top: 20px;
 }
 
 .home-container-vlozi {

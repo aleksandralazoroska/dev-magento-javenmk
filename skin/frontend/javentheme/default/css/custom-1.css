@@ -39,10 +39,11 @@
 }
 
 .account-cart-wrapper a.button {
-  padding: 7px 20px;
+  padding: 6px 20px;
   border-radius: 5px;
   height: 32px;
   margin-right: 20px;
+  text-transform: none;
 }
 
 #login-button {
@@ -166,6 +167,7 @@ body.cms-home .main-container {
 }
 
 .package-box-name {
+  font-weight: bold;
   color: white;
   text-transform: none;
   font-size: 18px;
@@ -174,10 +176,21 @@ body.cms-home .main-container {
 .package-box-price {
   color: white;
   font-size: 36px;
+  margin-bottom: 20px !important;
 }
 
 .package-box-desc {
   color: white;
+  margin-bottom: 60px !important;
+}
+
+.package-box-button {
+  background-color: white;
+  margin-bottom: 20px;
+  width: 260px;
+  height: 32px;
+  border-radius: 5px;
+  text-transform: none;
 }
 
 .home-container-promotions {
@@ -214,4 +227,17 @@ body.cms-home .main-container {
   margin-top: 0px;
   padding: 7px 0 0 0;
   height: 30px;
+}
+
+.product-view {
+  width: 1200px;
+}
+
+.product-img-box {
+  width: 100%;
+  padding: 0;
+}
+
+.product-image {
+  border: 0;
 }
