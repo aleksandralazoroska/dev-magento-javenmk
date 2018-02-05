@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <config>
-	<modules>
-		<Javen_CustomerAsAProduct>
-			<active>true</active>
-			<codePool>community</codePool>
-		</Javen_CustomerAsAProduct>
-	</modules>
+  <modules>
+    <Javen_CustomerAsAProduct>
+      <active>true</active>
+      <codePool>community</codePool>
+      <version>0.1.0</version>
+    </Javen_CustomerAsAProduct>
+  </modules>
 </config>

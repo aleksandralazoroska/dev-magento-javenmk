@@ -2,11 +2,11 @@
 
 class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Front_Action {
 
-	public function indexAction() {
+    public function IndexAction() {
 
-		$this->loadLayout();
-		$this->renderLayout();
+	    $this->loadLayout();
+      $this->renderLayout();
 
-	}
+    }
 
 }
