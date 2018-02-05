@@ -27,6 +27,7 @@
 <div class="footer-container">
     <div class="footer">
         <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-custom')->toHtml();?>
-        <address class="copyright"><?php echo $this->getCopyright() ?></address>
+        <!-- <address class="copyright"><?php //echo $this->getCopyright() ?></address> -->
+        <address class="copyright"><?php echo $this->__("Javen.mk") . " " ?>&copy;<?php echo " " . $this->__("All Rights Reserved."); ?></address>
     </div>
 </div>

@@ -38,6 +38,10 @@
   margin-top: 13px;
 }
 
+.button:hover {
+  background-color: none;
+}
+
 .account-cart-wrapper a.button {
   padding: 6px 20px;
   border-radius: 5px;
@@ -130,12 +134,14 @@ body.cms-home .main-container {
   margin-bottom: 10px;
   background-color: #ff8a65;
   border-radius: 50%;
-  padding-top: 19px;
+  padding-top: 16px;
 }
 
 .home-container-categories img {
   display: inherit;
   margin: 0 auto;
+  width: 32px;
+  height: 32px;
 }
 
 .home-container-packages-container h2 {
@@ -220,13 +226,17 @@ body.cms-home .main-container {
 
 .footer-container {
   padding: 0;
+  max-width: 1200px;
 }
 
 .footer address {
   border-top: none;
   margin-top: 0px;
-  padding: 7px 0 0 0;
+  padding: 6px 0 0 0;
   height: 30px;
+  font-size: 12px;
+  background-color: #9e9e9e;
+  color: white;
 }
 
 .product-view {
@@ -278,4 +288,16 @@ body.cms-home .main-container {
   float: left;
   width: 600px;
   height: 300px;
+}
+
+a.product-shop-share-page {
+  width: 100%;
+  height: 60px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  margin-top: 40px;
+  margin-bottom: 60px;
+  text-transform: none;
+  padding-top: 20px;
+  font-size: 16px;
 }

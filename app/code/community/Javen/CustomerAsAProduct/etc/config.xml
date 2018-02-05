@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<Javen_CustomerAsAProduct>
+			<version>0.1.0</version>
+		</Javen_CustomerAsAProduct>
+	</modules>
+	<global>
+        <blocks>
+            <javen_customerasaproduct>
+                <class>javen_customerasaproduct_block</class>
+            </javen_customerasaproduct>
+        </blocks>
+    </global>
+	<frontend>
+        <routers>
+            <translate>
+                <use>standard</use>
+                <args>
+                    <module>Javen_CustomerAsAProduct</module>
+                    <frontName>customerasaproduct</frontName>
+                </args>
+            </translate>
+        </routers>
+        <customerasaproduct>
+            <modules>
+                <Javen_CustomerAsAProduct>
+                     <files>
+                          <default>Javen_CustomerAsAProduct.csv</default>
+                     </files>
+                </Javen_CustomerAsAProduct>
+            </modules>
+        </customerasaproduct>
+        <layout>
+        	<updates>
+        		<customerasaproduct>
+        			<file>customerasaproduct.xml</file>
+        		</customerasaproduct>
+        	</updates>
+        </layout>
+  </frontend>
+</config>

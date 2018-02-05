@@ -74,6 +74,12 @@
                   <p><?php echo $_product->getData('email'); ?></p>
                   <p><?php echo $_product->getData('address'); ?></p>
                   <p><?php echo $_product->getData('city'); ?></p>
+                  <div class="product-shop-social">
+                    <a href="https://www.web.com/"><img src="<?php echo $this->getSkinUrl('images/web.svg') ?>" alt=""/></a>
+                    <a href="https://www.facebook.com/"><img src="<?php echo $this->getSkinUrl('images/facebook-box.svg') ?>" alt=""/></a>
+                    <a href="https://twitter.com/"><img src="<? echo $this->getSkinUrl('images/twitter-box.svg') ?>" alt=""/></a>
+                    <a href="https://www.instagram.com/"><img src="<? echo $this->getSkinUrl('images/instagram.svg') ?>" alt=""/></a>
+                  </div>
                 </div>
 
                 <div class="product-shop-working-hours">
@@ -87,14 +93,21 @@
                   <p><?php echo $this->__($_product->getResource()->getAttribute('sunday')->getFrontendLabel()) . " " . $_product->getData('sunday'); ?></p>
                 </div>
 
-                  <?php
+
+
+
+                <?php
                   $_helper = $this->helper('catalog/output');
                   $lat = $_product->getData('map_lat');
                   $lng = $_product->getData('map_lng');
                 ?>
 
                 <!-- Google Map location -->
+                <div class="product-shop-map">
+                 <h4>Map</h4>
+                </div>
                 <div id="map" class="product-shop-google-map"></div>
+
                 <script async defer
                   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTtEBEusRONeeNTQmL9f3LLLHHJYneHvU&callback=initMap">
                 </script>
@@ -123,13 +136,16 @@
                     <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
                 <?php endif;?>
 
-            </div>
+
 
             <?php if ($_product->getShortDescription()):?>
                 <div class="short-description">
+                    <h4><?php echo $this->__("About us"); ?></h4>
                     <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
                 </div>
             <?php endif;?>
+
+            <a class="product-shop-share-page button"><?php echo $this->__("Share this page"); ?></a>
 
             <?php echo $this->getChildHtml('related_products') ?>
 

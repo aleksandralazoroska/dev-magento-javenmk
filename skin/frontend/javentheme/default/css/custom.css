@@ -246,11 +246,43 @@ h1 {
   padding-top: 40px;
 }
 
+.product-shop-information h4 {
+  font-size: 18px;
+  color: orange;
+}
+
+.product-shop-information p {
+  font-size: 15px;
+  padding-top: 20px;
+  text-align: left;
+}
+
+.product-shop-social {
+  color: orange;
+  padding-top: 40px;
+  max-width: 300px;
+  float: left;
+
+}
+
+.product-shop-social img {
+  width: 32px;
+}
 .product-shop-working-hours {
   width: 300px;
   float: left;
   padding-top: 40px;
   max-width: 300px;
+}
+
+.product-shop-working-hours h4 {
+  font-size: 18px;
+  color: orange;
+}
+
+.product-shop-working-hours p {
+  padding-top: 10px;
+  text-align: left;
 }
 
 .product-shop-google-map  {
@@ -260,24 +292,19 @@ h1 {
   max-height: 200px;
 }
 
-.product-shop-information h4 {
+.product-shop-map h4 {
+   font-size: 18px;
+   color: orange;
+   padding-top: 40px;
+   padding-bottom: 20px;
+}
+
+.short-description {
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+.short-description h4 {
   font-size: 18px;
-}
-
-.product-shop-information p {
-  font-size: 15px;
-  padding-top: 20px;
-  text-align: left;
-}
-
-.product-shop-working-hours h4 {
-  font-size: 18px;
-
-}
-
-.product-shop-working-hours p {
-  padding-top: 10px;
-  text-align: left;
-
-
+  color: orange;
 }
