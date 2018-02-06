@@ -257,32 +257,45 @@ h1 {
   text-align: left;
 }
 
+.product-shop-information h1 {
+  font-size: 24px;
+  color: grey;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 .product-shop-social {
-  color: orange;
-  padding-top: 40px;
+  margin-top: 40px;
   max-width: 300px;
   float: left;
-
 }
 
 .product-shop-social img {
   width: 32px;
+  float: right;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-right: 30px;
 }
+
 .product-shop-working-hours {
   width: 300px;
   float: left;
   padding-top: 40px;
   max-width: 300px;
+  padding-right: 40px;
 }
 
 .product-shop-working-hours h4 {
   font-size: 18px;
   color: orange;
+  padding-bottom: 20px;
 }
 
 .product-shop-working-hours p {
   padding-top: 10px;
   text-align: left;
+  font-size: 15px;
 }
 
 .product-shop-google-map  {
@@ -300,11 +313,12 @@ h1 {
 }
 
 .short-description {
-  padding-top: 80px;
+  padding-top: 40px;
   padding-bottom: 40px;
 }
 
 .short-description h4 {
   font-size: 18px;
   color: orange;
+  padding-bottom: 20px;
 }

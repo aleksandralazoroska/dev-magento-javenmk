@@ -9,4 +9,13 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
     }
 
+    public function postAction() {
+
+      //Fetch submited params
+      $params = $this->getRequest()->getParams();
+
+      print_r($params);
+
+    }
+
 }

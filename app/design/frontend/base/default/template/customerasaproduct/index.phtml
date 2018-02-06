@@ -1,1 +1,52 @@
-<div>Ilche Bedelovski</div>
+<div class="customerasaproduct-container">
+  <form method="post" action="<?php echo Mage::getUrl('customerasaproduct/index/post'); ?>">
+    <fieldset class="group-select">
+      <h4 class="legend">Design your business page</h4>
+      <h4 class="legend">Basic details</h4>
+      <ul>
+        <li>
+          <div class="input-box">
+            <label for="name">Name <span class="required">*</span></label><br />
+            <input name="name" id="name" title="Name" value="" class="required-entry input-text" type="text" />
+          </div>
+          <div class="input-box">
+            <label for="category">Category  <span class="required">*</span></label><br />
+            <input name="category" id="category" title="Category" value="" class="required-entry input-text validate-business" type="text" />
+          </div>
+          <div class="clear"></div>
+          <div class="input-box">
+            <label for="telephone-1">Telephone 1  <span class="required">*</span></label><br />
+            <input name="telephone-1" id="telephone-1" title="Telephone 1" value="" class="required-entry input-text validate-business" type="text" />
+          </div>
+          <div class="input-box">
+            <label for="telephone-2">Telephone 2</label><br />
+            <input name="telephone-2" id="telephone-2" title="Telephone 2" value="" class="input-text validate-business" type="text" />
+          </div>
+          <div class="input-box">
+            <label for="email">Email</label><br />
+            <input name="email" id="email" title="Email" value="" class="input-text validate-business" type="text" />
+          </div>
+          <div class="input-box">
+            <label for="Address">Address  <span class="required">*</span></label><br />
+            <input name="address" id="address" title="Address" value="" class="required-entry input-text validate-business" type="text" />
+          </div>
+          <div class="input-box">
+            <label for="City">City  <span class="required">*</span></label><br />
+            <input name="city" id="city" title="City" value="" class="required-entry input-text validate-business" type="text" />
+          </div>
+          <div class="clear"></div>
+
+          <h4 class="legend"><?php echo $this->__("Links"); ?></h4>
+          <div class="input-box">
+            <label for="web-page"><?php echo $this->__("Web Page"); ?></label><br />
+            <input name="web-page" id="web-page" title="web-page" value="" class="input-text validate-business" type="text" />
+          </div>
+        </li>
+      </ul>
+    </fieldset>
+    <div class="button-set">
+        <p class="required">* Required Fields</p>
+        <button class="form-button" type="submit"><span>Submit</span></button>
+    </div>
+  </form>
+</div>

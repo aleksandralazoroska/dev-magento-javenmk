@@ -68,18 +68,19 @@
                 -->
 
                 <?php //echo $this->getChildHtml('alert_urls') ?>
-                <div class="product-shop-information" >
+                <div class="product-shop-information">
                   <h4><?php echo $this->__("Information"); ?></h4>
-                  <p><?php echo $_product->getData('phone'); ?></p>
+                  <h1><?php echo $_product->getData('phone'); ?></h1>
                   <p><?php echo $_product->getData('email'); ?></p>
                   <p><?php echo $_product->getData('address'); ?></p>
                   <p><?php echo $_product->getData('city'); ?></p>
-                  <div class="product-shop-social">
-                    <a href="https://www.web.com/"><img src="<?php echo $this->getSkinUrl('images/web.svg') ?>" alt=""/></a>
-                    <a href="https://www.facebook.com/"><img src="<?php echo $this->getSkinUrl('images/facebook-box.svg') ?>" alt=""/></a>
-                    <a href="https://twitter.com/"><img src="<? echo $this->getSkinUrl('images/twitter-box.svg') ?>" alt=""/></a>
-                    <a href="https://www.instagram.com/"><img src="<? echo $this->getSkinUrl('images/instagram.svg') ?>" alt=""/></a>
-                  </div>
+
+                <div class="product-shop-social">
+                  <a href="https://www.instagram.com/"><img src="<?php echo $this->getSkinUrl('images/instagram.svg') ?>" alt=""/></a>
+                  <a href="https://twitter.com/"><img src="<?php echo $this->getSkinUrl('images/twitter-box.svg') ?>" alt=""/></a>
+                  <a href="https://www.facebook.com/"><img src="<?php echo $this->getSkinUrl('images/facebook-box.svg') ?>" alt=""/></a>
+                  <a href="https://www.web.com/"><img src="<?php echo $this->getSkinUrl('images/web.svg') ?>" alt=""/></a>
+                </div>
                 </div>
 
                 <div class="product-shop-working-hours">
@@ -104,7 +105,7 @@
 
                 <!-- Google Map location -->
                 <div class="product-shop-map">
-                 <h4>Map</h4>
+                 <h4><?php echo $this->__("Map"); ?></h4>
                 </div>
                 <div id="map" class="product-shop-google-map"></div>
 
