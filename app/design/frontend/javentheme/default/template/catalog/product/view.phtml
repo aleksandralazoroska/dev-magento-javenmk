@@ -50,7 +50,7 @@
                 <div class="product-name">
                     <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
                 </div>
-                <?php echo $this->getChildHtml('media') ?>
+                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'cover_image') ?>" />
             </div>
 
             <div class="product-shop">
@@ -71,9 +71,9 @@
                 <div class="product-shop-information">
                   <h4><?php echo $this->__("Information"); ?></h4>
                   <h1><?php echo $_product->getData('phone'); ?></h1>
-                  <p><?php echo $_product->getData('email'); ?></p>
-                  <p><?php echo $_product->getData('address'); ?></p>
-                  <p><?php echo $_product->getData('city'); ?></p>
+                  <p><?php echo $this->__($_product->getResource()->getAttribute('email')->getFrontendLabel()) . " " . $_product->getData('email'); ?></p>
+                  <p><?php echo $this->__($_product->getResource()->getAttribute('address')->getFrontendLabel()) . " " . $_product->getData('address'); ?></p>
+                  <p><?php echo $this->__($_product->getResource()->getAttribute('city')->getFrontendLabel()) . " " .$_product->getData('city'); ?></p>
 
                 <div class="product-shop-social">
                   <a href="https://www.instagram.com/"><img src="<?php echo $this->getSkinUrl('images/instagram.svg') ?>" alt=""/></a>
@@ -147,6 +147,8 @@
             <?php endif;?>
 
             <a class="product-shop-share-page button"><?php echo $this->__("Share this page"); ?></a>
+
+            <?php echo $this->getChildHtml('media') ?>
 
             <?php echo $this->getChildHtml('related_products') ?>
 

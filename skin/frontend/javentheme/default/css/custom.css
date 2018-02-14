@@ -1,3 +1,7 @@
+body, form .legend, label {
+  font-family: "Roboto"
+}
+
 h4 {
   text-transform: none;
 }
@@ -107,7 +111,9 @@ h1 {
   float: left;
   padding-left: 60px;
   padding-right: 60px;
-  background-color: #D0D0D0;
+  background: url(../images/homepage_image_2.jpg) top center;
+  background-size: 1200px 600px;
+
 }
 
 .home-container-vlozi-top {
@@ -240,6 +246,8 @@ h1 {
   background-color: #9e9e9e;
 }
 
+
+
 .product-shop-information {
   width: 300px;
   float: left;
@@ -321,4 +329,144 @@ h1 {
   font-size: 18px;
   color: orange;
   padding-bottom: 20px;
+}
+
+.more-views  {
+  float: right;
+  text-align: right;
+}
+
+.more-views ul img {
+  padding-top: 20px;
+  float: right;
+  width: 100px;
+  height: 100px;
+
+}
+
+.customerasaproduct-container {
+  padding-top: 60px;
+  padding-left: 60px;
+}
+
+.customerasaproduct-container h3 {
+  font-size: 20px;
+  text-transform: none;
+  color: grey;
+  letter-spacing: 1px;
+  border: 0;
+}
+
+.customerasaproduct-container h4 {
+  padding-top: 20px;
+  text-transform: none;
+  font-size: 18px;
+  color: grey;
+  border: 0;
+}
+
+.customerasaproduct-container .input-text {
+  width: 500px;
+  height: 35px;
+  border-radius: 5px;
+  margin-top: 5px;
+ }
+
+.customerasaproduct-container .input-box  {
+  margin-top: 20px;
+ }
+
+.customerasaproduct-container label {
+  color: grey;
+  text-transform: none;
+  border: none;
+}
+
+.customerasaproduct-container1 {
+  padding-top: 60px;
+}
+
+.customerasaproduct-container1 .input-box input {
+  width: 245px;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.customerasaproduct-container1 h4 {
+  font-size: 18px;
+  text-transform: none;
+  color: grey;
+}
+
+.customerasaproduct-container1 .input-box label {
+  color: grey;
+  text-transform: none;
+}
+
+.customerasaproduct-container2 {
+  padding-top: 40px;
+}
+
+.customerasaproduct-container2 h4 {
+  font-size: 18px;
+  text-transform: none;
+  color: grey;
+}
+
+.customerasaproduct-container textarea {
+  width: 500px !important;
+  height: 180px !important;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.customerasaproduct-container3 {
+  padding-top: 40px;
+}
+
+.customerasaproduct-container3 h4 {
+  font-size: 12px;
+  text-transform: none;
+  color: grey;
+}
+
+.customerasaproduct-container3 .input-box textarea {
+  width: 500px;
+  height: 300px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.customerasaproduct-container4 {
+  padding-top: 40px;
+}
+
+.customerasaproduct-container4 h4 {
+  font-size: 18px;
+  text-transform: none;
+  color: grey;
+}
+
+.customerasaproduct-container4 .input-box textarea {
+  width: 500px;
+  height: 180px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.customerasaproduct-container .button-set {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.customerasaproduct-container .button-set button {
+  border-radius: 5px;
+  text-transform: none;
+}
+
+.customerasaproduct-container .button-set .form-button-cancel {
+  background-color: white;
+  border: 1px solid #FF9800;
+  color: #FF9800;
 }

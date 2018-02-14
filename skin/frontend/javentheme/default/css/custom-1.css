@@ -64,8 +64,9 @@ body.cms-home .main-container {
   width: 1200px;
   float: left;
   height: 600px;
-  background-color: #D0D0D0;
+  background: url(../images/homepage_image_1.jpg) top center;
   text-align: center;
+  background-size: 1200px 600px;
 }
 
 .home-container-poznat-search {

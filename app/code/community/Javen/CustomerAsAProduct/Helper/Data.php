@@ -1,5 +1,7 @@
 <?php
-class Javen_CustomerAsAProduct_Helper_Data extends Mage_Core_Helper_Abstract
-{
+
+class Javen_CustomerAsAProduct_Helper_Data extends Mage_Core_Helper_Abstract {
+
+
+
 }
-	 

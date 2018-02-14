@@ -1,52 +1,181 @@
 <div class="customerasaproduct-container">
-  <form method="post" action="<?php echo Mage::getUrl('customerasaproduct/index/post'); ?>">
+  <form id="business-register" enctype="multipart/form-data" method="post" action="<?php echo Mage::getUrl('customerasaproduct/index/post'); ?>">
     <fieldset class="group-select">
-      <h4 class="legend">Design your business page</h4>
-      <h4 class="legend">Basic details</h4>
+      <h3 class="legend"><?php echo $this->__("Design your business page"); ?></h3>
+      <h4 class="legend"><?php echo $this->__("Basic details"); ?></h4>
       <ul>
         <li>
           <div class="input-box">
-            <label for="name">Name <span class="required">*</span></label><br />
+            <label for="name"><?php echo $this->__("Name"); ?></label><br />
             <input name="name" id="name" title="Name" value="" class="required-entry input-text" type="text" />
           </div>
           <div class="input-box">
-            <label for="category">Category  <span class="required">*</span></label><br />
-            <input name="category" id="category" title="Category" value="" class="required-entry input-text validate-business" type="text" />
+            <label for="category"><?php echo $this->__("Category"); ?></label><br />
+            <?php
+              $category = Mage::getModel('catalog/category');
+              if(is_object(Mage::registry('current_category'))){
+                $current_category_path=Mage::registry('current_category')->getPathIds();
+              }else{
+                $current_category_path = array();
+              }
+              $category->load(Mage::app()->getStore()->getRootCategoryId());
+              $children_string = $category->getChildren();
+              $children = explode(',',$children_string);
+              $extra_options='';
+
+              foreach($children as $c){
+                $selected = (in_array($c, $current_category_path))?'SELECTED':'';
+                $extra_options.= '<option value="' . $c . '" ' . $selected . '>' . $category->load($c)->getName() . '</option>' . "\n";
+              }
+            ?>
+            <select name="category" id="cat" class="required-entry input-text validate-business">
+               <option value=""><?php echo $this->__('All Categories') ?></option>
+               <?php echo $extra_options ?>
+            </select>
           </div>
-          <div class="clear"></div>
           <div class="input-box">
-            <label for="telephone-1">Telephone 1  <span class="required">*</span></label><br />
-            <input name="telephone-1" id="telephone-1" title="Telephone 1" value="" class="required-entry input-text validate-business" type="text" />
+            <label for="cover-image"><?php echo $this->__("Cover Image"); ?></label><br />
+            <input name="cover-image" id="cover-image" title="Cover Image" value="" class="required-entry" type="file" />
           </div>
           <div class="input-box">
-            <label for="telephone-2">Telephone 2</label><br />
-            <input name="telephone-2" id="telephone-2" title="Telephone 2" value="" class="input-text validate-business" type="text" />
+            <label for="telephone-1"><?php echo $this->__("Telephone 1"); ?></label><br />
+            <input name="telephone-1" id="telephone-1" title="Telephone 1" value="" class="required-entry input-text validate-phoneStrict" type="text" />
           </div>
           <div class="input-box">
-            <label for="email">Email</label><br />
-            <input name="email" id="email" title="Email" value="" class="input-text validate-business" type="text" />
+            <label for="telephone"><?php echo $this->__("Telephone 2"); ?></label><br />
+            <input name="telephone-2" id="telephone-2" title="Telephone 2" value="" class="input-text" type="text" />
           </div>
           <div class="input-box">
-            <label for="Address">Address  <span class="required">*</span></label><br />
-            <input name="address" id="address" title="Address" value="" class="required-entry input-text validate-business" type="text" />
+            <label for="email"><?php echo $this->__("Email"); ?></label><br />
+            <input name="email" id="email" title="Email" value="" class="input-text required-entry validate-email" type="text" />
           </div>
           <div class="input-box">
-            <label for="City">City  <span class="required">*</span></label><br />
-            <input name="city" id="city" title="City" value="" class="required-entry input-text validate-business" type="text" />
+            <label for="Address"><?php echo $this->__("Address"); ?></label><br />
+            <input name="address" id="address" title="Address" value="" class="required-entry input-text" type="text" />
+          </div>
+          <div class="input-box">
+            <label for="City"><?php echo $this->__("City"); ?></label><br />
+            <?php
+              $atributeCode = 'city';
+              $attribute = Mage::getModel('eav/config')->getAttribute('catalog_product',$atributeCode);
+              $options = $attribute->getSource()->getAllOptions();
+            ?>
+            <select name="city" id="city" class="required-entry input-text">
+              <?php foreach($options as $key => $value): ?>
+                <option value="<?php echo $value['label']; ?>" <?php if($key == $result['city']): ?> selected="selected" <?php endif; ?> ><?php echo $value['label']; ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
           <div class="clear"></div>
 
           <h4 class="legend"><?php echo $this->__("Links"); ?></h4>
           <div class="input-box">
-            <label for="web-page"><?php echo $this->__("Web Page"); ?></label><br />
-            <input name="web-page" id="web-page" title="web-page" value="" class="input-text validate-business" type="text" />
+            <label for="webpage"><?php echo $this->__("Web Page"); ?></label><br />
+            <input name="webpage" id="webpage" title="webpage" value="" class="input-text validate-url" type="text" />
+          </div>
+          <div class="input-box">
+            <label for="facebook"><?php echo $this->__("Facebook"); ?></label><br />
+            <input name="facebook" id="facebook" title="facebook" value="" class="input-text validate-url" type="text" />
+          </div>
+          <div class="input-box">
+            <label for="twitter"><?php echo $this->__("Twitter"); ?></label><br />
+            <input name="twitter" id="twitter" title="twitter" value="" class="input-text validate-url" type="text" />
+          </div>
+          <div class="input-box">
+            <label for="instagram"><?php echo $this->__("Instagram"); ?></label><br />
+            <input name="instagram" id="instagram" title="instagram" value="" class="input-text validate-url" type="text" />
           </div>
         </li>
       </ul>
+      <div class="customerasaproduct-container1">
+        <h4 class="legend"><?php echo $this->__("Working hours"); ?></h4>
+        <ul>
+          <li>
+            <div class="input-box">
+              <label for="monday"><?php echo $this->__("Monday"); ?></label><br />
+              <input name="monday_from" id="monday" title="monday" value="" class="required-entry input-text validate-number" type="text" />
+              <span>-</span>
+              <input name="monday_to" id="monday" title="monday" value="" class="required-entry input-text validate-number" type="text" />
+            </div>
+          </li>
+          <li>
+            <div class="input-box">
+              <label for="tuesday"><?php echo $this->__("Tuesday"); ?></label><br />
+              <input name="tuesday_from" id="tuesday" title="tuesday" value="" class="required-entry input-text validate-number" type="text" />
+              <span>-</span>
+              <input name="tuesday_to" id="tuesday" title="tuesday" value="" class="required-entry input-text validate-number" type="text" />
+            </div>
+          </li>
+          <li>
+            <div class="input-box">
+              <label for="wednesday"><?php echo $this->__("Wednesday"); ?></label><br />
+              <input name="wednesday_from" id="wednesday" title="wednesday" value="" class="required-entry input-text validate-number" type="text" />
+              <span>-</span>
+              <input name="wednesday_to" id="wednesday" title="wednesday" value="" class="required-entry input-text validate-number" type="text" />
+            </div>
+          </li>
+          <li>
+            <div class="input-box">
+              <label for="thursday"><?php echo $this->__("Thursday"); ?></label><br />
+              <input name="thursday_from" id="thursday" title="thursday" value="" class="required-entry input-text validate-number" type="text" />
+              <span>-</span>
+              <input name="thursday_to" id="thursday" title="thursday" value="" class="required-entry input-text validate-number" type="text" />
+            </div>
+          </li>
+          <li>
+            <div class="input-box">
+              <label for="friday"><?php echo $this->__("Friday"); ?></label><br />
+              <input name="friday_from" id="friday" title="friday" value="" class="required-entry input-text validate-number" type="text" />
+              <span>-</span>
+              <input name="friday_to" id="friday" title="friday" value="" class="required-entry input-text validate-number" type="text" />
+            </div>
+          </li>
+          <li>
+            <div class="input-box">
+              <label for="saturday"><?php echo $this->__("Saturday"); ?></label><br />
+              <input name="saturday_from" id="saturday" title="saturday" value="" class="required-entry input-text validate-number" type="text" />
+              <span>-</span>
+              <input name="saturday_to" id="saturday" title="saturday" value="" class="required-entry input-text validate-number" type="text" />
+            </div>
+          </li>
+          <li>
+            <div class="input-box">
+              <label for="sunday"><?php echo $this->__("Sunday"); ?></label><br />
+              <input name="sunday_from" id="sunday" title="sunday" value="" class="required-entry input-text validate-number" type="text" />
+              <span>-</span>
+              <input name="sunday_to" id="sunday" title="sunday" value="" class="required-entry input-text validate-number" type="text" />
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="customerasaproduct-container2">
+        <label for="about-us" ><?php echo $this->__("About us"); ?></h4>
+        <div class="input-box">
+          <textarea name="about-us" id="about-us" title="about-us" value="" class="input-text validate-business" type="text"></textarea>
+        </div>
+      </div>
+
+      <div class="customerasaproduct-container3">
+        <label for="photogallery"><?php echo $this->__("Photogallery"); ?></label>
+      </div>
+
+      <div class="customerasaproduct-container4">
+        <label for="promotions" ><?php echo $this->__("Actions, sale, promotions"); ?></label>
+        <div class="input-box">
+          <textarea name="promotions" id="promotions" title="promotions" value="" class="input-text validate-business" type="text"></textarea>
+      </div>
+      </div>
+
     </fieldset>
+
     <div class="button-set">
-        <p class="required">* Required Fields</p>
-        <button class="form-button" type="submit"><span>Submit</span></button>
+        <button class="form-button-cancel button" type=""><span><?php echo $this->__("Cancel") ?></span></button>
+        <button class="form-button-confirm button" type="submit"><span><?php echo $this->__("Save changes") ?></span></button>
     </div>
   </form>
 </div>
+<script type="text/javascript">
+    //< ![CDATA[
+        var businessRegister = new VarienForm('business-register');
+    //]]>
+</script>
