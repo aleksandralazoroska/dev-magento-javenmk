@@ -37,7 +37,7 @@ Validator.prototype = {
             this.options = $H(test);
             this._test = function(){return true};
         }
-        this.error = error || 'Validation failed.';
+        this.error = error || '';
         this.className = className;
     },
     test : function(v, elm) {
@@ -418,7 +418,7 @@ Validation.addAllThese([
 	['validate-select', 'Please select an option.', function(v) {
                 return ((v != "none") && (v != null) && (v.length != 0));
             }],
-    ['required-entry', 'This is a required field.', function(v) {
+    ['required-entry', '', function(v) {
                 return !Validation.get('IsEmpty').test(v);
             }],
     ['validate-number', 'Please enter a valid number in this field.', function(v) {
