@@ -22,6 +22,61 @@
   background-size: 15px 15px;
 }
 
+.page-header-container .header-top-name {
+  float: right;
+  color: #FF9800;
+  margin-top: -5px;
+  cursor: pointer;
+}
+
+.page-header-container .header-top-name p {
+  font-size: 14px;
+  font-weight: bold;
+  float: left;
+  margin-top: 12px;
+  margin-right: 15px;
+}
+
+.page-header-container .header-top-account-img {
+  float: left;
+}
+
+.page-header-container .header-top-account-arrow {
+  float: left;
+  margin-top: 10px;
+}
+
+.page-header-container .header-top-links {
+  background-color: white;
+  border: 1px solid #FF9800;
+  border-radius: 5px;
+  display: block;
+  position: absolute;
+  z-index: 200;
+  top: 47px;
+  right: 0;
+  width: 200px;
+  padding: 10px 0px 10px 0px;
+}
+
+.page-header-container .header-top-links li {
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.page-header-container .header-top-links li:hover {
+  background-color: #fff6e5;
+}
+
+.page-header-container .header-top-links a {
+  color: grey;
+}
+
+.page-header-container .header-top-links a:hover {
+  text-decoration: none;
+}
+
 .form-language {
   float: left;
 }
@@ -99,7 +154,7 @@ body.cms-home .main-container {
   padding-right: 20px;
   margin-right: 20px;
   font-size: 18px;
-  font-family: "Roboto Condensed";
+  font-family: "Roboto";
 }
 
 .home-container-poznat-search .search-submit {
@@ -258,7 +313,7 @@ body.cms-home .main-container {
   transform: translate(-50%, -50%);
 }
 
-.product-img-box .product-name .h1 {
+.product-img-box .product-name h1 {
   color: white;
   font-size: 30px;
   border: none;

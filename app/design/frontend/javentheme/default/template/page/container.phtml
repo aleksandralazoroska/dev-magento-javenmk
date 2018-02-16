@@ -15,6 +15,11 @@
     $selected = (in_array($c, $current_category_path))?'SELECTED':'';
     $extra_options.= '<option value="' . $c . '" ' . $selected . '>' . $category->load($c)->getName() . '</option>' . "\n";
   }
+
+  $atributeCode = 'city';
+  $attribute = Mage::getModel('eav/config')->getAttribute('catalog_product',$atributeCode);
+  $options = $attribute->getSource()->getAllOptions();
+
 ?>
 
 <div class="home-container-poznat">
@@ -24,11 +29,18 @@
         <fieldset>
             <div class="mini-search">
               <input id="search" type="text" class="search-input" name="<?php echo $this->helper('catalogSearch')->getQueryParamName() ?>" value="<?php echo $this->helper('catalogSearch')->getEscapedQueryText() ?>" />
-              <select name="cat" id="cat" class="search-select">
-                 <option value=""><?php echo $this->__('All Departments') ?></option>
-                 <?php echo $extra_options ?>
+              <select name="city" id="city" class="search-select">
+                <?php foreach($options as $key => $value): ?>
+                  <option value="<?php echo $value['label']; ?>" <?php if($key == $result['city']): ?> selected="selected" <?php endif; ?> ><?php if ($key == 0) { echo $this->__("Macedonia"); } else { echo $value['label']; }; ?></option>
+                <?php endforeach; ?>
               </select>
-              <input type="" class="search-submit" value="" alt="<?php echo $this->__('Search') ?>" />
+              <!--
+              <select name="cat" id="cat" class="search-select">
+                 <option value=""><?php //echo $this->__('All Departments') ?></option>
+                 <?php //echo $extra_options ?>
+              </select>
+              -->
+              <input type="submit" class="search-submit" value="" alt="<?php echo $this->__('Search') ?>" />
               <div id="search_autocomplete" class="search-autocomplete"></div>
               <script type="text/javascript">
                 //<![CDATA[

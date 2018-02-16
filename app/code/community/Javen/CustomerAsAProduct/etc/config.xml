@@ -14,6 +14,13 @@
             <frontName>customerasaproduct</frontName>
           </args>
       </customerasaproduct>
+      <customer>
+        <args>
+          <modules>
+            <Javen_CustomerAsAProduct before="Mage_Customer">Javen_CustomerAsAProduct</Javen_CustomerAsAProduct>
+          </modules>
+        </args>
+      </customer>
     </routers>
 		<layout>
 		  <updates>
@@ -34,5 +41,23 @@
 		<class>Javen_CustomerAsAProduct_Block</class>
 	  </customerasaproduct>
 	</blocks>
+  <models>
+	  <customerasaproduct>
+		<class>Javen_CustomerAsAProduct_Model</class>
+		<resourceModel>customerasaproduct_mysql4</resourceModel>
+	  </customerasaproduct>
+	</models>
+  <events>
+	  <customer_login> <!-- identifier of the event we want to catch -->
+        <observers>
+          <customer_login_handler> <!-- identifier of the event handler -->
+            <type>model</type> <!-- class method call type; valid are model, object and singleton -->
+            <class>customerasaproduct/observer</class> <!-- observers class alias -->
+            <method>customerLogin</method>  <!-- observer's method to be called -->
+            <args></args> <!-- additional arguments passed to observer -->
+          </customer_login_handler>
+        </observers>
+      </customer_login>
+    </events>
   </global>
-</config> 
+</config>

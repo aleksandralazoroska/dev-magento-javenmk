@@ -70,16 +70,29 @@
                   <?php echo $this->getChildHtml('store_language') ?>
                 </div>
 
-                <a class="button" id="login-button" href="<?php echo $this->helper('customer')->getAccountUrl(); ?>" data-target-element="#header-account" class="skip-link skip-account">
-                    <span class="icon"></span>
-                    <span class="label"><?php echo $this->__('Login'); ?></span>
-                </a>
-                <a class="button" href="<?php echo $this->helper('customer')->getRegisterUrl(); ?>" data-target-element="#header-account" class="skip-link skip-account">
-                    <span class="icon"></span>
-                    <span class="label"><?php echo $this->__('Register'); ?></span>
-                </a>
-
-                <!-- Cart -->
+                <?php if( !Mage::getSingleton( 'customer/session' )->isLoggedIn() ): ?>
+                  <a class="button" id="login-button" href="<?php echo $this->helper('customer')->getAccountUrl(); ?>" data-target-element="#header-account" class="skip-link skip-account">
+                      <span class="icon"></span>
+                      <span class="label"><?php echo $this->__('Login'); ?></span>
+                  </a>
+                  <a class="button" href="<?php echo $this->helper('customer')->getRegisterUrl(); ?>" data-target-element="#header-account" class="skip-link skip-account">
+                      <span class="icon"></span>
+                      <span class="label"><?php echo $this->__('Register'); ?></span>
+                  </a>
+                <?php else: ?>
+                  <div class="header-top-name" id="header-top-account">
+                    <p><?php echo Mage::getSingleton('customer/session')->getCustomer()->getName(); ?></p>
+                    <img class="header-top-account-img" height="45" width="45" src="<?php echo $this->getSkinUrl('images/account-circle.svg'); ?>" />
+                    <img class="header-top-account-arrow" height="25" width="25" src="<?php echo $this->getSkinUrl('images/menu-down.svg'); ?>" />
+                  </div>
+                  <div class="header-top-links" id="header-top-links" style="display: none">
+                    <ul>
+                      <li><a href="<?php echo Mage::getUrl('customer/account/index/'); ?>"><?php echo $this->__("My Account"); ?></a></li>
+                      <li><a href="<?php echo Mage::getUrl('customerasaproduct'); ?>"><?php echo $this->__("My Page"); ?></a></li>
+                      <li><a href="<?php echo Mage::getUrl('customer/account/logout'); ?>"><?php echo $this->__("Log Out"); ?></a></li>
+                    </ul>
+                  </div>
+                <?php endif; ?>
 
                 <div class="header-minicart">
                     <?php echo $this->getChildHtml('minicart_head'); ?>
@@ -101,15 +114,24 @@
         <div id="header-search" class="skip-content">
             <?php //echo $this->getChildHtml('topSearch') ?>
         </div>
-      -->
+        -->
 
         <!-- Account -->
-
+        <!--
         <div id="header-account" class="skip-content">
-            <?php echo $this->getChildHtml('topLinks') ?>
+            <?php //echo $this->getChildHtml('topLinks') ?>
         </div>
+        -->
     </div>
 </header>
 
 
 <?php echo $this->getChildHtml('topContainer'); ?>
+
+<script type="text/javascript">
+  $j(document).ready(function() {
+    $j("#header-top-account").click(function(){
+      $j("#header-top-links").toggle();
+    });
+  });
+</script>

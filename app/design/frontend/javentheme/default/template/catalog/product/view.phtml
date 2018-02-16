@@ -148,6 +148,11 @@
 
             <a class="product-shop-share-page button"><?php echo $this->__("Share this page"); ?></a>
 
+            <div class="product-image-product-image-zoom">
+               <p><?php echo $this->__("Photogallery"); ?></p>
+
+             </div>
+
             <?php echo $this->getChildHtml('media') ?>
 
             <?php echo $this->getChildHtml('related_products') ?>
@@ -208,7 +213,11 @@
             }.bind(productAddToCartForm);
         //]]>
         </script>
-    </div>
+         </div>
+         
+            <div class="product-shop-promotions">
+                <p><?php echo $this->__("Action, sales, promotions"); ?></p>
+             </div>
 
     <!--
     <div class="product-collateral toggle-content tabs">

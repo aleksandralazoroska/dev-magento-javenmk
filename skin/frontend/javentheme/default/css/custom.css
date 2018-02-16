@@ -1,5 +1,5 @@
-body, form .legend, label {
-  font-family: "Roboto"
+body {
+  font-family: "Roboto";
 }
 
 h4 {
@@ -8,6 +8,21 @@ h4 {
 
 h1 {
   text-transform: none;
+}
+
+label {
+  font-weight: normal;
+}
+
+.logo {
+  padding: 5px;
+}
+
+.logo .large {
+  width: 150px;
+  height: 40px;
+  margin-left: 80px;
+
 }
 
 .button {
@@ -165,20 +180,48 @@ h1 {
   padding: 0 0 0 30px;
 }
 
+.account-create .form-list input {
+  border-radius: 5px;
+  height: 35px;
+  width: 500px;
+}
+
 .form-list {
   list-style: none;
   margin-left: 40px;
   font-size: 10px;
-  margin-top: 30px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
 
 .fieldset .legend {
-  margin-top: 40px;
-  font-size: 17px;
+  margin-top: 30px;
+  font-size: 24px;
   margin-left: 40px;
   padding-top: 40px;
+  border: none;
+  text-transform: none;
+}
+
+.account-create .buttons-set {
+  border: none;
+  margin-bottom: 40px;
+  text-align: left;
+  padding-left: 40px;
+}
+
+.account-create .buttons-set a {
+  text-transform: none;
+  border-radius: 5px;
+  color: #FF9800;
+  background-color: white;
+  border: 1px solid #FF9800;
+}
+
+.account-create .buttons-set button.button {
+  float: none;
+  text-transform: none;
+  border-radius: 5px;
 }
 
 .footer-custom {
@@ -208,11 +251,15 @@ h1 {
 }
 
 .footer-custom-right-kontakt  {
-  font-size: 18px;
   color: grey;
-  padding-top: 20px;
   padding-left: 50px;
+  margin-top: 28px;
   float: left;
+}
+
+.footer-custom-right-kontakt a {
+  color: grey;
+  font-size: 16px;
 }
 
 .footer-custom-right-fb {
@@ -220,24 +267,25 @@ h1 {
   padding-left: 100px;
 }
 
-.footer-custom-right-fb h6 {
-  font-size: 15px;
+.footer-custom-right .footer-custom-right-fb p {
+  font-size: 16px;
   color: grey;
   text-transform: none;
-  padding-top: 20px;
+  margin-top: 16px;
 }
 
 .footer-custom-right-fb img {
    border-radius: 4px;
    padding: 5px;
    width: 40px;
-   padding-top: 30px;
+   color: #3b5998;
 }
 
 .footer-custom-right p {
-  font-size: 15px;
+  font-size: 14px;
   padding-top: 10px;
   text-align: left;
+  color: #808080;
 }
 
 .footer-custom-right-up {
@@ -245,6 +293,8 @@ h1 {
   color: white;
   background-color: #9e9e9e;
 }
+
+
 
 
 
@@ -331,18 +381,72 @@ h1 {
   padding-bottom: 20px;
 }
 
+ a.product-shop-share-page {
+    width: 100%;
+    height: 60px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    text-transform: none;
+    padding-top: 20px;
+    font-size: 16px;
+    color: grey;
+}
+
+.product-image-gallery .gallery-image.visible {
+  float: left;
+  margin-top: 160px;
+  width: 800px;
+  height: 400px;
+}
+
 .more-views  {
   float: right;
-  text-align: right;
+  width: 200px;
+  margin-top: 160px;
+  margin-right: 20px;
 }
 
-.more-views ul img {
-  padding-top: 20px;
-  float: right;
+.more-views h2 {
+  font-size: 15px;
+}
+
+.more-views ul {
+  padding-right: 20px;
+}
+
+.more-views img {
   width: 100px;
-  height: 100px;
-
+  margin-top: 5px;
 }
+
+.product-image-product-image-zoom p {
+  margin-top: 120px;
+  font-size: 24px;
+  margin-bottom: 40px;
+  color: grey;
+}
+
+.product-shop-promotions p {
+  margin-top: 120px;
+  font-size: 24px;
+  color: grey;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .customerasaproduct-container {
   padding-top: 60px;
@@ -358,16 +462,16 @@ h1 {
 }
 
 .customerasaproduct-container h4 {
-  padding-top: 20px;
+  padding-top: 40px;
   text-transform: none;
   font-size: 18px;
   color: grey;
   border: 0;
 }
 
-.customerasaproduct-container .input-text {
+.customerasaproduct-container .input-box input {
   width: 500px;
-  height: 35px;
+  height: 30px;
   border-radius: 5px;
   margin-top: 5px;
  }
@@ -376,18 +480,18 @@ h1 {
   margin-top: 20px;
  }
 
-.customerasaproduct-container label {
+.customerasaproduct-container .input-box label {
+  font-size: 12px;
   color: grey;
   text-transform: none;
-  border: none;
 }
 
 .customerasaproduct-container1 {
-  padding-top: 60px;
+    padding-top: 60px;
 }
 
 .customerasaproduct-container1 .input-box input {
-  width: 245px;
+  width: 250px;
   height: 30px;
   border-radius: 5px;
   margin-top: 5px;
@@ -399,7 +503,9 @@ h1 {
   color: grey;
 }
 
+
 .customerasaproduct-container1 .input-box label {
+  font-size: 12px;
   color: grey;
   text-transform: none;
 }
@@ -414,9 +520,9 @@ h1 {
   color: grey;
 }
 
-.customerasaproduct-container textarea {
-  width: 500px !important;
-  height: 180px !important;
+.customerasaproduct-container2 .input-box textarea {
+  width: 500px;
+  height: 180px;
   border-radius: 5px;
   margin-top: 5px;
 }
@@ -453,20 +559,4 @@ h1 {
   height: 180px;
   border-radius: 5px;
   margin-top: 5px;
-}
-
-.customerasaproduct-container .button-set {
-  margin-top: 20px;
-  margin-bottom: 40px;
-}
-
-.customerasaproduct-container .button-set button {
-  border-radius: 5px;
-  text-transform: none;
-}
-
-.customerasaproduct-container .button-set .form-button-cancel {
-  background-color: white;
-  border: 1px solid #FF9800;
-  color: #FF9800;
 }

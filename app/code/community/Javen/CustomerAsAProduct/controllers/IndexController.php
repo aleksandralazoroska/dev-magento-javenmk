@@ -4,20 +4,27 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
     public function IndexAction() {
 
-	    $this->loadLayout();
+      if( !Mage::getSingleton( 'customer/session' )->isLoggedIn() ) {
+        return $this->_redirect();
+      }
+
+      $this->loadLayout();
       $this->renderLayout();
 
     }
 
     public function postAction() {
 
+      if( !Mage::getSingleton( 'customer/session' )->isLoggedIn() ) {
+        return $this->_redirectUrl();
+      }
+
       $params = $this->getRequest()->getParams();
 
       Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
       $product = Mage::getModel('catalog/product');
 
-      $productSku = "123321123";
-      $productUrlKey = "123321123";
+      $productSku = strtolower(preg_replace('/\s+/', '-', $params['name']) . "-" .date("Ymdhis"));
 
       $category = Mage::getModel('catalog/category')->load($params['category']);
       $categoryUrlHtml =  substr($category->getUrl(), strrpos($category->getUrl(), '/') + 1);
@@ -33,14 +40,6 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
         echo "Upload failed";
       }
 
-      /*
-      echo "</p>";
-      echo '<pre>';
-      echo 'Here is some more debugging info:';
-      print_r($_FILES);
-      print "</pre>";
-      */
-
       try {
 
         $product->setWebsiteIds(array(1)) //website ID the product is assigned to, as an array
@@ -54,7 +53,7 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
         ->setStatus(1)
         ->setTaxClassId(0)
         ->setVisibility(Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH) //catalog and search visibility
-        ->setUrlKey($productUrlKey)
+        ->setUrlKey($productSku)
 
         //Custom Informations
         ->setPhone($params['phone'])
@@ -84,8 +83,8 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
         //->setMetaKeyword('test meta keyword 2')
         //->setMetaDescription('test meta description 2')
 
-        ->setDescription($params['name'])
-        ->setShortDescription($params['name'])
+        ->setDescription($params['about-us'])
+        ->setShortDescription($params['about-us'])
 
         //->setMediaGallery (array('images'=>array (), 'values'=>array ())) //media gallery initialization
         //->addImageToMediaGallery('media/catalog/product/1/0/10243-1.png', array('image','thumbnail','small_image'), false, false) //assigning image, thumb and small image to media gallery
@@ -101,14 +100,13 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
         $product->save();
 
-
       } catch(Exception $e){
 
         Mage::log($e->getMessage());
 
       }
 
-      return $this->_redirectUrl('/' . $categoryUrl . '/' . $productUrlKey . '.html');
+      return $this->_redirectUrl('/' . $categoryUrl . '/' . $productSku . '.html');
 
     }
 

@@ -7,7 +7,7 @@
         <li>
           <div class="input-box">
             <label for="name"><?php echo $this->__("Name"); ?></label><br />
-            <input name="name" id="name" title="Name" value="" class="required-entry input-text" type="text" />
+            <input name="name" id="name" title="Name" value="" class="required-entry input-text validate-alphanum-with-spaces" type="text" />
           </div>
           <div class="input-box">
             <label for="category"><?php echo $this->__("Category"); ?></label><br />
@@ -28,8 +28,8 @@
                 $extra_options.= '<option value="' . $c . '" ' . $selected . '>' . $category->load($c)->getName() . '</option>' . "\n";
               }
             ?>
-            <select name="category" id="cat" class="required-entry input-text validate-business">
-               <option value=""><?php echo $this->__('All Categories') ?></option>
+            <select name="category" id="cat" class="required-entry input-text">
+               <option value=""><?php echo $this->__('') ?></option>
                <?php echo $extra_options ?>
             </select>
           </div>
@@ -151,7 +151,7 @@
       <div class="customerasaproduct-container2">
         <label for="about-us" ><?php echo $this->__("About us"); ?></h4>
         <div class="input-box">
-          <textarea name="about-us" id="about-us" title="about-us" value="" class="input-text validate-business" type="text"></textarea>
+          <textarea name="about-us" id="about-us" title="about-us" value="" class="required-entry input-text validate-alphanum-with-spaces" type="text"></textarea>
         </div>
       </div>
 
@@ -162,7 +162,7 @@
       <div class="customerasaproduct-container4">
         <label for="promotions" ><?php echo $this->__("Actions, sale, promotions"); ?></label>
         <div class="input-box">
-          <textarea name="promotions" id="promotions" title="promotions" value="" class="input-text validate-business" type="text"></textarea>
+          <textarea name="promotions" id="promotions" title="promotions" value="" class="input-text validate-alphanum-with-spaces" type="text"></textarea>
       </div>
       </div>
 
