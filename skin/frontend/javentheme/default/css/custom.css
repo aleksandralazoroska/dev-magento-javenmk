@@ -14,15 +14,10 @@ label {
   font-weight: normal;
 }
 
-.logo {
-  padding: 5px;
-}
-
 .logo .large {
   width: 150px;
   height: 40px;
   margin-left: 80px;
-
 }
 
 .button {
@@ -180,12 +175,6 @@ label {
   padding: 0 0 0 30px;
 }
 
-.account-create .form-list input {
-  border-radius: 5px;
-  height: 35px;
-  width: 500px;
-}
-
 .form-list {
   list-style: none;
   margin-left: 40px;
@@ -194,8 +183,14 @@ label {
   padding-bottom: 20px;
 }
 
+.account-create .form-list input {
+  width: 500px;
+  height: 35px;
+  border-radius: 5px;
+}
+
 .fieldset .legend {
-  margin-top: 30px;
+  margin-top: 20px;
   font-size: 24px;
   margin-left: 40px;
   padding-top: 40px;
@@ -203,25 +198,43 @@ label {
   text-transform: none;
 }
 
-.account-create .buttons-set {
+.buttons-set {
   border: none;
-  margin-bottom: 40px;
   text-align: left;
+  margin-bottom: 40px;
+}
+
+.account-create .buttons-set {
   padding-left: 40px;
 }
 
-.account-create .buttons-set a {
-  text-transform: none;
-  border-radius: 5px;
-  color: #FF9800;
-  background-color: white;
-  border: 1px solid #FF9800;
+.customerasaproduct-container .buttons-set {
+  margin-top: 30px;
 }
 
-.account-create .buttons-set button.button {
+.buttons-set a {
+  border-radius: 5px;
+  text-transform: none;
+  background-color: white;
+  color: #FF9800;
+  border: 1px solid #FF9800;
+  margin-right: 10px;
+}
+
+.buttons-set a:hover {
+  background-color: white;
+  color: #FF9800;
+}
+
+.buttons-set button.button {
+  border-radius: 5px;
   float: none;
   text-transform: none;
-  border-radius: 5px;
+  margin-left: 0;
+}
+
+.buttons-set button:hover {
+  background-color: #FF9800;
 }
 
 .footer-custom {
@@ -253,7 +266,7 @@ label {
 .footer-custom-right-kontakt  {
   color: grey;
   padding-left: 50px;
-  margin-top: 28px;
+  margin-top: 30px;
   float: left;
 }
 
@@ -271,7 +284,7 @@ label {
   font-size: 16px;
   color: grey;
   text-transform: none;
-  margin-top: 16px;
+  margin-top: 20px;
 }
 
 .footer-custom-right-fb img {
@@ -394,6 +407,21 @@ label {
     color: grey;
 }
 
+.product-page-border {
+  width: 1080px;
+  float: left;
+  margin-left: 60px;
+  border-top: 1px solid grey;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.product-image-product-image-zoom p {
+  font-size: 24px;
+  margin-bottom: 40px;
+  color: grey;
+}
+
 .product-image-gallery .gallery-image.visible {
   float: left;
   margin-top: 160px;
@@ -421,12 +449,7 @@ label {
   margin-top: 5px;
 }
 
-.product-image-product-image-zoom p {
-  margin-top: 120px;
-  font-size: 24px;
-  margin-bottom: 40px;
-  color: grey;
-}
+
 
 .product-shop-promotions p {
   margin-top: 120px;
