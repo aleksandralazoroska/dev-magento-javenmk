@@ -37,6 +37,7 @@ label {
   position: relative;
 }
 
+
 .skip-links {
   clear: none;
 }
@@ -307,9 +308,68 @@ label {
   background-color: #9e9e9e;
 }
 
+/*advanced-search */
+
+.page-header-advanced-search {
+  width: 1200px;
+  margin: 0 auto;
+  height: 224px;
+  background: linear-gradient(to right, #F57C00, #FF9800);
+}
+
+
+.page-header-advanced-search .form-list li {
+    float: left;
+    margin: 0;
+}
+
+.page-header-advanced-search .advanced-search {
+    background: none;
+    border: none;
+    padding: 20px;
+    float: left;
+    margin-top: 60px;
+    margin-left: 30px;
+    background:  linear-gradient(to right, #FDA13E, #FFBF4F);
+    border-radius: 5px;
+
+
+}
+
+.page-header-advanced-search .form-list {
+    float: left;
+    margin: 0;
+    padding: 0;
+
+}
+
+.page-header-advanced-search .form-list .input-text {
+   float: left;
+   height: 64px;
+   border: 0;
+   border-radius: 5px;
+   margin-right: 20px;
+   font-size: 18px;
+   width: 500px;
+}
+
+.page-header-advanced-search .buttons-set {
+    float: left;
+    clear: none;
+    margin: 2px 0 0 0 ;
+    padding: 0;
+}
+
+.page-header-advanced-search .buttons-set button {
+    min-width: 64px;
+    height: 64px;
+    background: url("../images/search-bela.svg") #FF9800;
+}
 
 
 
+
+/*product-page*/
 
 .product-shop-information {
   width: 300px;
@@ -408,9 +468,8 @@ label {
 }
 
 .product-page-border {
-  width: 1080px;
+  width: 1200px;
   float: left;
-  margin-left: 60px;
   border-top: 1px solid grey;
   margin-top: 60px;
   margin-bottom: 60px;
@@ -427,6 +486,7 @@ label {
   margin-top: 160px;
   width: 800px;
   height: 400px;
+  margin-top: 40px;
 }
 
 .more-views  {
@@ -434,6 +494,7 @@ label {
   width: 200px;
   margin-top: 160px;
   margin-right: 20px;
+  margin-top: 40px;
 }
 
 .more-views h2 {
@@ -449,7 +510,13 @@ label {
   margin-top: 5px;
 }
 
-
+.product-page-border1 {
+  width: 1200px;
+  float: left;
+  border-top: 1px solid grey;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
 
 .product-shop-promotions p {
   margin-top: 120px;
@@ -457,18 +524,7 @@ label {
   color: grey;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+/*customerasaproduct*/
 
 
 .customerasaproduct-container {
@@ -511,13 +567,6 @@ label {
 
 .customerasaproduct-container1 {
     padding-top: 60px;
-}
-
-.customerasaproduct-container1 .input-box input {
-  width: 250px;
-  height: 30px;
-  border-radius: 5px;
-  margin-top: 5px;
 }
 
 .customerasaproduct-container1 h4 {

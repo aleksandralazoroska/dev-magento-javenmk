@@ -124,6 +124,12 @@
         -->
     </div>
 </header>
+<?php $controllerName = Mage::app()->getFrontController()->getRequest()->getControllerName(); ?>
+<?php if( $controllerName == 'category' || $controllerName == 'product'): ?>
+  <div class="page-header-advanced-search">
+    <?php echo $this->getLayout()->createBlock('catalogsearch/advanced_form')->setTemplate('catalogsearch/advanced/form.phtml')->toHtml(); ?>
+  </div>
+<?php endif; ?>
 
 
 <?php echo $this->getChildHtml('topContainer'); ?>

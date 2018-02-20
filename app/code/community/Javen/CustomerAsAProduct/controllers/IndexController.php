@@ -16,21 +16,32 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
     public function postAction() {
 
       if( !Mage::getSingleton( 'customer/session' )->isLoggedIn() ) {
-        return $this->_redirectUrl();
+        return $this->_redirect();
       }
 
       $params = $this->getRequest()->getParams();
 
+      // Get logged in customer
+      $customer = Mage::getSingleton('customer/session')->getCustomer();
+
+      /*
+      if($customer->getBusinessPage() == 1) {
+        Mage::getSingleton('core/session')->addError($this->__('You have already created a business page'));
+        return $this->_redirectUrl('/customer/account/index');
+      }
+      */
+
       Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
+
       $product = Mage::getModel('catalog/product');
+      $productSku = strtolower(preg_replace('/\s+/', '-', $params['name']) . "-" .date("ymdhis"));
 
-      $productSku = strtolower(preg_replace('/\s+/', '-', $params['name']) . "-" .date("Ymdhis"));
-
+      // Used for the URL key
       $category = Mage::getModel('catalog/category')->load($params['category']);
       $categoryUrlHtml =  substr($category->getUrl(), strrpos($category->getUrl(), '/') + 1);
       $categoryUrl = explode(".", $categoryUrlHtml)[0];
 
-      //Image upload
+      // Image upload
       $uploaddir = Mage::getBaseDir('media') . DS . 'uploads' . DS ;
       $uploadfile = $uploaddir . basename($_FILES['cover-image']['name']);
 
@@ -56,8 +67,9 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
         ->setUrlKey($productSku)
 
         //Custom Informations
-        ->setPhone($params['phone'])
-        ->setEmail($params['email'])
+        ->setPhone($params['telephone'])
+        ->setPhone2($params['telephone-2'])
+        ->setEmail($customer->getEmail())
         ->setCoverPicture()
         ->setAddress($params['address'])
         ->setCityAttr($params['city'])
@@ -69,13 +81,13 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
         ->setInstagram($params['instagram'])
 
         //Custom Working Hours
-        ->setMonday($params['monday_from'] . " - " . $params['monday_to'])
-        ->setTuesday($params['tuesday_from'] . " - " . $params['tuesday_to'])
-        ->setWednesday($params['wednesday_from'] . " - " . $params['wednesday_to'])
-        ->setThursday($params['thursday_from'] . " - " . $params['thursday_to'])
-        ->setFriday($params['friday_from'] . " - " . $params['friday_to'])
-        ->setSaturday($params['saturday_from'] . " - " . $params['saturday_to'])
-        ->setSunday($params['sunday_from'] . " - " . $params['sunday_to'])
+        ->setMonday($params['monday'])
+        ->setTuesday($params['tuesday'])
+        ->setWednesday($params['wednesday'])
+        ->setThursday($params['thursday'])
+        ->setFriday($params['friday'])
+        ->setSaturday($params['saturday'])
+        ->setSunday($params['sunday'])
 
         ->setPrice(1.00)
 
@@ -100,6 +112,11 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
         $product->save();
 
+        $productId = Mage::getModel('catalog/product')->getIdBySku($productSku);
+
+        $customer->setBusinessPage($productId);
+        $customer->save();
+
       } catch(Exception $e){
 
         Mage::log($e->getMessage());
@@ -107,6 +124,70 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
       }
 
       return $this->_redirectUrl('/' . $categoryUrl . '/' . $productSku . '.html');
+
+    }
+
+    public function updateAction() {
+
+      $params = $this->getRequest()->getParams();
+
+      $category = Mage::getModel('catalog/category')->load($params['category']);
+      $categoryUrlHtml =  substr($category->getUrl(), strrpos($category->getUrl(), '/') + 1);
+      $categoryUrl = explode(".", $categoryUrlHtml)[0];
+
+      // Important for Product save and Product update
+      Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
+
+      $customer = Mage::getSingleton('customer/session')->getCustomer();
+      $product = Mage::getModel('catalog/product')->load($customer->getBusinessPage());
+
+      $productUrlKey = $product->getUrlKey();
+
+      try {
+
+        $product->setName($params['name'])
+
+                //Custom Informations
+                ->setPhone($params['telephone'])
+                ->setPhone2($params['telephone-2'])
+                ->setAddress($params['address'])
+                ->setCityAttr($params['city'])
+
+                //Custom Social
+                ->setWebpage($params['webpage'])
+                ->setFacebook($params['facebook'])
+                ->setTwitter($params['twitter'])
+                ->setInstagram($params['instagram'])
+
+                //Custom Working Hours
+                ->setMonday($params['monday'])
+                ->setTuesday($params['tuesday'])
+                ->setWednesday($params['wednesday'])
+                ->setThursday($params['thursday'])
+                ->setFriday($params['friday'])
+                ->setSaturday($params['saturday'])
+                ->setSunday($params['sunday'])
+
+                // Description
+                ->setDescription($params['about-us'])
+                ->setShortDescription($params['about-us']);
+
+                //->setMediaGallery (array('images'=>array (), 'values'=>array ())) //media gallery initialization
+                //->addImageToMediaGallery('media/catalog/product/1/0/10243-1.png', array('image','thumbnail','small_image'), false, false) //assigning image, thumb and small image to media gallery
+
+                //->setCategoryIds(array($params['category'])) //assign product to categories
+                //->addImageToMediaGallery($uploadfile, 'cover_image', false);
+
+        $product->save();
+
+      }
+      catch(Exception $e) {
+
+        Mage::log($e->getMessage());
+
+      }
+
+      return $this->_redirectUrl('/' . $productUrlKey . '.html');
 
     }
 

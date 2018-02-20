@@ -32,18 +32,20 @@
  */
 ?>
 <?php $maxQueryLength= $this->helper('catalogsearch')->getMaxQueryLength();?>
+<!--
 <div class="page-title">
-    <h1><?php echo $this->__('Catalog Advanced Search') ?></h1>
+    <h1><?php //echo $this->__('Catalog Advanced Search') ?></h1>
 </div>
+-->
 <?php echo $this->getMessagesBlock()->toHtml() ?>
 <form action="<?php echo $this->getSearchPostUrl() ?>" method="get" id="form-validate">
     <div class="fieldset advanced-search">
-        <h2 class="legend"><?php echo $this->__('Search Settings') ?></h2>
+        <!-- <h2 class="legend"><?php //echo $this->__('Search Settings') ?></h2> -->
         <ul class="form-list" id="advanced-search-list">
             <?php foreach ($this->getSearchableAttributes() as $_attribute): ?>
             <?php $_code = $_attribute->getAttributeCode() ?>
             <li>
-                <label for="<?php echo $_code ?>"><?php echo $this->getAttributeLabel($_attribute) ?></label>
+
                 <?php switch($this->getAttributeInputType($_attribute)):
                     case 'number': ?>
                     <div class="input-range">
@@ -75,6 +77,16 @@
                         <?php echo $this->getDateInput($_attribute, 'to') ?>
                     </div>
                     <?php break;
+                    case 'name': ?>
+                    <div class="input-box">
+                        <input type="text" name="<?php echo $_code ?>" id="<?php echo $_code ?>" value="<?php echo $this->escapeHtml($this->getAttributeValue($_attribute)) ?>" title="<?php echo $this->escapeHtml($this->getAttributeLabel($_attribute)) ?>"  class="input-text <?php echo $this->getAttributeValidationClass($_attribute) ?>" maxlength="<?php echo $maxQueryLength;?>" />
+                    </div>
+                    <?php break;
+                    case 'city_attr': ?>
+                    <div class="input-box">
+                        <input type="text" name="<?php echo $_code ?>" id="<?php echo $_code ?>" value="<?php echo $this->escapeHtml($this->getAttributeValue($_attribute)) ?>" title="<?php echo $this->escapeHtml($this->getAttributeLabel($_attribute)) ?>"  class="input-text <?php echo $this->getAttributeValidationClass($_attribute) ?>" maxlength="<?php echo $maxQueryLength;?>" />
+                    </div>
+                    <?php break;
                     default: ?>
                     <div class="input-box">
                         <input type="text" name="<?php echo $_code ?>" id="<?php echo $_code ?>" value="<?php echo $this->escapeHtml($this->getAttributeValue($_attribute)) ?>" title="<?php echo $this->escapeHtml($this->getAttributeLabel($_attribute)) ?>"  class="input-text <?php echo $this->getAttributeValidationClass($_attribute) ?>" maxlength="<?php echo $maxQueryLength;?>" />
@@ -83,10 +95,10 @@
             </li>
             <?php endforeach; ?>
         </ul>
+        <div class="buttons-set">
+            <button type="submit" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Search')) ?>" class="button"><span><span></span></span></button>
+        </div>
         <script type="text/javascript">decorateList('advanced-search-list')</script>
-    </div>
-    <div class="buttons-set">
-        <button type="submit" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Search')) ?>" class="button"><span><span><?php echo $this->__('Search') ?></span></span></button>
     </div>
 </form>
 <script type="text/javascript">

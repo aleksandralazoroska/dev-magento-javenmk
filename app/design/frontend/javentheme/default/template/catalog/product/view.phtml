@@ -45,7 +45,7 @@
                 <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
                 <input type="hidden" name="related_product" id="related-products-field" value="" />
             </div>
-
+            <a class="product-edit-page button" href="<?php echo Mage::getBaseUrl() . 'customerasaproduct'; ?>"><?php echo $this->__("Edit my page"); ?></a>
             <div class="product-img-box">
                 <div class="product-name">
                     <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
@@ -214,6 +214,7 @@
         //]]>
         </script>
          </div>
+         <div class="product-page-border1"></div>
 
             <div class="product-shop-promotions">
                 <p><?php echo $this->__("Action, sales, promotions"); ?></p>

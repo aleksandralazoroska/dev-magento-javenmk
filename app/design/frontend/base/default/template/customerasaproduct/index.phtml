@@ -1,13 +1,25 @@
+<?php
+
+  // Get logged in customer
+  $customer = Mage::getSingleton('customer/session')->getCustomer();
+  $email = $customer->getEmail();
+
+  if ( $this->getBusinessDetails() != '' ) {
+    $_product = Mage::getModel('catalog/product')->load($this->getBusinessDetails());
+  }
+
+?>
 <div class="customerasaproduct-container">
-  <form id="business-register" enctype="multipart/form-data" method="post" action="<?php echo Mage::getUrl('customerasaproduct/index/post'); ?>">
+  <form id="business-register" enctype="multipart/form-data" method="post" action="<?php if (isset($_product)) { echo Mage::getUrl('customerasaproduct/index/update'); } else { echo Mage::getUrl('customerasaproduct/index/post'); } ?>">
     <fieldset class="group-select">
       <h3 class="legend"><?php echo $this->__("Design your business page"); ?></h3>
       <h4 class="legend"><?php echo $this->__("Basic details"); ?></h4>
       <ul>
         <li>
+          <input name="product-id" style="display: none" value="<?php echo $_product->getId() ?>" class="" />
           <div class="input-box">
             <label for="name"><?php echo $this->__("Name"); ?></label><br />
-            <input name="name" id="name" title="Name" value="" class="required-entry input-text validate-alphanum-with-spaces" type="text" />
+            <input name="name" id="name" title="Name" value="<?php echo $_product->getName() ?>" class="required-entry input-text validate-alphanum-with-spaces" type="text" />
           </div>
           <div class="input-box">
             <label for="category"><?php echo $this->__("Category"); ?></label><br />
@@ -29,7 +41,7 @@
               }
             ?>
             <select name="category" id="cat" class="required-entry input-text">
-               <option value=""><?php echo $this->__('') ?></option>
+               <option value="<?php echo $_product->getCategoryIds() ?>"><?php echo $this->__('') ?></option>
                <?php echo $extra_options ?>
             </select>
           </div>
@@ -39,19 +51,20 @@
           </div>
           <div class="input-box">
             <label for="telephone-1"><?php echo $this->__("Telephone 1"); ?></label><br />
-            <input name="telephone-1" id="telephone-1" title="Telephone 1" value="" class="required-entry input-text validate-phoneStrict" type="text" />
+            <input name="telephone" id="telephone-1" title="Telephone 1" value="<?php echo $_product->getPhone(); ?>" class="required-entry input-text" type="text" maxlength="20" />
           </div>
           <div class="input-box">
             <label for="telephone"><?php echo $this->__("Telephone 2"); ?></label><br />
-            <input name="telephone-2" id="telephone-2" title="Telephone 2" value="" class="input-text" type="text" />
+            <input name="telephone-2" id="telephone-2" title="Telephone 2" value="<?php echo $_product->getPhone2(); ?>" class="input-text" type="text" maxlength="20" />
           </div>
           <div class="input-box">
             <label for="email"><?php echo $this->__("Email"); ?></label><br />
-            <input name="email" id="email" title="Email" value="" class="input-text required-entry validate-email" type="text" />
+            <input style="display: none" name="email" id="email" title="Email" value="<?php echo $email ?>" class="input-text required-entry validate-email" type="text" maxlength="20" />
+            <p style="text-align: left;"><?php echo $email ?></p>
           </div>
           <div class="input-box">
             <label for="Address"><?php echo $this->__("Address"); ?></label><br />
-            <input name="address" id="address" title="Address" value="" class="required-entry input-text" type="text" />
+            <input name="address" id="address" title="Address" value="<?php echo $_product->getAddress(); ?>" class="required-entry input-text maxlength="50"" type="text" />
           </div>
           <div class="input-box">
             <label for="City"><?php echo $this->__("City"); ?></label><br />
@@ -71,19 +84,19 @@
           <h4 class="legend"><?php echo $this->__("Links"); ?></h4>
           <div class="input-box">
             <label for="webpage"><?php echo $this->__("Web Page"); ?></label><br />
-            <input name="webpage" id="webpage" title="webpage" value="" class="input-text validate-url" type="text" />
+            <input name="webpage" id="webpage" title="webpage" value="<?php echo $_product->getWebpage(); ?>" class="input-text validate-url" type="text" maxlength="100" />
           </div>
           <div class="input-box">
             <label for="facebook"><?php echo $this->__("Facebook"); ?></label><br />
-            <input name="facebook" id="facebook" title="facebook" value="" class="input-text validate-url" type="text" />
+            <input name="facebook" id="facebook" title="facebook" value="<?php echo $_product->getFacebook(); ?>" class="input-text validate-url" type="text" maxlength="100" />
           </div>
           <div class="input-box">
             <label for="twitter"><?php echo $this->__("Twitter"); ?></label><br />
-            <input name="twitter" id="twitter" title="twitter" value="" class="input-text validate-url" type="text" />
+            <input name="twitter" id="twitter" title="twitter" value="<?php echo $_product->getTwitter(); ?>" class="input-text validate-url" type="text" maxlength="100" />
           </div>
           <div class="input-box">
             <label for="instagram"><?php echo $this->__("Instagram"); ?></label><br />
-            <input name="instagram" id="instagram" title="instagram" value="" class="input-text validate-url" type="text" />
+            <input name="instagram" id="instagram" title="instagram" value="<?php echo $_product->getInstagram(); ?>" class="input-text validate-url" type="text" maxlength="100" />
           </div>
         </li>
       </ul>
@@ -93,65 +106,50 @@
           <li>
             <div class="input-box">
               <label for="monday"><?php echo $this->__("Monday"); ?></label><br />
-              <input name="monday_from" id="monday" title="monday" value="" class="required-entry input-text validate-number" type="text" />
-              <span>-</span>
-              <input name="monday_to" id="monday" title="monday" value="" class="required-entry input-text validate-number" type="text" />
+              <input name="monday" id="monday" title="monday" value="<?php echo $_product->getMonday(); ?>" class="required-entry input-text" type="text" maxlength="25" />
             </div>
           </li>
           <li>
             <div class="input-box">
               <label for="tuesday"><?php echo $this->__("Tuesday"); ?></label><br />
-              <input name="tuesday_from" id="tuesday" title="tuesday" value="" class="required-entry input-text validate-number" type="text" />
-              <span>-</span>
-              <input name="tuesday_to" id="tuesday" title="tuesday" value="" class="required-entry input-text validate-number" type="text" />
+              <input name="tuesday" id="tuesday" title="tuesday" value="<?php echo $_product->getTuesday(); ?>" class="required-entry input-text" type="text" maxlength="25" />
             </div>
           </li>
           <li>
             <div class="input-box">
               <label for="wednesday"><?php echo $this->__("Wednesday"); ?></label><br />
-              <input name="wednesday_from" id="wednesday" title="wednesday" value="" class="required-entry input-text validate-number" type="text" />
-              <span>-</span>
-              <input name="wednesday_to" id="wednesday" title="wednesday" value="" class="required-entry input-text validate-number" type="text" />
+              <input name="wednesday" id="wednesday" title="wednesday" value="<?php echo $_product->getWednesday(); ?>" class="required-entry input-text" type="text" maxlength="25" />
             </div>
           </li>
           <li>
             <div class="input-box">
               <label for="thursday"><?php echo $this->__("Thursday"); ?></label><br />
-              <input name="thursday_from" id="thursday" title="thursday" value="" class="required-entry input-text validate-number" type="text" />
-              <span>-</span>
-              <input name="thursday_to" id="thursday" title="thursday" value="" class="required-entry input-text validate-number" type="text" />
+              <input name="thursday" id="thursday" title="thursday" value="<?php echo $_product->getThursday(); ?>" class="required-entry input-text" type="text" maxlength="25" />
             </div>
           </li>
           <li>
             <div class="input-box">
               <label for="friday"><?php echo $this->__("Friday"); ?></label><br />
-              <input name="friday_from" id="friday" title="friday" value="" class="required-entry input-text validate-number" type="text" />
-              <span>-</span>
-              <input name="friday_to" id="friday" title="friday" value="" class="required-entry input-text validate-number" type="text" />
+              <input name="friday" id="friday" title="friday" value="<?php echo $_product->getFriday(); ?>" class="required-entry input-text" type="text" maxlength="25" />
             </div>
           </li>
           <li>
             <div class="input-box">
               <label for="saturday"><?php echo $this->__("Saturday"); ?></label><br />
-              <input name="saturday_from" id="saturday" title="saturday" value="" class="required-entry input-text validate-number" type="text" />
-              <span>-</span>
-              <input name="saturday_to" id="saturday" title="saturday" value="" class="required-entry input-text validate-number" type="text" />
+              <input name="saturday" id="saturday" title="saturday" value="<?php echo $_product->getSaturday(); ?>" class="required-entry input-text" type="text" maxlength="25" />
             </div>
           </li>
           <li>
             <div class="input-box">
               <label for="sunday"><?php echo $this->__("Sunday"); ?></label><br />
-              <input name="sunday_from" id="sunday" title="sunday" value="" class="required-entry input-text validate-number" type="text" />
-              <span>-</span>
-              <input name="sunday_to" id="sunday" title="sunday" value="" class="required-entry input-text validate-number" type="text" />
-            </div>
+              <input name="sunday" id="sunday" title="sunday" value="<?php echo $_product->getSunday(); ?>" class="required-entry input-text" type="text" maxlength="25" />
           </li>
         </ul>
       </div>
       <div class="customerasaproduct-container2">
         <label for="about-us" ><?php echo $this->__("About us"); ?></h4>
         <div class="input-box">
-          <textarea name="about-us" id="about-us" title="about-us" value="" class="required-entry input-text validate-alphanum-with-spaces" type="text"></textarea>
+          <textarea name="about-us" id="about-us" title="about-us" value="" class="required-entry input-text" type="text" maxlength="500"><?php echo $_product->getShortDescription(); ?></textarea>
         </div>
       </div>
 
@@ -162,16 +160,22 @@
       <div class="customerasaproduct-container4">
         <label for="promotions" ><?php echo $this->__("Actions, sale, promotions"); ?></label>
         <div class="input-box">
-          <textarea name="promotions" id="promotions" title="promotions" value="" class="input-text validate-alphanum-with-spaces" type="text"></textarea>
+          <textarea name="promotions" id="promotions" title="promotions" value="" class="input-text" type="text" maxlength="200"></textarea>
       </div>
       </div>
 
     </fieldset>
-
-    <div class="buttons-set">
-        <a class="button" type=""><span><?php echo $this->__("Cancel") ?></span></a>
-        <button class="form-button-confirm button" type="submit"><span><?php echo $this->__("Submit") ?></span></button>
-    </div>
+    <?php if (isset($_product)): ?>
+      <div class="buttons-set">
+          <a class="button" type=""><span><?php echo $this->__("Cancel") ?></span></a>
+          <button class="form-button-confirm button" type="submit"><span><?php echo $this->__("Update") ?></span></button>
+      </div>
+    <?php else: ?>
+      <div class="buttons-set">
+          <a class="button" type=""><span><?php echo $this->__("Cancel") ?></span></a>
+          <button class="form-button-confirm button" type="submit"><span><?php echo $this->__("Submit") ?></span></button>
+      </div>
+    <?php endif; ?>
   </form>
 </div>
 <script type="text/javascript">
