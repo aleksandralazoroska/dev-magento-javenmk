@@ -4,13 +4,11 @@
   $customer = Mage::getSingleton('customer/session')->getCustomer();
   $email = $customer->getEmail();
 
-  if ( $this->getBusinessDetails() != '' ) {
-    $_product = Mage::getModel('catalog/product')->load($this->getBusinessDetails());
-  }
+  $_product = Mage::getModel('catalog/product')->load($this->getBusinessDetails());
 
 ?>
 <div class="customerasaproduct-container">
-  <form id="business-register" enctype="multipart/form-data" method="post" action="<?php if (isset($_product)) { echo Mage::getUrl('customerasaproduct/index/update'); } else { echo Mage::getUrl('customerasaproduct/index/post'); } ?>">
+  <form id="business-register" enctype="multipart/form-data" method="post" action="<?php if ($this->getBusinessDetails() != '') { echo Mage::getUrl('customerasaproduct/index/update'); } else { echo Mage::getUrl('customerasaproduct/index/post'); } ?>">
     <fieldset class="group-select">
       <h3 class="legend"><?php echo $this->__("Design your business page"); ?></h3>
       <h4 class="legend"><?php echo $this->__("Basic details"); ?></h4>
@@ -165,7 +163,7 @@
       </div>
 
     </fieldset>
-    <?php if (isset($_product)): ?>
+    <?php if ($this->getBusinessDetails() != ''): ?>
       <div class="buttons-set">
           <a class="button" type=""><span><?php echo $this->__("Cancel") ?></span></a>
           <button class="form-button-confirm button" type="submit"><span><?php echo $this->__("Update") ?></span></button>
