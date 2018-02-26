@@ -276,7 +276,7 @@ label {
 }
 
 .footer-custom-right-fb {
-  float: right;
+  float: left;
   padding-left: 100px;
 }
 
@@ -301,10 +301,11 @@ label {
   color: #808080;
 }
 
-.footer-custom-right-up {
+ .footer-custom-right-up img {
   font-size: 12px;
   color: white;
-
+  width: 80px;
+  float: left;
 }
 
 /*advanced-search */

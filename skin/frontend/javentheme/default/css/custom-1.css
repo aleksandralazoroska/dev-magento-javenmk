@@ -215,6 +215,7 @@ body.cms-home .main-container {
   background-image: url("../images/search-bela.svg");
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 40px;
 }
 
 
@@ -430,6 +431,48 @@ a.product-shop-share-page {
   padding-top: 20px;
   font-size: 16px;
 }
+
+/* Category Page */
+
+.category-products .products-grid li {
+  width: 100%;
+  margin: 0;
+}
+
+.category-products .products-grid .product-image {
+  float: left;
+  width: 200px;
+}
+
+.category-products .products-grid .product-info {
+  padding-left: 20px;
+  padding-bottom: 0;
+  float: left;
+}
+
+.category-products .products-grid .product-info .product-name {
+  text-transform: none;
+  font-family: Roboto;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.category-products .products-grid .product-info a {
+  font-weight: bold;
+  color: #FF9800;
+}
+
+.category-products .products-grid .product-info a:hover {
+  cursor: pointer;
+}
+
+.category-products .products-grid .product-info p {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+/* Category Page */
 
 /* Error Messages */
 
