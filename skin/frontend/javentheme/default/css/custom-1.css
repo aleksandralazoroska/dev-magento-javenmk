@@ -157,6 +157,12 @@ body.cms-home .main-container {
   font-family: "Roboto";
 }
 
+.home-container-poznat-search .search-submit-parent {
+  width: 64px;
+  height: 64px;
+  float: right;
+}
+
 .home-container-poznat-search .search-submit {
   height: 64px;
   width: 64px;
@@ -167,6 +173,7 @@ body.cms-home .main-container {
   background-repeat: no-repeat;
   background-position: center;
 }
+
 .home-container-categories {
   width: 1200px;
   padding-left: 65px;
