@@ -14,6 +14,7 @@ label {
   font-weight: normal;
 }
 
+
 .logo .large {
   width: 150px;
   height: 40px;
@@ -48,9 +49,8 @@ label {
 }
 
 .home-container-bidi-javen {
-  width: 100%;
-  position: absolute;
-  top: 60px;
+  padding-top: 100px;
+  padding-bottom: 150px;
 }
 
  .home-container-bidi-javen h1 {
@@ -64,9 +64,9 @@ label {
  }
 
 .main-container {
-  width: 1200px;
+  width: 100%;
+  min-width: 100%;
   padding: 0;
-  box-sizing: border-box;
 }
 
 .home-container-za h4,p {
@@ -89,12 +89,8 @@ label {
 }
 
 .home-container-za {
-  width: 100%;
-  float: left;
-  padding-left: 60px;
-  padding-right: 60px;
-  margin-top: 60px;
-  margin-bottom: 60px;
+  width: 1200px;
+  margin: 0 auto;
 }
 
 .home-container-za-biznisite {
@@ -105,6 +101,7 @@ label {
   border-radius: 5px;
   min-height: 320px;
   padding-top: 20px;
+  margin-bottom: 60px;
 }
 
 .home-container-za-korisnicite {
@@ -119,12 +116,8 @@ label {
 
 .home-container-vlozi {
   width: 100%;
-  float: left;
-  padding-left: 60px;
-  padding-right: 60px;
   background: url(../images/homepage_image_2.jpg) top center;
-  background-size: 1200px 600px;
-
+  display: inline-block;
 }
 
 .home-container-vlozi-top {
@@ -156,6 +149,12 @@ label {
   margin-bottom: 60px;
   color: white;
   font-size: 18px;
+}
+
+.home-container-vlozi-bottom {
+  margin: 0 auto;
+  width: 1200px;
+  padding-left: 50px;
 }
 
 .home-container-vlozi-1 {

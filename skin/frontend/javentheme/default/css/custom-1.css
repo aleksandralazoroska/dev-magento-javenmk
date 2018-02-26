@@ -17,6 +17,7 @@
   margin-top: 6px;
 }
 
+
 .page-header-container .store-language-container option {
   background: url('../images/makedonski.svg')top;
   background-size: 15px 15px;
@@ -116,22 +117,21 @@ body.cms-home .main-container {
 }
 
 .home-container-poznat {
-  width: 1200px;
-  float: left;
-  height: 600px;
+  height: 680px;
   background: url(../images/homepage_image_1.jpg) top center;
   text-align: center;
-  background-size: 1200px 600px;
 }
 
 .home-container-poznat-search {
-  width: 100%;
-  text-align: center;
-  margin-top: 350px;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  width: 1200px;
+  margin: 0 auto;
+  border-radius: 5px;
 }
 
 #search {
-  width: 528px;
+  width: 520px;
   height: 64px;
   padding-left: 20px;
   padding-right: 20px;
@@ -169,10 +169,9 @@ body.cms-home .main-container {
 }
 .home-container-categories {
   width: 1200px;
-  float: left;
-  margin-top: 60px;
-  margin-bottom: 20px;
   padding-left: 65px;
+  padding-top: 60px;
+  margin: 0 auto;
 }
 
 .home-container-categories li {
@@ -209,15 +208,13 @@ body.cms-home .main-container {
 
 .home-container-packages {
   width: 1200px;
-  float: left;
-  margin-bottom: 60px;
   text-align: center;
-  display: inline-block;
+  margin: 0 auto;
+  padding-bottom: 60px;
 }
 
 .home-container-packages-container {
-  margin: 0 auto;
-  width: 960px;
+  display: inline-block;
 }
 
 .home-container-packages-box {
@@ -256,8 +253,7 @@ body.cms-home .main-container {
 }
 
 .home-container-promotions {
-  width: 1200px;
-  float: left;
+  width: 100%;
   text-align: center;
   display: inline-block;
   background-color: #00bfa5;
@@ -273,16 +269,19 @@ body.cms-home .main-container {
 
 .footer {
   padding-top: 0px;
+  background-color: #e0e0e0;
+  width: 100%;
 }
 
 .footer-custom {
   width: 1200px;
-  background-color: #e0e0e0;
+  margin: 0 auto;
+  padding-left: 120px;
 }
 
 .footer-container {
   padding: 0;
-  max-width: 1200px;
+  max-width: 100%;
 }
 
 .footer address {
