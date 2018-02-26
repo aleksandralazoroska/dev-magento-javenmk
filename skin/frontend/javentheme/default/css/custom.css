@@ -14,11 +14,15 @@ label {
   font-weight: normal;
 }
 
+.col2-right-layout, .col2-left-layout {
+  width: 1200px !important;
+  min-width: 1200px !important;
+}
 
 .logo .large {
   width: 150px;
   height: 40px;
-  margin-left: 80px;
+  margin-left: 50px;
 }
 
 .button {
@@ -204,10 +208,6 @@ label {
   margin-bottom: 40px;
 }
 
-.account-create .buttons-set {
-  padding-left: 40px;
-}
-
 .customerasaproduct-container .buttons-set {
   margin-top: 30px;
 }
@@ -310,10 +310,10 @@ label {
 /*advanced-search */
 
 .page-header-advanced-search {
-  width: 1200px;
-  margin: 0 auto;
+  width: 100%;
   height: 224px;
   background: linear-gradient(to right, #F57C00, #FF9800);
+  padding-top: 60px;
 }
 
 
@@ -323,16 +323,13 @@ label {
 }
 
 .page-header-advanced-search .advanced-search {
-    background: none;
-    border: none;
-    padding: 20px;
-    float: left;
-    margin-top: 60px;
-    margin-left: 30px;
-    background:  linear-gradient(to right, #FDA13E, #FFBF4F);
-    border-radius: 5px;
-
-
+  border: none;
+  padding: 20px;
+  background: linear-gradient(to right, #FDA13E, #FFBF4F);
+  border-radius: 5px;
+  width: 1200px;
+  height: 108px;
+  margin: 0 auto;
 }
 
 .page-header-advanced-search .form-list {
@@ -349,7 +346,7 @@ label {
    border-radius: 5px;
    margin-right: 20px;
    font-size: 18px;
-   width: 500px;
+   width: 528px;
 }
 
 .page-header-advanced-search .buttons-set {
@@ -523,12 +520,14 @@ label {
   color: grey;
 }
 
-/*customerasaproduct*/
+/* customerasaproduct */
 
 
 .customerasaproduct-container {
   padding-top: 60px;
   padding-left: 60px;
+  width: 1200px;
+  margin: 0 auto;
 }
 
 .customerasaproduct-container h3 {
@@ -549,10 +548,17 @@ label {
 
 .customerasaproduct-container .input-box input {
   width: 500px;
-  height: 30px;
+  height: 35px;
   border-radius: 5px;
   margin-top: 5px;
- }
+}
+
+.customerasaproduct-container .input-box select {
+   width: 500px;
+   height: 35px;
+   border-radius: 5px;
+   margin-top: 5px;
+}
 
 .customerasaproduct-container .input-box  {
   margin-top: 20px;

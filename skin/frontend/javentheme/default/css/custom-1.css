@@ -106,6 +106,49 @@
   text-transform: none;
 }
 
+/* Login and Create*/
+
+.account-create {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.account-create .fieldset {
+  margin-left: 20px;
+}
+
+.account-create .buttons-set {
+  padding-left: 30px;
+}
+
+.account-login {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.account-login .col2-set {
+  padding-left: 60px;
+}
+
+.account-login .registered-users h2 {
+  margin-top: 60px;
+  text-transform: none;
+}
+
+.account-login .form-list {
+  margin-left: 0;
+}
+
+.account-login .form-list input {
+  width: 500px;
+  height: 35px;
+  border-radius: 5px;
+}
+
+.account-login .buttons-set button.button {
+  min-width: 140px !important;
+}
+
 #login-button {
   background-color: white;
   border: 1px solid #FF9800;
@@ -275,6 +318,11 @@ body.cms-home .main-container {
   color: white;
 }
 
+.footer-container {
+  padding: 0;
+  max-width: 100%;
+}
+
 .footer {
   padding-top: 0px;
   background-color: #e0e0e0;
@@ -286,11 +334,6 @@ body.cms-home .main-container {
   width: 1200px;
   margin: 0 auto;
   padding-left: 120px;
-}
-
-.footer-container {
-  padding: 0;
-  max-width: 100%;
 }
 
 .footer address {
@@ -305,6 +348,7 @@ body.cms-home .main-container {
 
 .product-view {
   width: 1200px;
+  margin: 0 auto;
 }
 
 .product-img-box {
