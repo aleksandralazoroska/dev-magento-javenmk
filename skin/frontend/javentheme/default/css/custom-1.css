@@ -155,6 +155,17 @@
   color: #FF9800;
 }
 
+/* Login and Create*/
+
+/* Account Dashboard Start */
+
+.my-account {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+/* Account Dashboard End */
+
 body.cms-home .main-container {
   padding-top: 0;
 }
@@ -328,13 +339,12 @@ body.cms-home .main-container {
   padding-top: 0px;
   background-color: #e0e0e0;
   width: 100%;
-
 }
 
 .footer-custom {
   width: 1200px;
   margin: 0 auto;
-  padding-left: 120px;
+  padding-left: 50px;
 }
 
 .footer address {

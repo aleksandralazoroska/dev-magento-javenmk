@@ -181,8 +181,8 @@ class Javen_CustomerAsAProduct_AccountController extends Mage_Core_Controller_Fr
             }
         }
 
-        //$this->_loginPostRedirect();
-        $this->_redirect("customerasaproduct");
+        $this->_loginPostRedirect();
+        //$this->_redirect("customerasaproduct");
     }
 
     /**
