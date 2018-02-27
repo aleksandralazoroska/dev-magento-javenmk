@@ -140,4 +140,13 @@
       $j("#header-top-links").toggle();
     });
   });
+
+  $j(document).ready(function() {
+    $j("#footer-arrow-up").click(function(){
+      $j("html, body").animate({ scrollTop: 0 }, "slow");
+      return false;
+    });
+  });
+
+
 </script>

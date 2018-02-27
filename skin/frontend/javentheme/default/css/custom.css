@@ -301,16 +301,22 @@ label {
   color: #808080;
 }
 
-.footer-custom-right-up{
+.footer-custom-right-up {
   float: left;
+
 }
 
  .footer-custom-right-up img {
   width: 64px;
   color: #FF9800;
-  margin-left: 100px;
+  margin-left: 150px;
   margin-top: 50px;
-  opacity: 0,5;
+  opacity: 0.5;
+}
+
+.footer-custom-right-up img:hover {
+  cursor: pointer;
+  opacity: 1;
 }
 
 /*advanced-search */
@@ -365,7 +371,10 @@ label {
 .page-header-advanced-search .buttons-set button {
     min-width: 64px;
     height: 64px;
-    background: url("../images/search-bela.svg") #FF9800;
+    background: url("../images/magnify.svg") white;
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 
