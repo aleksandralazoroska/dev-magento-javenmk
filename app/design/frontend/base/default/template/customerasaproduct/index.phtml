@@ -155,7 +155,10 @@
                 <label><?php echo $this->__("day off"); ?></label>
                 <input type="radio" name="saturday-radio" id="saturday-radio-disable" value="dayin" >
               </fieldset>
-              <input name="saturday" id="saturday-input" title="sunday" value="<?php echo $_product->getSaturday(); ?>" class="input-text" type="text" maxlength="25" />
+              <div class="working-hours">
+                <input name="saturday-from" id="saturday-from-input" title="sunday" value="<?php echo $_product->getSaturday(); ?>" class="input-text" type="text" maxlength="25" />
+                <input name="saturday-to" id="saturday-to-input" title="sunday" value="<?php echo $_product->getSaturday(); ?>" class="input-text" type="text" maxlength="25" />
+              </div>
             </div>
           </li>
           <li>
@@ -167,7 +170,10 @@
                 <label><?php echo $this->__("day off"); ?></label>
                 <input type="radio" name="sunday-radio" id="sunday-radio-disable" value="dayin" >
               </fieldset>
-              <input name="sunday" id="sunday-input" title="sunday" value="<?php echo $_product->getSunday(); ?>" class="input-text" type="text" maxlength="25" />
+              <div class="working-hours">
+                <input name="sunday-from" id="sunday-from-input" title="sunday" value="<?php echo $_product->getSunday(); ?>" class="input-text" type="text" maxlength="25" />
+                <input name="sunday-to" id="sunday-to-input" title="sunday" value="<?php echo $_product->getSunday(); ?>" class="input-text" type="text" maxlength="25" />
+              </div>
             </div>
           </li>
         </ul>
@@ -209,32 +215,46 @@
         var businessRegister = new VarienForm('business-register');
 
         $j(document).ready(function() {
-          $j("#saturday").prop("disabled", true);
+          $j("#saturday-from-input").prop("disabled", true);
+          $j("#saturday-to-input").prop("disabled", true);
           $j("#saturday-radio-disable").prop("checked", true);
-          $j("#saturday-input").css('background-color','#ededed');
+          $j("#saturday-from-input").css('background-color','#ededed');
+          $j("#saturday-to-input").css('background-color','#ededed');
           $j("#saturday-radio-enable").on("click", function() {
-            $j("#saturday-input").prop("disabled", false);
-            $j("#saturday-input").css('background-color','white');
+            $j("#saturday-from-input").prop("disabled", false);
+            $j("#saturday-from-input").css('background-color','white');
+            $j("#saturday-to-input").prop("disabled", false);
+            $j("#saturday-to-input").css('background-color','white');
           });
           $j("#saturday-radio-disable").on("click", function() {
-            $j("#saturday-input").prop("disabled", true);
-            $j("#saturday-input").val("");
-            $j("#saturday-input").css('background-color','#ededed');
+            $j("#saturday-from-input").prop("disabled", true);
+            $j("#saturday-from-input").val("");
+            $j("#saturday-from-input").css('background-color','#ededed');
+            $j("#saturday-to-input").prop("disabled", true);
+            $j("#saturday-to-input").val("");
+            $j("#saturday-to-input").css('background-color','#ededed');
           });
         });
 
         $j(document).ready(function() {
-          $j("#sunday").prop("disabled", true);
+          $j("#sunday-from-input").prop("disabled", true);
+          $j("#sunday-to-input").prop("disabled", true);
           $j("#sunday-radio-disable").prop("checked", true);
-          $j("#sunday-input").css('background-color','#ededed');
+          $j("#sunday-from-input").css('background-color','#ededed');
+          $j("#sunday-to-input").css('background-color','#ededed');
           $j("#sunday-radio-enable").on("click", function() {
-            $j("#sunday-input").prop("disabled", false);
-            $j("#sunday-input").css('background-color','white');
+            $j("#sunday-from-input").prop("disabled", false);
+            $j("#sunday-from-input").css('background-color','white');
+            $j("#sunday-to-input").prop("disabled", false);
+            $j("#sunday-to-input").css('background-color','white');
           });
           $j("#sunday-radio-disable").on("click", function() {
-            $j("#sunday-input").prop("disabled", true);
-            $j("#sunday-input").val("");
-            $j("#sunday-input").css('background-color','#ededed');
+            $j("#sunday-from-input").prop("disabled", true);
+            $j("#sunday-from-input").val("");
+            $j("#sunday-from-input").css('background-color','#ededed');
+            $j("#sunday-to-input").prop("disabled", true);
+            $j("#sunday-to-input").val("");
+            $j("#sunday-to-input").css('background-color','#ededed');
           });
         });
 

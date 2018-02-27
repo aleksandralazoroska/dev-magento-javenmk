@@ -81,13 +81,20 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
         ->setInstagram($params['instagram'])
 
         //Custom Working Hours
-        ->setMonday($params['monday'])
-        ->setTuesday($params['tuesday'])
-        ->setWednesday($params['wednesday'])
-        ->setThursday($params['thursday'])
-        ->setFriday($params['friday'])
-        ->setSaturday($params['saturday'])
-        ->setSunday($params['sunday'])
+        ->setMonday($params['monday-from'])
+        ->setMondayTo($params['monday-to'])
+        ->setTuesday($params['tuesday-from'])
+        ->setTuesdayTo($params['tuesday-to'])
+        ->setWednesday($params['wednesday-from'])
+        ->setWednesdayTo($params['wednesday-to'])
+        ->setThursday($params['thursday-from'])
+        ->setThursdayTo($params['thursday-to'])
+        ->setFriday($params['friday-from'])
+        ->setFridayTo($params['friday-to'])
+        ->setSaturday($params['saturday-from'])
+        ->setSaturdayTo($params['saturday-to'])
+        ->setSunday($params['sunday-from'])
+        ->setSundayTo($params['sunday-to'])
 
         ->setPrice(1.00)
 
@@ -142,6 +149,8 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
       $product = Mage::getModel('catalog/product')->load($customer->getBusinessPage());
 
       $productUrlKey = $product->getUrlKey();
+
+      Mage::log('development.log', null, $params['sunday-radio']);
 
       try {
 
