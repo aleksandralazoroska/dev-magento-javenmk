@@ -450,23 +450,65 @@ a.product-shop-share-page {
 
 /* Category Page */
 
-.category-products .products-grid li {
-  width: 100%;
+.category-title h3 {
+  text-transform: none;
+  margin-top: 40px;
+  font-size: 24px;
+}
+
+.category-products .toolbar {
+  border: none;
+  background: none;
+  padding: 0;
   margin: 0;
 }
 
-.category-products .products-grid .product-image {
+.category-products .toolbar .pager {
+  float: left;
+}
+
+.category-products .toolbar .pager strong {
+  font-weight: normal;
+  font-size: 18px;
+}
+
+.category-products .toolbar .sorter {
+  float: right;
+}
+
+.category-products .toolbar  .sorter label {
+  text-transform: none;
+}
+
+.category-products .products-list .product-shop {
+  float: left;
+  padding-left: 0;
+}
+
+.category-products .products-list li {
+  width: 100%;
+  margin: 0;
+  border-bottom: 1px solid gray;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.category-products .products-list li.last {
+  border: none;
+}
+
+.category-products .products-list .product-image {
   float: left;
   width: 200px;
 }
 
-.category-products .products-grid .product-info {
+.category-products .products-list .product-info {
   padding-left: 20px;
   padding-bottom: 0;
   float: left;
 }
 
-.category-products .products-grid .product-info .product-name {
+.category-products .products-list .product-info .product-name {
   text-transform: none;
   font-family: Roboto;
   font-size: 24px;
@@ -474,16 +516,16 @@ a.product-shop-share-page {
   text-align: left;
 }
 
-.category-products .products-grid .product-info a {
+.category-products .products-list .product-info a {
   font-weight: bold;
   color: #FF9800;
 }
 
-.category-products .products-grid .product-info a:hover {
+.category-products .products-list .product-info a:hover {
   cursor: pointer;
 }
 
-.category-products .products-grid .product-info p {
+.category-products .products-list .product-info p {
   text-align: left;
   margin-bottom: 10px;
 }

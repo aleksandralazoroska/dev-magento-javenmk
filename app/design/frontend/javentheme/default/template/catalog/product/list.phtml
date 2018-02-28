@@ -65,7 +65,7 @@
                 <div class="f-fix">
                     <div class="product-primary">
                         <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
-                        <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $_helper->productAttribute($_product, $_product->getName() , 'name'); ?></a></h2>
+
                         <?php if($_product->getRatingSummary()): ?>
                         <?php echo $this->getReviewsSummaryHtml($_product) ?>
                         <?php endif; ?>
@@ -82,30 +82,65 @@
                         }
                         ?>
                     </div>
+                    <div class="product-info">
+
+                      <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $_helper->productAttribute($_product, $_product->getName() , 'name'); ?></a></h2>
+
+                      <p><?php echo Mage::getModel('catalog/product')->load($_product->getId())->getPhone(); ?></p>
+                      <p><?php echo Mage::getModel('catalog/product')->load($_product->getId())->getAddress() ?></p>
+                      <p><?php echo Mage::getModel('catalog/product')->load($_product->getId())->getCityAttr() ?></p>
+
+                      <?php
+
+                        $weakdays = array('sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday');
+                        $today = date('w');
+
+                        $startTime = Mage::getModel('catalog/product')->load($_product->getId())->getData($weakdays[$today]);
+                        $endTime = Mage::getModel('catalog/product')->load($_product->getId())->getData($weakdays[$today] . '_to');
+                        $currentTime = date('H:i');
+
+                        $time1 = DateTime::createFromFormat('H:i', $currentTime);
+                        $time2 = DateTime::createFromFormat('H:i', $startTime);
+                        $time3 = DateTime::createFromFormat('H:i', $endTime);
+
+                      ?>
+
+                      <?php if ($time1 > $time2 && $time1 < $time3): ?>
+                        <p style="color: green"><?php echo $this->__("Open"); ?></p>
+                      <?php else: ?>
+                        <p style="color: red"><?php echo $this->__("Closed"); ?></p>
+                      <?php endif ?>
+
+                      <p><a href="<?php echo $_product->getProductUrl() ?>" ><?php echo $this->__('More informations'); ?></a></p>
+
+                    </div>
+
+                    <!--
                     <div class="product-secondary">
-                        <?php echo $this->getPriceHtml($_product, true) ?>
+                        <?php //echo $this->getPriceHtml($_product, true) ?>
                     </div>
                     <div class="product-secondary">
-                        <?php if(!$_product->canConfigure() && $_product->isSaleable()): ?>
-                            <p class="action"><button type="button" title="<?php echo $this->quoteEscape($this->__('Add to Cart')) ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
-                        <?php elseif($_product->getStockItem() && $_product->getStockItem()->getIsInStock()): ?>
-                            <p class="action"><a title="<?php echo $this->quoteEscape($this->__('View Details')) ?>" class="button" href="<?php echo $_product->getProductUrl() ?>"><?php echo $this->__('View Details') ?></a></p>
-                        <?php else: ?>
-                            <p class="action availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
-                        <?php endif; ?>
+                        <?php //if(!$_product->canConfigure() && $_product->isSaleable()): ?>
+                            <p class="action"><button type="button" title="<?php //echo $this->quoteEscape($this->__('Add to Cart')) ?>" class="button btn-cart" onclick="setLocation('<?php //echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php //echo $this->__('Add to Cart') ?></span></span></button></p>
+                        <?php //elseif($_product->getStockItem() && $_product->getStockItem()->getIsInStock()): ?>
+                            <p class="action"><a title="<?php //echo $this->quoteEscape($this->__('View Details')) ?>" class="button" href="<?php //echo $_product->getProductUrl() ?>"><?php //echo $this->__('View Details') ?></a></p>
+                        <?php //else: ?>
+                            <p class="action availability out-of-stock"><span><?php //echo $this->__('Out of stock') ?></span></p>
+                        <?php //endif; ?>
                         <ul class="add-to-links">
-                            <?php if ($this->helper('wishlist')->isAllow()) : ?>
-                                <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
-                            <?php endif; ?>
-                            <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
-                                <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
-                            <?php endif; ?>
+                            <?php //if ($this->helper('wishlist')->isAllow()) : ?>
+                                <li><a href="<?php //echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php //echo $this->__('Add to Wishlist') ?></a></li>
+                            <?php //endif; ?>
+                            <?php //if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                                <li><span class="separator">|</span> <a href="<?php //echo $_compareUrl ?>" class="link-compare"><?php //echo $this->__('Add to Compare') ?></a></li>
+                            <?php //endif; ?>
                         </ul>
                     </div>
                     <div class="desc std">
-                        <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
-                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped ?>" class="link-learn"><?php echo $this->__('Learn More') ?></a>
+                        <?php //echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+                        <a href="<?php //echo $_product->getProductUrl() ?>" title="<?php //echo $_productNameStripped ?>" class="link-learn"><?php //echo $this->__('Learn More') ?></a>
                     </div>
+                    -->
                 </div>
             </div>
         </li>
@@ -147,8 +182,29 @@
                     <p><?php echo Mage::getModel('catalog/product')->load($_product->getId())->getPhone(); ?></p>
                     <p><?php echo Mage::getModel('catalog/product')->load($_product->getId())->getAddress() ?></p>
                     <p><?php echo Mage::getModel('catalog/product')->load($_product->getId())->getCityAttr() ?></p>
-                    <p><?php echo $this->__("Open"); ?></p>
-                    <a href="<?php echo $_product->getProductUrl() ?>" ><?php echo $this->__('More informations'); ?></a>
+
+                    <?php
+
+                      $weakdays = array('sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday');
+                      $today = date('w');
+
+                      $startTime = Mage::getModel('catalog/product')->load($_product->getId())->getData($weakdays[$today]);
+                      $endTime = Mage::getModel('catalog/product')->load($_product->getId())->getData($weakdays[$today] . '_to');
+                      $currentTime = date('H:i');
+
+                      $time1 = DateTime::createFromFormat('H:i', $currentTime);
+                      $time2 = DateTime::createFromFormat('H:i', $startTime);
+                      $time3 = DateTime::createFromFormat('H:i', $endTime);
+
+                    ?>
+
+                    <?php if ($time1 > $time2 && $time1 < $time3): ?>
+                      <p style="color: green"><?php echo $this->__("Open"); ?></p>
+                    <?php else: ?>
+                      <p style="color: red"><?php echo $this->__("Closed"); ?></p>
+                    <?php endif ?>
+
+                    <p><a href="<?php echo $_product->getProductUrl() ?>" ><?php echo $this->__('More informations'); ?></a></p>
                     <?php //echo $this->getPriceHtml($_product, true) ?>
                     <?php //if($_product->getRatingSummary()): ?>
                     <?php //echo $this->getReviewsSummaryHtml($_product, 'short') ?>
@@ -181,9 +237,11 @@
     <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
     <?php endif; ?>
 
+    <!--
     <div class="toolbar-bottom">
-        <?php echo $this->getToolbarHtml() ?>
+        <?php //echo $this->getToolbarHtml() ?>
     </div>
+    -->
 </div>
 <?php endif; ?>
 <?php

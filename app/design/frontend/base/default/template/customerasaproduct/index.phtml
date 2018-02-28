@@ -105,8 +105,8 @@
             <div class="input-box">
               <div class="working-hours">
                 <label for="monday"><?php echo $this->__("Monday"); ?></label><br />
-                <input name="monday" id="monday" title="monday" value="<?php echo $_product->getMonday(); ?>" class="required-entry input-text" type="text" maxlength="25" />
-                <input name="monday" id="monday" title="monday" value="<?php echo $_product->getMonday(); ?>" class="required-entry input-text" type="text" maxlength="25" />
+                <input name="monday-from" id="monday" title="monday" value="<?php echo $_product->getMonday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="5" />
+                <input name="monday-to" id="monday" title="monday" value="<?php echo $_product->getMonday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="5" />
               </div>
             </div>
           </li>
@@ -114,8 +114,8 @@
             <div class="input-box">
               <div class="working-hours">
                 <label for="tuesday"><?php echo $this->__("Tuesday"); ?></label><br />
-                <input name="tuesday" id="tuesday" title="tuesday" value="<?php echo $_product->getTuesday(); ?>" class="required-entry input-text" type="text" maxlength="25" />
-                <input name="tuesday" id="tuesday" title="tuesday" value="<?php echo $_product->getTuesday(); ?>" class="required-entry input-text" type="text" maxlength="25" />
+                <input name="tuesday-from" id="tuesday" title="tuesday" value="<?php echo $_product->getTuesday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
+                <input name="tuesday-to" id="tuesday" title="tuesday" value="<?php echo $_product->getTuesday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
               </div>
             </div>
           </li>
@@ -123,8 +123,8 @@
             <div class="input-box">
               <div class="working-hours">
                 <label for="wednesday"><?php echo $this->__("Wednesday"); ?></label><br />
-                <input name="wednesday" id="wednesday" title="wednesday" value="<?php echo $_product->getWednesday(); ?>" class="required-entry input-text" type="text" maxlength="25" />
-                <input name="wednesday" id="wednesday" title="wednesday" value="<?php echo $_product->getWednesday(); ?>" class="required-entry input-text" type="text" maxlength="25" />
+                <input name="wednesday-from" id="wednesday" title="wednesday" value="<?php echo $_product->getWednesday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
+                <input name="wednesday-to" id="wednesday" title="wednesday" value="<?php echo $_product->getWednesday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
               </div>
             </div>
           </li>
@@ -132,8 +132,8 @@
             <div class="input-box">
               <div class="working-hours">
                 <label for="thursday"><?php echo $this->__("Thursday"); ?></label><br />
-                <input name="thursday" id="thursday" title="thursday" value="<?php echo $_product->getThursday(); ?>" class="required-entry input-text" type="text" maxlength="25" />
-                <input name="thursday" id="thursday" title="thursday" value="<?php echo $_product->getThursday(); ?>" class="required-entry input-text" type="text" maxlength="25" />
+                <input name="thursday-from" id="thursday" title="thursday" value="<?php echo $_product->getThursday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
+                <input name="thursday-to" id="thursday" title="thursday" value="<?php echo $_product->getThursday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
               </div>
             </div>
           </li>
@@ -141,8 +141,8 @@
             <div class="input-box">
               <div class="working-hours">
                 <label for="friday"><?php echo $this->__("Friday"); ?></label><br />
-                <input name="friday" id="friday" title="friday" value="<?php echo $_product->getFriday(); ?>" class="required-entry input-text" type="text" maxlength="25" />
-                <input name="friday" id="friday" title="friday" value="<?php echo $_product->getFriday(); ?>" class="required-entry input-text" type="text" maxlength="25" />
+                <input name="friday-from" id="friday" title="friday" value="<?php echo $_product->getFriday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
+                <input name="friday-to" id="friday" title="friday" value="<?php echo $_product->getFriday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
               </div>
             </div>
           </li>
@@ -156,8 +156,8 @@
                 <input type="radio" name="saturday-radio" id="saturday-radio-disable" value="dayin" >
               </fieldset>
               <div class="working-hours">
-                <input name="saturday-from" id="saturday-from-input" title="sunday" value="<?php echo $_product->getSaturday(); ?>" class="input-text" type="text" maxlength="25" />
-                <input name="saturday-to" id="saturday-to-input" title="sunday" value="<?php echo $_product->getSaturday(); ?>" class="input-text" type="text" maxlength="25" />
+                <input name="saturday-from" id="saturday-from-input" title="sunday" value="<?php echo $_product->getSaturday(); ?>" class="input-text validate-hours" type="text" maxlength="25" />
+                <input name="saturday-to" id="saturday-to-input" title="sunday" value="<?php echo $_product->getSaturday(); ?>" class="input-text validate-hours" type="text" maxlength="25" />
               </div>
             </div>
           </li>
@@ -213,6 +213,10 @@
 <script type="text/javascript">
     //< ![CDATA[
         var businessRegister = new VarienForm('business-register');
+
+        Validation.add('validate-hours', 'Please enter a valid working hours in the following format: 08:00', function(v) {
+            return Validation.get('IsEmpty').test(v) || /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/i.test(v)
+        });
 
         $j(document).ready(function() {
           $j("#saturday-from-input").prop("disabled", true);
