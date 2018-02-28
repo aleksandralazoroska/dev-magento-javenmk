@@ -64,7 +64,7 @@ label {
 
  .home-container-bidi-javen h4 {
     color: white;
-    font-size: 20px;
+    font-size: 30px;
  }
 
 .main-container {
@@ -122,6 +122,7 @@ label {
   width: 100%;
   background: url(../images/homepage_image_2.jpg) top center;
   display: inline-block;
+  background-size: cover;
 }
 
 .home-container-vlozi-top {
