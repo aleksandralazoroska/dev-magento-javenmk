@@ -236,3 +236,22 @@
     <?php //echo $this->getChildHtml('product_additional_data') ?>
 
 </div>
+
+<script type="text/javascript">
+
+  var url = "<?php echo Mage::getUrl('customerasaproduct/index/popularity');?>";
+
+  $j(document).ready(function(){
+
+    jQuery.ajax({
+        url: url,
+        dataType: 'json',
+        data: { product_id: <?php echo $_product->getId() ?> },
+        success: function(data){
+            //Your minicart html
+        }
+    });
+
+  });
+
+</script>

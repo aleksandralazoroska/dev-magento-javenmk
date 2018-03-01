@@ -200,4 +200,35 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
     }
 
+    // Set popularity on every product page open for every product
+    public function popularityAction() {
+
+      $params = $this->getRequest()->getParams();
+      $productId = $params['product_id'];
+
+      Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
+
+      $product = Mage::getModel('catalog/product')->load($productId);
+      $currentPopularity = $product->getData('popularity');
+
+      if ($currentPopularity == '') { $currentPopularity = 0; };
+
+      $newPopularity = $currentPopularity + 1;
+
+      try {
+
+        $product->setWebsiteIds(array(1))
+                ->setData('popularity', $newPopularity);
+
+        $product->save();
+
+      }
+      catch(Exception $e) {
+
+        Mage::log($e->getMessage());
+
+      }
+
+    }
+
 }
