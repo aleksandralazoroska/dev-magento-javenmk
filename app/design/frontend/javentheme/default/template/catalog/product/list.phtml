@@ -44,6 +44,31 @@
     <?php // List mode ?>
     <?php if($this->getMode()!='grid'): ?>
     <?php $_iterator = 0; ?>
+
+    <div class="category-map" id="category-map"></div>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTtEBEusRONeeNTQmL9f3LLLHHJYneHvU&callback=initMap">
+    </script>
+    <script type="text/javascript">
+
+      window.onload = function() {
+
+         var myLatLng = {lat: 41.0262659, lng: 21.3280557};
+
+         var map = new google.maps.Map(document.getElementById('category-map'), {
+           zoom: 15,
+           center: myLatLng
+         });
+
+         var marker = new google.maps.Marker({
+           position: myLatLng,
+           map: map,
+           title: 'Hello World!'
+         });
+
+      };
+    </script>
+
     <ol class="products-list" id="products-list">
     <?php foreach ($_productCollection as $_product): ?>
         <li class="item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">

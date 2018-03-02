@@ -331,38 +331,6 @@ body.cms-home .main-container {
   color: white;
 }
 
-.footer-container {
-  padding: 0;
-  max-width: 100%;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  position: absolute;
-}
-
-.footer {
-  padding-top: 0px;
-  background-color: #e0e0e0;
-  width: 100%;
-  position: absolute;
-}
-
-.footer-custom {
-  width: 1200px;
-  margin: 0 auto;
-  padding-left: 50px;
-}
-
-.footer address {
-  border-top: none;
-  margin-top: 0px;
-  padding: 6px 0 0 0;
-  height: 30px;
-  font-size: 12px;
-  background-color: #9e9e9e;
-  color: white;
-}
-
 .product-view {
   width: 1200px;
   margin: 0 auto;
@@ -461,23 +429,80 @@ a.product-shop-share-page {
   background: none;
   padding: 0;
   margin: 0;
+  border-bottom: 1px solid gray;
 }
 
 .category-products .toolbar .pager {
   float: left;
 }
 
+.category-products .toolbar .pager {
+  margin: 0;
+}
+
 .category-products .toolbar .pager strong {
   font-weight: normal;
-  font-size: 18px;
+  font-size: 16px;
+}
+
+.category-products .toolbar .pager .amount {
+  margin-bottom: 0;
 }
 
 .category-products .toolbar .sorter {
-  float: right;
+  float: left;
+  margin-bottom: 0;
 }
 
 .category-products .toolbar  .sorter label {
   text-transform: none;
+}
+
+.category-products .toolbar .sort-by select {
+  background: none;
+  border: none;
+  width: 100px;
+}
+
+.category-products .toolbar .switch-list-map {
+  float: right;
+  width: 160px;
+  padding-top: 1px;
+}
+
+.category-products .toolbar .switch-list-map .active {
+  background-color: #FF9800;
+  color: white;
+}
+
+.category-products .toolbar .switch-list {
+  float: right;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  margin-right: 3px;
+  background-color: #e0e0e0;
+  color: gray;
+}
+.category-products .toolbar .switch-list:hover {
+  cursor: pointer;
+}
+
+.category-products .toolbar .switch-map {
+  float: right;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  background-color: #e0e0e0;
+  color: gray;
+}
+
+
+
+.category-products .toolbar .switch-map:hover {
+  cursor: pointer;
 }
 
 .category-products .products-list .product-shop {
@@ -528,6 +553,13 @@ a.product-shop-share-page {
 .category-products .products-list .product-info p {
   text-align: left;
   margin-bottom: 10px;
+}
+
+.category-products .category-map {
+  width: 890px;
+  height: 667px;
+  margin-top: 20px;
+  margin-bottom: 60px;
 }
 
 /* Category Page */

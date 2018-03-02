@@ -96,7 +96,39 @@
                 <?php endif; ?>
             </div>
         </div>
+        <div class="switch-list-map">
+          <div class="switch-map" id="switch-map" ><p><?php echo $this->__('Map') ?></p></div>
+          <div class="switch-list active" id="switch-list" ><p><?php echo $this->__('List') ?></p></div>
+        </div>
     <?php endif; ?>
 
 </div>
 <?php endif ?>
+
+<?php echo $this->getChildHtml('topContainer'); ?>
+
+<script type="text/javascript">
+
+  $j(document).ready(function() {
+
+    $j('.category-map').css("display", "none");
+
+    $j('#switch-list').click(function(){
+      $j('#switch-map').removeClass("active");
+      $j('#switch-list').addClass("active");
+      $j('.products-list').css("display", "block");
+      $j('.category-map').css("display", "none");
+      $j('.sort-by').css("display", "block");
+    });
+
+    $j('#switch-map').click(function(){
+      $j('#switch-map').addClass("active");
+      $j('#switch-list').removeClass("active");
+      $j('.products-list').css("display", "none");
+      $j('.category-map').css("display", "block");
+      $j('.sort-by').css("display", "none");
+    });
+
+  });
+
+</script>
