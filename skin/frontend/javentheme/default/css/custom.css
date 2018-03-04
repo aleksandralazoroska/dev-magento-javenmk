@@ -71,7 +71,6 @@ label {
   width: 100%;
   min-width: 100%;
   padding: 0;
-  /*min-height: 100vh;*/
 }
 
 .home-container-za h4,p {
@@ -196,7 +195,6 @@ label {
 }
 
 .fieldset .legend {
-  margin-top: 20px;
   font-size: 24px;
   margin-left: 40px;
   padding-top: 40px;
@@ -244,9 +242,6 @@ label {
 .footer-container {
   padding: 0;
   max-width: 100%;
-  bottom: 0;
-  right: 0;
-  left: 0;
 }
 
 .footer {
@@ -271,8 +266,13 @@ label {
   color: white;
 }
 
-.customer-account-forgotpassword .footer-container, .customer-account-create .footer-container, .customer-account-login .footer-container {
-  position: absolute;
+
+.catalog-category-view .main-container, .catalog-category-view .main-container, .customer-account-index .main-container, .customer-account-logoutsuccess .main-container, .customer-account-forgotpassword .main-container, .customer-account-create .main-container, .customer-account-login .main-container {
+  min-height: calc(100vh - 241px);
+}
+
+.catalog-category-view .main-container, .catalogsearch-result-index .main-container {
+  min-height: calc(100vh - 465px);
 }
 
 .footer-custom {

@@ -43,9 +43,9 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
       // Image upload
       $uploaddir = Mage::getBaseDir('media') . DS . 'uploads' . DS ;
-      $uploadfile = $uploaddir . basename($_FILES['cover-image']['name']);
+      $imageCover = $uploaddir . basename($_FILES['cover-image']['name']);
 
-      if (move_uploaded_file($_FILES['cover-image']['tmp_name'], $uploadfile)) {
+      if (move_uploaded_file($_FILES['cover-image']['tmp_name'], $imageCover)) {
         echo "File is valid, and was successfully uploaded.\n";
       } else {
         echo "Upload failed";
@@ -115,7 +115,7 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
         )
 
         ->setCategoryIds(array($params['category'])) //assign product to categories
-        ->addImageToMediaGallery($uploadfile, 'cover_image', false);
+        ->addImageToMediaGallery($imageCover, 'cover_image', false);
 
         $product->save();
 
@@ -150,7 +150,36 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
       $productUrlKey = $product->getUrlKey();
 
-      Mage::log('development.log', null, $params['sunday-radio']);
+      $uploaddir = Mage::getBaseDir('media') . DS . 'uploads' . DS ;
+      $imageCover = $uploaddir . basename($_FILES['cover-image']['name']);
+
+      $imageMedia1 = $uploaddir . basename($_FILES['media-image-1']['name']);
+      $imageMedia2 = $uploaddir . basename($_FILES['media-image-2']['name']);
+      $imageMedia3 = $uploaddir . basename($_FILES['media-image-3']['name']);
+      $imageMedia4 = $uploaddir . basename($_FILES['media-image-4']['name']);
+      $imageMedia5 = $uploaddir . basename($_FILES['media-image-5']['name']);
+      $imageMedia6 = $uploaddir . basename($_FILES['media-image-6']['name']);
+
+      if (move_uploaded_file($_FILES['cover-image']['tmp_name'], $imageCover)) {
+        echo "File is valid, and was successfully uploaded.\n";
+      } else {
+        echo "Upload failed";
+      }
+
+      move_uploaded_file($_FILES['media-image-1']['tmp_name'], $imageMedia1);
+
+      if (move_uploaded_file($_FILES['media-image-2']['tmp_name'], $imageMedia2)) {
+        echo "File is valid, and was successfully uploaded.\n";
+      } else {
+        echo "Upload failed";
+      }
+
+      move_uploaded_file($_FILES['media-image-3']['tmp_name'], $imageMedia3);
+      move_uploaded_file($_FILES['media-image-4']['tmp_name'], $imageMedia4);
+      move_uploaded_file($_FILES['media-image-5']['tmp_name'], $imageMedia5);
+      move_uploaded_file($_FILES['media-image-6']['tmp_name'], $imageMedia6);
+
+      $mediaImages = array($imageMedia1, $imageMedia2, $imageMedia3, $imageMedia4, $imageMedia5, $imageMedia6);
 
       try {
 
@@ -169,25 +198,36 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
                 ->setInstagram($params['instagram'])
 
                 //Custom Working Hours
-                ->setMonday($params['monday'])
-                ->setTuesday($params['tuesday'])
-                ->setWednesday($params['wednesday'])
-                ->setThursday($params['thursday'])
-                ->setFriday($params['friday'])
-                ->setSaturday($params['saturday'])
-                ->setSunday($params['sunday'])
+                ->setMonday($params['monday-from'])
+                ->setMondayTo($params['monday-to'])
+                ->setTuesday($params['tuesday-from'])
+                ->setTuesdayTo($params['tuesday-to'])
+                ->setWednesday($params['wednesday-from'])
+                ->setWednesdayTo($params['wednesday-to'])
+                ->setThursday($params['thursday-from'])
+                ->setThursdayTo($params['thursday-to'])
+                ->setFriday($params['friday-from'])
+                ->setFridayTo($params['friday-to'])
+                ->setSaturday($params['saturday-from'])
+                ->setSaturdayTo($params['saturday-to'])
+                ->setSunday($params['sunday-from'])
+                ->setSundayTo($params['sunday-to'])
 
                 // Description
                 ->setDescription($params['about-us'])
-                ->setShortDescription($params['about-us']);
+                ->setShortDescription($params['about-us'])
+
+                ->setCategoryIds(array($params['category'])) //assign product to categories
 
                 //->setMediaGallery (array('images'=>array (), 'values'=>array ())) //media gallery initialization
-                //->addImageToMediaGallery('media/catalog/product/1/0/10243-1.png', array('image','thumbnail','small_image'), false, false) //assigning image, thumb and small image to media gallery
-
-                //->setCategoryIds(array($params['category'])) //assign product to categories
-                //->addImageToMediaGallery($uploadfile, 'cover_image', false);
+                ->addImageToMediaGallery($imageCover, array('cover_image'), false);  //array('image','thumbnail','small_image'), false, false) //assigning image, thumb and small image to media gallery
 
         $product->save();
+
+        foreach ($image as $mediaImages) {
+          $product->addImageToMediaGallery($image, array('image',), false);
+          $product->save();
+        }
 
       }
       catch(Exception $e) {

@@ -39,13 +39,15 @@
               }
             ?>
             <select name="category" id="cat" class="required-entry input-text">
-               <option value="<?php echo $_product->getCategoryIds() ?>"><?php echo $this->__('') ?></option>
+              <?php $selected_category = $_product->getCategoryIds() ?>
+              <?php $selected_category_name = Mage::getModel('catalog/category')->load($selected_category)->getName() ?>
+               <option value="<?php echo $selected_category[0] . " SELECTED"?> "><?php echo $selected_category_name ?></option>
                <?php echo $extra_options ?>
             </select>
           </div>
           <div class="input-box">
             <label for="cover-image"><?php echo $this->__("Cover Image"); ?></label><br />
-            <input name="cover-image" id="cover-image" title="Cover Image" value="" class="required-entry" type="file" />
+            <input name="cover-image" id="cover-image" title="Cover Image" value="" class="" type="file" />
           </div>
           <div class="input-box">
             <label for="telephone-1"><?php echo $this->__("Telephone 1"); ?></label><br />
@@ -72,8 +74,9 @@
               $options = $attribute->getSource()->getAllOptions();
             ?>
             <select name="city" id="city" class="required-entry input-text">
+              <option value="<?php echo $_product->getCityAttr() ?>" selected="selected" ><?php echo $_product->getCityAttr() ?></option>
               <?php foreach($options as $key => $value): ?>
-                <option value="<?php echo $value['label']; ?>" <?php if($key == $result['city']): ?> selected="selected" <?php endif; ?> ><?php echo $value['label']; ?></option>
+                <option value="<?php echo $value['label']; ?>" <?php if($key == $result['city'] && $key != ''): ?> selected="selected" <?php endif; ?> ><?php echo $value['label']; ?></option>
               <?php endforeach; ?>
             </select>
           </div>
@@ -98,6 +101,42 @@
           </div>
         </li>
       </ul>
+      <div class="input-box">
+        <h4 class="legend"><?php echo $this->__("Map"); ?></h4>
+        <div class="customerasaproduct-map" id="customerasaproduct-map" style="width: 500px; height: 300px"></div>
+      </div>
+      <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTtEBEusRONeeNTQmL9f3LLLHHJYneHvU&callback=initMap">
+      </script>
+      <script type="text/javascript">
+
+        function initMap() {
+          var map = new google.maps.Map(document.getElementById('customerasaproduct-map'), {
+            zoom: 9,
+            center: {lat: 41.0262659, lng: 21.3280557}
+          });
+          var geocoder = new google.maps.Geocoder();
+
+          document.getElementById('submit').addEventListener('click', function() {
+            geocodeAddress(geocoder, map);
+          });
+        }
+
+        function geocodeAddress(geocoder, resultsMap) {
+          var address = document.getElementById('address').value;
+          geocoder.geocode({'address': address}, function(results, status) {
+            if (status === 'OK') {
+              resultsMap.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+                map: resultsMap,
+                position: results[0].geometry.location
+              });
+            } else {
+              alert('Geocode was not successful for the following reason: ' + status);
+            }
+          });
+        }
+      </script>
       <div class="customerasaproduct-container1">
         <h4 class="legend"><?php echo $this->__("Working hours"); ?></h4>
         <ul>
@@ -106,7 +145,7 @@
               <div class="working-hours">
                 <label for="monday"><?php echo $this->__("Monday"); ?></label><br />
                 <input name="monday-from" id="monday" title="monday" value="<?php echo $_product->getMonday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="5" />
-                <input name="monday-to" id="monday" title="monday" value="<?php echo $_product->getMonday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="5" />
+                <input name="monday-to" id="monday" title="monday" value="<?php echo $_product->getMondayTo(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="5" />
               </div>
             </div>
           </li>
@@ -115,7 +154,7 @@
               <div class="working-hours">
                 <label for="tuesday"><?php echo $this->__("Tuesday"); ?></label><br />
                 <input name="tuesday-from" id="tuesday" title="tuesday" value="<?php echo $_product->getTuesday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
-                <input name="tuesday-to" id="tuesday" title="tuesday" value="<?php echo $_product->getTuesday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
+                <input name="tuesday-to" id="tuesday" title="tuesday" value="<?php echo $_product->getTuesdayTo(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
               </div>
             </div>
           </li>
@@ -124,7 +163,7 @@
               <div class="working-hours">
                 <label for="wednesday"><?php echo $this->__("Wednesday"); ?></label><br />
                 <input name="wednesday-from" id="wednesday" title="wednesday" value="<?php echo $_product->getWednesday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
-                <input name="wednesday-to" id="wednesday" title="wednesday" value="<?php echo $_product->getWednesday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
+                <input name="wednesday-to" id="wednesday" title="wednesday" value="<?php echo $_product->getWednesdayTo(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
               </div>
             </div>
           </li>
@@ -133,7 +172,7 @@
               <div class="working-hours">
                 <label for="thursday"><?php echo $this->__("Thursday"); ?></label><br />
                 <input name="thursday-from" id="thursday" title="thursday" value="<?php echo $_product->getThursday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
-                <input name="thursday-to" id="thursday" title="thursday" value="<?php echo $_product->getThursday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
+                <input name="thursday-to" id="thursday" title="thursday" value="<?php echo $_product->getThursdayTo(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
               </div>
             </div>
           </li>
@@ -142,7 +181,7 @@
               <div class="working-hours">
                 <label for="friday"><?php echo $this->__("Friday"); ?></label><br />
                 <input name="friday-from" id="friday" title="friday" value="<?php echo $_product->getFriday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
-                <input name="friday-to" id="friday" title="friday" value="<?php echo $_product->getFriday(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
+                <input name="friday-to" id="friday" title="friday" value="<?php echo $_product->getFridayTo(); ?>" class="required-entry input-text validate-hours" type="text" maxlength="25" />
               </div>
             </div>
           </li>
@@ -157,7 +196,7 @@
               </fieldset>
               <div class="working-hours">
                 <input name="saturday-from" id="saturday-from-input" title="sunday" value="<?php echo $_product->getSaturday(); ?>" class="input-text validate-hours" type="text" maxlength="25" />
-                <input name="saturday-to" id="saturday-to-input" title="sunday" value="<?php echo $_product->getSaturday(); ?>" class="input-text validate-hours" type="text" maxlength="25" />
+                <input name="saturday-to" id="saturday-to-input" title="sunday" value="<?php echo $_product->getSaturdayTo(); ?>" class="input-text validate-hours" type="text" maxlength="25" />
               </div>
             </div>
           </li>
@@ -172,7 +211,7 @@
               </fieldset>
               <div class="working-hours">
                 <input name="sunday-from" id="sunday-from-input" title="sunday" value="<?php echo $_product->getSunday(); ?>" class="input-text" type="text" maxlength="25" />
-                <input name="sunday-to" id="sunday-to-input" title="sunday" value="<?php echo $_product->getSunday(); ?>" class="input-text" type="text" maxlength="25" />
+                <input name="sunday-to" id="sunday-to-input" title="sunday" value="<?php echo $_product->getSundayTo(); ?>" class="input-text" type="text" maxlength="25" />
               </div>
             </div>
           </li>
@@ -187,6 +226,15 @@
 
       <div class="customerasaproduct-container3">
         <label for="photogallery"><?php echo $this->__("Photogallery"); ?></label>
+        <div class="input-box">
+          <label for="media-image-1"><?php echo $this->__("Media Images"); ?></label><br />
+          <input name="media-image-1" id="media-image-1" title="Media Image" value="" class="" type="file" />
+          <input name="media-image-2" id="media-image-2" title="Media Image" value="" class="" type="file" />
+          <input name="media-image-3" id="media-image-3" title="Media Image" value="" class="" type="file" />
+          <input name="media-image-4" id="media-image-4" title="Media Image" value="" class="" type="file" />
+          <input name="media-image-5" id="media-image-5" title="Media Image" value="" class="" type="file" />
+          <input name="media-image-6" id="media-image-6" title="Media Image" value="" class="" type="file" />
+        </div>
       </div>
 
       <div class="customerasaproduct-container4">
@@ -218,18 +266,30 @@
             return Validation.get('IsEmpty').test(v) || /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/i.test(v)
         });
 
+        var saturdayFrom = "<?php echo $_product->getSaturday(); ?>";
+        var saturdayTo = "<?php echo $_product->getSaturday(); ?>";
+        var sundayFrom = "<?php echo $_product->getSaturday(); ?>";
+        var sundayTo = "<?php echo $_product->getSaturday(); ?>";
+
+
         $j(document).ready(function() {
-          $j("#saturday-from-input").prop("disabled", true);
-          $j("#saturday-to-input").prop("disabled", true);
-          $j("#saturday-radio-disable").prop("checked", true);
-          $j("#saturday-from-input").css('background-color','#ededed');
-          $j("#saturday-to-input").css('background-color','#ededed');
+
+          $j("#saturday-radio-enable").prop("checked", true);
+          if (saturdayFrom == '' && saturdayTo == '') {
+            $j("#saturday-from-input").prop("disabled", true);
+            $j("#saturday-to-input").prop("disabled", true);
+            $j("#saturday-radio-disable").prop("checked", true);
+            $j("#saturday-from-input").css('background-color','#ededed');
+            $j("#saturday-to-input").css('background-color','#ededed');
+          }
+
           $j("#saturday-radio-enable").on("click", function() {
             $j("#saturday-from-input").prop("disabled", false);
             $j("#saturday-from-input").css('background-color','white');
             $j("#saturday-to-input").prop("disabled", false);
             $j("#saturday-to-input").css('background-color','white');
           });
+
           $j("#saturday-radio-disable").on("click", function() {
             $j("#saturday-from-input").prop("disabled", true);
             $j("#saturday-from-input").val("");
@@ -238,20 +298,27 @@
             $j("#saturday-to-input").val("");
             $j("#saturday-to-input").css('background-color','#ededed');
           });
+
         });
 
         $j(document).ready(function() {
-          $j("#sunday-from-input").prop("disabled", true);
-          $j("#sunday-to-input").prop("disabled", true);
-          $j("#sunday-radio-disable").prop("checked", true);
-          $j("#sunday-from-input").css('background-color','#ededed');
-          $j("#sunday-to-input").css('background-color','#ededed');
+
+          $j("#sunday-radio-enable").prop("checked", true);
+          if (sundayFrom == '' && sundayTo == '') {
+            $j("#sunday-from-input").prop("disabled", true);
+            $j("#sunday-to-input").prop("disabled", true);
+            $j("#sunday-radio-disable").prop("checked", true);
+            $j("#sunday-from-input").css('background-color','#ededed');
+            $j("#sunday-to-input").css('background-color','#ededed');
+          }
+
           $j("#sunday-radio-enable").on("click", function() {
             $j("#sunday-from-input").prop("disabled", false);
             $j("#sunday-from-input").css('background-color','white');
             $j("#sunday-to-input").prop("disabled", false);
             $j("#sunday-to-input").css('background-color','white');
           });
+
           $j("#sunday-radio-disable").on("click", function() {
             $j("#sunday-from-input").prop("disabled", true);
             $j("#sunday-from-input").val("");
@@ -260,6 +327,7 @@
             $j("#sunday-to-input").val("");
             $j("#sunday-to-input").css('background-color','#ededed');
           });
+
         });
 
     //]]>

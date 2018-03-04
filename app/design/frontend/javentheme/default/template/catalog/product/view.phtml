@@ -85,13 +85,13 @@
 
                 <div class="product-shop-working-hours">
                   <h4><?php echo $this->__("Working hours"); ?></h4>
-                  <p><?php echo $this->__($_product->getResource()->getAttribute('monday')->getFrontendLabel()) . " " . $_product->getData('monday'); ?></p>
-                  <p><?php echo $this->__($_product->getResource()->getAttribute('tuesday')->getFrontendLabel()) . " " . $_product->getData('tuesday'); ?></p>
-                  <p><?php echo $this->__($_product->getResource()->getAttribute('wednesday')->getFrontendLabel()) . " " . $_product->getData('wednesday'); ?></p>
-                  <p><?php echo $this->__($_product->getResource()->getAttribute('thursday')->getFrontendLabel()) . " " . $_product->getData('thursday'); ?></p>
-                  <p><?php echo $this->__($_product->getResource()->getAttribute('friday')->getFrontendLabel()) . " " . $_product->getData('friday'); ?></p>
-                  <p><?php echo $this->__($_product->getResource()->getAttribute('saturday')->getFrontendLabel()) . " " . $_product->getData('saturday'); ?></p>
-                  <p><?php echo $this->__($_product->getResource()->getAttribute('sunday')->getFrontendLabel()) . " " . $_product->getData('sunday'); ?></p>
+                  <p><?php echo $this->__($_product->getResource()->getAttribute('monday')->getFrontendLabel()) . " " . $_product->getData('monday') . " - " . $_product->getData('monday_to'); ?></p>
+                  <p><?php echo $this->__($_product->getResource()->getAttribute('tuesday')->getFrontendLabel()) . " " . $_product->getData('tuesday') . " - " . $_product->getData('tuesday_to'); ?></p>
+                  <p><?php echo $this->__($_product->getResource()->getAttribute('wednesday')->getFrontendLabel()) . " " . $_product->getData('wednesday') . " - " . $_product->getData('wednesday_to'); ?></p>
+                  <p><?php echo $this->__($_product->getResource()->getAttribute('thursday')->getFrontendLabel()) . " " . $_product->getData('thursday') . " - " . $_product->getData('thursday_to'); ?></p>
+                  <p><?php echo $this->__($_product->getResource()->getAttribute('friday')->getFrontendLabel()) . " " . $_product->getData('friday') . " - " . $_product->getData('friday_to'); ?></p>
+                  <p><?php echo $this->__($_product->getResource()->getAttribute('saturday')->getFrontendLabel()) . " " . $_product->getData('saturday') . " - " . $_product->getData('saturday_to'); ?></p>
+                  <p><?php echo $this->__($_product->getResource()->getAttribute('sunday')->getFrontendLabel()) . " " . $_product->getData('sunday') . " - " . $_product->getData('sunday_to'); ?></p>
                 </div>
 
                 <?php
