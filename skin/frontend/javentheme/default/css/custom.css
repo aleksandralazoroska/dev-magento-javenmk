@@ -642,6 +642,17 @@ label {
   margin-right: 20px;
 }
 
+.customerasaproduct-container .button-submit-map {
+  margin-top: 0 !important;
+  width: auto !important;
+  text-transform: none;
+  padding: 0 10px 0 10px;
+}
+
+.customerasaproduct-container .button-submit-map:hover {
+  background-color: #FF9800;
+}
+
 .customerasaproduct-container1 {
     padding-top: 60px;
 }

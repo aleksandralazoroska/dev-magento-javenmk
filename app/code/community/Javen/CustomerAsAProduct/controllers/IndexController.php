@@ -72,6 +72,8 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
         ->setEmail($customer->getEmail())
         ->setCoverPicture()
         ->setAddress($params['address'])
+        ->setMapLat($params['map-lat'])
+        ->setMapLng($params['map-lng'])
         ->setCityAttr($params['city'])
 
         //Custom Social

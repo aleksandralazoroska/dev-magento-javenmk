@@ -102,3 +102,4 @@
 "%s businesses founded","Пронајдени се %s бизнис(и)"
 "Cover Image","Кавер слика"
 "List","Листа"
+"* Street format: [Street] [Street Number], [City]","* Формат за улица: [Улица] [Број], [Град] пример: Рузвелтова 14, Куманово"

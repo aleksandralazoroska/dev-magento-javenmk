@@ -63,10 +63,6 @@
             <p style="text-align: left;"><?php echo $email ?></p>
           </div>
           <div class="input-box">
-            <label for="Address"><?php echo $this->__("Address"); ?></label><br />
-            <input name="address" id="address" title="Address" value="<?php echo $_product->getAddress(); ?>" class="required-entry input-text maxlength="50"" type="text" />
-          </div>
-          <div class="input-box">
             <label for="City"><?php echo $this->__("City"); ?></label><br />
             <?php
               $atributeCode = 'city';
@@ -80,8 +76,18 @@
               <?php endforeach; ?>
             </select>
           </div>
+          <div class="input-box">
+            <label for="Address"><?php echo $this->__("Address"); ?></label><br />
+            <input name="address" id="address" title="Address" value="<?php echo $_product->getAddress(); ?>" class="required-entry input-text maxlength="50"" type="text" />
+            <input id="map-submit" type="button" class="button button-submit-map" value="<?php echo $this->__("Mark  map"); ?>" />
+            <input onclick="clearOverlays();" type=button class="button button-submit-map" value="<?php echo $this->__("Delete markers"); ?>" />
+            <p><small style="float: left;"><?php echo $this->__("* Street format: [Street] [Street Number], [City]"); ?></small></p>
+            <h4 class="legend"><?php echo $this->__("Map"); ?></h4>
+            <div class="customerasaproduct-map" id="customerasaproduct-map" style="width: 500px; height: 300px"></div>
+            <input type="hidden" id="map-input-lat" name="map-lat" />
+            <input type="hidden" id="map-input-lng" name="map-lng" />
+          </div>
           <div class="clear"></div>
-
           <h4 class="legend"><?php echo $this->__("Links"); ?></h4>
           <div class="input-box">
             <label for="webpage"><?php echo $this->__("Web Page"); ?></label><br />
@@ -102,41 +108,8 @@
         </li>
       </ul>
       <div class="input-box">
-        <h4 class="legend"><?php echo $this->__("Map"); ?></h4>
-        <div class="customerasaproduct-map" id="customerasaproduct-map" style="width: 500px; height: 300px"></div>
+
       </div>
-      <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTtEBEusRONeeNTQmL9f3LLLHHJYneHvU&callback=initMap">
-      </script>
-      <script type="text/javascript">
-
-        function initMap() {
-          var map = new google.maps.Map(document.getElementById('customerasaproduct-map'), {
-            zoom: 9,
-            center: {lat: 41.0262659, lng: 21.3280557}
-          });
-          var geocoder = new google.maps.Geocoder();
-
-          document.getElementById('submit').addEventListener('click', function() {
-            geocodeAddress(geocoder, map);
-          });
-        }
-
-        function geocodeAddress(geocoder, resultsMap) {
-          var address = document.getElementById('address').value;
-          geocoder.geocode({'address': address}, function(results, status) {
-            if (status === 'OK') {
-              resultsMap.setCenter(results[0].geometry.location);
-              var marker = new google.maps.Marker({
-                map: resultsMap,
-                position: results[0].geometry.location
-              });
-            } else {
-              alert('Geocode was not successful for the following reason: ' + status);
-            }
-          });
-        }
-      </script>
       <div class="customerasaproduct-container1">
         <h4 class="legend"><?php echo $this->__("Working hours"); ?></h4>
         <ul>
@@ -258,6 +231,53 @@
     <?php endif; ?>
   </form>
 </div>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTtEBEusRONeeNTQmL9f3LLLHHJYneHvU&callback=initMap">
+</script>
+<script type="text/javascript">
+
+  var markersArray = [];
+
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('customerasaproduct-map'), {
+      zoom: 9,
+      center: {lat: 41.0262659, lng: 21.3280557}
+    });
+    var geocoder = new google.maps.Geocoder();
+
+    document.getElementById('map-submit').addEventListener('click', function() {
+      geocodeAddress(geocoder, map);
+    });
+  }
+
+  function geocodeAddress(geocoder, resultsMap) {
+    var address = document.getElementById('address').value;
+    geocoder.geocode({'address': address}, function(results, status) {
+      if (status === 'OK') {
+        resultsMap.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: resultsMap,
+          position: results[0].geometry.location
+        });
+
+        $j('#map-input-lat').val(marker.getPosition().lat());
+        $j('#map-input-lng').val(marker.getPosition().lng());
+
+        markersArray.push(marker);
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+
+  function clearOverlays() {
+    for (var i = 0; i < markersArray.length; i++ ) {
+      markersArray[i].setMap(null);
+    }
+    markersArray.length = 0;
+  }
+
+</script>
 <script type="text/javascript">
     //< ![CDATA[
         var businessRegister = new VarienForm('business-register');
