@@ -226,16 +226,19 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
         $product->save();
 
-        foreach ($image as $mediaImages) {
-          $product->addImageToMediaGallery($image, array('image',), false);
-          $product->save();
-        }
 
       }
       catch(Exception $e) {
 
         Mage::log($e->getMessage());
 
+      }
+
+      foreach ($mediaImages as $image) {
+        if ($image != $uploaddir) {
+          $product->addImageToMediaGallery($image, array('image','thumbnail','small_image'), false, false);
+          $product->save();
+        }
       }
 
       return $this->_redirectUrl('/' . $productUrlKey . '.html');

@@ -79,7 +79,7 @@
           <div class="input-box">
             <label for="Address"><?php echo $this->__("Address"); ?></label><br />
             <input name="address" id="address" title="Address" value="<?php echo $_product->getAddress(); ?>" class="required-entry input-text maxlength="50"" type="text" />
-            <input id="map-submit" type="button" class="button button-submit-map" value="<?php echo $this->__("Mark  map"); ?>" />
+            <input id="map-submit" type="button" class="button button-submit-map" value="<?php echo $this->__("Mark map"); ?>" />
             <input onclick="clearOverlays();" type=button class="button button-submit-map" value="<?php echo $this->__("Delete markers"); ?>" />
             <p><small style="float: left;"><?php echo $this->__("* Street format: [Street] [Street Number], [City]"); ?></small></p>
             <h4 class="legend"><?php echo $this->__("Map"); ?></h4>
@@ -200,7 +200,6 @@
       <div class="customerasaproduct-container3">
         <label for="photogallery"><?php echo $this->__("Photogallery"); ?></label>
         <div class="input-box">
-          <label for="media-image-1"><?php echo $this->__("Media Images"); ?></label><br />
           <input name="media-image-1" id="media-image-1" title="Media Image" value="" class="" type="file" />
           <input name="media-image-2" id="media-image-2" title="Media Image" value="" class="" type="file" />
           <input name="media-image-3" id="media-image-3" title="Media Image" value="" class="" type="file" />
