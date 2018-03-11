@@ -47,39 +47,10 @@
                   <input type="hidden" name="related_product" id="related-products-field" value="" />
               </div>
 
-              <div class="product-img-box">
-                  <div class="product-name">
-                      <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
-                  </div>
-                  <?php echo $this->getChildHtml('media') ?>
-              </div>
-
               <div class="product-shop">
-                  <div class="product-name">
-                      <span class="h1"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span>
-                  </div>
 
-                  <div class="price-info">
-                      <?php echo $this->getPriceHtml($_product); ?>
-                      <?php echo $this->getChildHtml('bundle_prices') ?>
-                      <?php echo $this->getTierPriceHtml() ?>
-                  </div>
-
-                  <div class="extra-info">
-                      <?php echo $this->getReviewsSummaryHtml($_product, 'default', false)?>
-                      <?php echo $this->getChildHtml('product_type_availability'); ?>
-                  </div>
 
                   <?php echo $this->getChildHtml('alert_urls') ?>
-
-                  <?php if ($_product->getShortDescription()):?>
-                      <div class="short-description">
-                          <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
-                      </div>
-                  <?php endif;?>
-
-
-
 
                   <?php echo $this->getChildHtml('other');?>
 
@@ -87,8 +58,13 @@
                       <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
                   <?php endif;?>
 
-              </div>
+                  <div class="price-info">
+                      <?php echo $this->getPriceHtml($_product); ?>
+                      <?php echo $this->getChildHtml('bundle_prices') ?>
+                      <?php echo $this->getTierPriceHtml() ?>
+                  </div>
 
+              </div>
               <div class="add-to-cart-wrapper">
                   <?php echo $this->getChildHtml('product_type_data') ?>
                   <?php echo $this->getChildHtml('extrahint') ?>
@@ -101,19 +77,10 @@
                                   <span class="or"><?php echo $this->__('OR') ?></span>
                               <?php endif; ?>
                           <?php endif; ?>
-                          <?php echo $this->getChildHtml('addto') ?>
-                          <?php echo $this->getChildHtml('sharing') ?>
                       </div>
-                      <?php echo $this->getChildHtml('extra_buttons') ?>
-                  <?php elseif (!$_product->isSaleable()): ?>
-                      <div class="add-to-box">
-                          <?php echo $this->getChildHtml('addto') ?>
-                          <?php echo $this->getChildHtml('sharing') ?>
-                      </div>
+
                   <?php endif; ?>
               </div>
-
-              <?php echo $this->getChildHtml('related_products') ?>
 
               <div class="clearer"></div>
               <?php if ($_product->isSaleable() && $this->hasOptions()):?>
@@ -172,22 +139,6 @@
           //]]>
           </script>
       </div>
-
-      <div class="product-collateral toggle-content tabs">
-          <?php if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')):?>
-              <dl id="collateral-tabs" class="collateral-tabs">
-                  <?php foreach ($detailedInfoGroup as $alias => $html):?>
-                      <dt class="tab"><span><?php echo $this->escapeHtml($this->getChildData($alias, 'title')) ?></span></dt>
-                      <dd class="tab-container">
-                          <div class="tab-content"><?php echo $html ?></div>
-                      </dd>
-                  <?php endforeach;?>
-              </dl>
-          <?php endif; ?>
-      </div>
-
-      <?php //echo $this->getChildHtml('upsell_products') ?>
-      <?php //echo $this->getChildHtml('product_additional_data') ?>
 
   </div>
 

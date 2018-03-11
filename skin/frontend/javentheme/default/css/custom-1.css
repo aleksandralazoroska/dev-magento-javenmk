@@ -155,6 +155,51 @@
   color: #FF9800;
 }
 
+.my-account .page-title h1 {
+  text-transform: none;
+  font-size: 24px;
+  margin-left: 60px;
+  padding-top: 40px;
+  font-weight: normal;
+}
+
+.my-account .fieldset {
+  margin-left: 60px;
+}
+
+.my-account .legend {
+  margin-left: 0;
+}
+
+.my-account .form-list {
+  margin-left: 0;
+}
+
+.my-account .form-list input {
+  width: 500px;
+  height: 35px;
+  border-radius: 5px;
+}
+
+.my-account .form-list .checkbox {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+}
+
+.my-account .buttons-set {
+  margin-left: 60px;
+}
+
+.my-account .buttons-set .back-link a {
+  padding: 5px 15px;
+}
+
+.my-account .fieldset h2 {
+  padding-top: 0;
+}
+
+
 /* Login and Create*/
 
 /* Account Dashboard Start */
