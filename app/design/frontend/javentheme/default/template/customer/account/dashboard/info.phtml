@@ -24,41 +24,92 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<div class="col2-set">
+<div class="col3-set">
     <div class="col-1">
         <div class="box">
             <div class="box-title">
-                <h3><?php echo $this->__('Contact Information') ?></h3>
-                <a href="<?php echo $this->getUrl('customer/account/edit') ?>"><?php echo $this->__('Edit') ?></a>
+                <h3><?php echo $this->__('Account Information') ?></h3>
             </div>
             <div class="box-content">
-                <p>
-                    <?php echo $this->escapeHtml($this->getCustomer()->getName()) ?><br />
-                    <?php echo $this->escapeHtml($this->getCustomer()->getEmail()) ?><br />
-                    <a href="<?php echo $this->getChangePasswordUrl() ?>"><?php echo $this->__('Change Password') ?></a>
-                </p>
+              <label><?php echo $this->__('Firstname and Lastname') ?></label>
+              <p><?php echo $this->escapeHtml($this->getCustomer()->getName()) ?></p>
+              <label><?php echo $this->__('Email') ?></label>
+              <p><?php echo $this->escapeHtml($this->getCustomer()->getEmail()) ?></p>
+              <a class="button" href="<?php echo $this->getUrl('customer/account/edit') ?>"><?php echo $this->__('Edit personal informations') ?></a>
             </div>
         </div>
     </div>
-    <?php if( $this->isNewsletterEnabled() ): ?>
+    <div class="col-2">
+      <div class="box-title">
+          <h3><?php echo $this->__('Payment Cards') ?></h3>
+      </div>
+      <div class="box-content">
+        <div class="payment-card"></div>
+        <a class="button button-white" ><?php echo $this->__('Remove the payment card') ?></a>
+        <a class="button button-white" ><?php echo $this->__('Update the payment card') ?></a>
+        <a class="button" ><?php echo $this->__('Add new payment card') ?></a>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="box-title">
+          <h3><?php echo $this->__('Transactions') ?></h3>
+      </div>
+      <div class="box-content">
+        <?php
+          $orders = Mage::getModel('sales/order')->getCollection()->addFieldToFilter('customer_email',$this->getCustomer()->getEmail())->addFieldToSelect('*');
+        ?>
+        <?php if($orders->getSize()): ?>
+        <table class="data-table" id="my-orders-table" >
+            <thead>
+                <tr>
+                    <!--<th><?php //echo $this->__('Order #') ?></th>-->
+                    <th><?php echo $this->__('Date') ?></th>
+                    <!--<th class="a-center">Shipped To</th>-->
+                    <th class="last"><?php echo $this->__('Total') ?></th>
+                    <!--<th><?php //echo $this->__('Status') ?></th>-->
+                    <!--<th><?php //echo $this->__('Details') ?></th>-->
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($orders as $order): ?>
+                <tr>
+                    <!--<td><?php //echo $order->getRealOrderId() ?>&nbsp;</td>-->
+                    <td><?php echo date("D, j M, Y", strtotime($order->getCreatedAt())) ?>&nbsp;</td>
+                    <!--<td class="a-center">{$page.orders[io].customer}</td>-->
+                    <td><?php echo (int)$order->getGrandTotal() ?>&nbsp;</td>
+                    <!--<td><?php //echo $order->getStatus() ?>&nbsp;</td>-->
+                    <!--<td><a href="<?php //echo $this->getUrl('customer/order/view', array('order'=>$order->getOrderId())) ?>"><?php //echo $this->__('View Order') ?></a>&nbsp;</td>-->
+                </tr>
+            <?php endforeach ?>
+            </tbody>
+        </table>
+        <script type="text/javascript">decorateTable('my-orders-table')</script>
+        <?php else: ?>
+            <p><?php echo $this->__('You have placed no orders yet.') ?></p>
+        <?php endif ?>
+      </div>
+    </div>
+    <?php //if( $this->isNewsletterEnabled() ): ?>
+    <!--
     <div class="col-2">
         <div class="box">
             <div class="box-title">
-                <h3><?php echo $this->__('Newsletters') ?></h3>
-                <a href="<?php echo $this->getUrl('newsletter/manage') ?>"><?php echo $this->__('Edit') ?></a>
+                <h3><?php //echo $this->__('Newsletters') ?></h3>
+                <a href="<?php //echo $this->getUrl('newsletter/manage') ?>"><?php //echo $this->__('Edit') ?></a>
             </div>
             <div class="box-content">
                 <p>
-                    <?php if( $this->getIsSubscribed() ): ?>
-                        <?php echo $this->__("You are currently subscribed to 'General Subscription'.") ?>
-                    <?php else: ?>
-                        <?php echo $this->__('You are currently not subscribed to any newsletter.') ?>
-                    <?php endif; ?>
+                    <?php //if( $this->getIsSubscribed() ): ?>
+                        <?php //echo $this->__("You are currently subscribed to 'General Subscription'.") ?>
+                    <?php //else: ?>
+                        <?php //echo $this->__('You are currently not subscribed to any newsletter.') ?>
+                    <?php //endif; ?>
                 </p>
             </div>
         </div>
         <?php /* Extensions placeholder */ ?>
-        <?php echo $this->getChildHtml('customer.account.dashboard.info.extra')?>
+        <?php //echo $this->getChildHtml('customer.account.dashboard.info.extra')?>
     </div>
-    <?php endif; ?>
+    -->
+    <?php //endif; ?>
 </div>
