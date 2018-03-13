@@ -1,0 +1,35 @@
+<!-- Packages -->
+<?php
+  $attrSetName = 'Packages';
+  $attributeSetId = Mage::getModel('eav/entity_attribute_set')
+      ->load($attrSetName, 'attribute_set_name')
+      ->getAttributeSetId();
+
+  $products = Mage::getModel('catalog/product')->getCollection();
+  $products->addAttributeToFilter('attribute_set_id',$attributeSetId);
+  $products->addAttributeToSelect('*');
+
+  $products->load();
+
+  // Homepage salable products
+  $packagesProducts = array('4', '5', '6');
+?>
+
+<div class="select-packages-parent">
+  <div class="select-packages-container">
+    <?php foreach ($products as $prod): ?>
+      <?php if (in_array($prod->getId(), $packagesProducts)): ?>
+        <div class="select-packages-box" style="background-color: <?php echo $prod->getData("css_color"); ?>">
+          <h3 class="package-box-name" ><?php echo $prod->getName() ?></h3>
+          <p class="package-box-price" ><?php echo round($prod->getPrice(), 0) . " " . $this->__("denari"); ?></p>
+          <p class="package-box-desc" ><?php echo $prod->getShortDescription(); ?></p>
+          <?php if(!Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+            <a class="package-box-button button" style="color: <?php echo $prod->getData("css_color"); ?>" href="<?php echo Mage::getBaseUrl() . 'customer/account/login' ?>"><?php echo $this->__("Pretplatete se vednash") ?></a>
+          <?php else: ?>
+            <a class="package-box-button button" style="color: <?php echo $prod->getData("css_color"); ?>" href="<?php echo Mage::helper('checkout/cart')->getAddUrl($prod); ?>"><?php echo $this->__("Pretplatete se vednash") ?></a>
+          <?php endif; ?>
+        </div>
+      <?php endif; ?>
+    <?php endforeach; ?>
+  </div>
+</div>

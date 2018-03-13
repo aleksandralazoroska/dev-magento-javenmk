@@ -132,7 +132,8 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
       }
 
-      return $this->_redirectUrl('/' . $categoryUrl . '/' . $productSku . '.html');
+      //return $this->_redirectUrl('/' . $categoryUrl . '/' . $productSku . '.html');
+      return $this->_redirectUrl('customerasaproduct/packages/selectpackage');
 
     }
 

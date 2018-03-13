@@ -9,4 +9,11 @@ class Javen_CustomerAsAProduct_PackagesController extends Mage_Core_Controller_F
 
   }
 
+  public function selectpackageAction() {
+
+    $this->loadLayout();
+    $this->renderLayout();
+
+  }
+
 }

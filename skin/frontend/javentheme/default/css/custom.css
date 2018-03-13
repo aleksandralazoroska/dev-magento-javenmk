@@ -43,7 +43,6 @@ label {
   position: relative;
 }
 
-
 .skip-links {
   clear: none;
 }
@@ -268,7 +267,7 @@ label {
 }
 
 
-.catalog-category-view .main-container, .catalog-category-view .main-container, .customer-account-index .main-container, .customer-account-logoutsuccess .main-container, .customer-account-forgotpassword .main-container, .customer-account-create .main-container, .customer-account-login .main-container, .customerasaproduct-packages-index .main-container, .customer-account-edit .main-container{
+.catalog-category-view .main-container, .catalog-category-view .main-container, .customer-account-index .main-container, .customer-account-logoutsuccess .main-container, .customer-account-forgotpassword .main-container, .customer-account-create .main-container, .customer-account-login .main-container, .customerasaproduct-packages-index .main-container, .customer-account-edit .main-container, .customerasaproduct-packages-selectpackage .main-container {
   min-height: calc(100vh - 241px);
 }
 
@@ -304,9 +303,9 @@ label {
 
 .footer-custom-right-kontakt  {
   color: grey;
-  padding-left: 50px;
   margin-top: 30px;
   float: left;
+  padding-left: 18px;
 }
 
 .footer-custom-right-kontakt a {
@@ -316,7 +315,7 @@ label {
 
 .footer-custom-right-fb {
   float: left;
-  padding-left: 100px;
+  padding-left: 70px;
   margin-top: 20px;
 }
 
@@ -347,7 +346,7 @@ label {
  .footer-custom-right-up img {
   width: 64px;
   color: #FF9800;
-  margin-left: 150px;
+  margin-left: 110px;
   margin-top: 50px;
   opacity: 0.5;
 }
