@@ -266,8 +266,17 @@ label {
   color: white;
 }
 
-
-.catalog-category-view .main-container, .catalog-category-view .main-container, .customer-account-index .main-container, .customer-account-logoutsuccess .main-container, .customer-account-forgotpassword .main-container, .customer-account-create .main-container, .customer-account-login .main-container, .customerasaproduct-packages-index .main-container, .customer-account-edit .main-container, .customerasaproduct-packages-selectpackage .main-container {
+.catalog-category-view .main-container,
+.catalog-category-view .main-container,
+.customer-account-index .main-container,
+.customer-account-logoutsuccess .main-container,
+.customer-account-forgotpassword .main-container,
+.customer-account-create .main-container,
+.customer-account-login .main-container,
+.customerasaproduct-packages-index .main-container,
+.customer-account-edit .main-container,
+.customerasaproduct-packages-selectpackage .main-container,
+.checkout-cart-index .main-container {
   min-height: calc(100vh - 241px);
 }
 
