@@ -97,7 +97,7 @@
 .account-cart-wrapper img {
   float: left;
   margin-right: 30px;
-
+  margin-top: -4px;
 }
 
 .button:hover {
