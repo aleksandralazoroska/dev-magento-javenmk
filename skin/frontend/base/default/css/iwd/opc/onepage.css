@@ -531,6 +531,8 @@
   position: relative;
   color: #343434;
   overflow: hidden;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 .iwd_opc_wrapper * {
   font-family: 'Open Sans', sans-serif;

@@ -152,6 +152,7 @@
         </div>
         <div class="totals">
             <?php echo $this->getChildHtml('totals'); ?>
+            </br>
             <?php if(!$this->hasError()): ?>
             <ul class="checkout-types">
             <?php foreach ($this->getMethods('methods') as $method): ?>
