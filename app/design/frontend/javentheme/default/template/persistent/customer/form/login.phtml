@@ -89,6 +89,7 @@
                     <button type="submit" class="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Login')) ?>" name="send" id="send2"><span><span><?php echo $this->__('Login') ?></span></span></button>
                 </div>
             </div>
+            <p class="please-register"><?php echo $this->__('If you are still not regiestered, please create new account '); ?><a href="<?php echo Mage::getBaseUrl() . 'customer/account/create/' ?>" ><?php echo $this->__('here') . '.'; ?></a></p>
         </div>
         <?php if (Mage::helper('checkout')->isContextCheckout()): ?>
             <input name="context" type="hidden" value="checkout" />
