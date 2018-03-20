@@ -42,6 +42,18 @@
                     <input type="text" name="email" id="email" value="<?php echo $this->escapeHtml($this->getCustomer()->getEmail()) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Email Address')) ?>" class="input-text required-entry validate-email" />
                 </div>
             </li>
+            <li>
+                <label for="company" class="required" ><em>*</em><?php echo $this->__('Company') ?></label>
+                <div class="input-box">
+                    <input type="text" name="company" id="company" value="<?php echo $this->escapeHtml($this->getCustomer()->getPrimaryBillingAddress()->getCompany()) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Company')) ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('company') ?>" />
+                </div>
+            </li>
+            <li>
+              <label for="company_register_id" class="required"><em>*</em><?php echo $this->__('Company Register ID') ?></label>
+              <div class="input-box">
+                <input type="text" name="company_register_id" id="company_register_id" value="<?php echo $this->escapeHtml($this->getCustomer()->getCompanyRegisterId()) ?>" title="<?php echo $this->__('Company Register ID') ?>" class="input-text required-entry" />
+              </div>
+            </li>
         <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
         <?php if ($_dob->isEnabled()): ?>
             <li><?php echo $_dob->setDate($this->getCustomer()->getDob())->toHtml() ?></li>

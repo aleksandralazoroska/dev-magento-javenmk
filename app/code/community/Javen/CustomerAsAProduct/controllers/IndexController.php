@@ -19,37 +19,46 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
         return $this->_redirect();
       }
 
-      $params = $this->getRequest()->getParams();
-
-      // Get logged in customer
-      $customer = Mage::getSingleton('customer/session')->getCustomer();
-
-      /*
-      if($customer->getBusinessPage() == 1) {
-        Mage::getSingleton('core/session')->addError($this->__('You have already created a business page'));
-        return $this->_redirectUrl('/customer/account/index');
-      }
-      */
-
+      // Important for Product save and Product update
       Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
-      $product = Mage::getModel('catalog/product');
-      $productSku = strtolower(preg_replace('/\s+/', '-', $params['name']) . "-" .date("ymdhis"));
+      $params = $this->getRequest()->getParams();
+      $customer = Mage::getSingleton('customer/session')->getCustomer();
 
       // Used for the URL key
       $category = Mage::getModel('catalog/category')->load($params['category']);
-      $categoryUrlHtml =  substr($category->getUrl(), strrpos($category->getUrl(), '/') + 1);
+      $categoryUrlHtml = substr($category->getUrl(), strrpos($category->getUrl(), '/') + 1);
       $categoryUrl = explode(".", $categoryUrlHtml)[0];
+
+      // Loading product
+      $product = Mage::getModel('catalog/product');
+      $productSku = strtolower(preg_replace('/\s+/', '-', $params['name']) . "-" .date("ymdhis"));
 
       // Image upload
       $uploaddir = Mage::getBaseDir('media') . DS . 'uploads' . DS ;
       $imageCover = $uploaddir . basename($_FILES['cover-image']['name']);
+      $imageMedia1 = $uploaddir . basename($_FILES['media-image-1']['name']);
+      $imageMedia2 = $uploaddir . basename($_FILES['media-image-2']['name']);
+      $imageMedia3 = $uploaddir . basename($_FILES['media-image-3']['name']);
+      $imageMedia4 = $uploaddir . basename($_FILES['media-image-4']['name']);
+      $imageMedia5 = $uploaddir . basename($_FILES['media-image-5']['name']);
+      $imageMedia6 = $uploaddir . basename($_FILES['media-image-6']['name']);
 
       if (move_uploaded_file($_FILES['cover-image']['tmp_name'], $imageCover)) {
         echo "File is valid, and was successfully uploaded.\n";
       } else {
         echo "Upload failed";
       }
+
+      // Need to be moved in Helper
+      move_uploaded_file($_FILES['media-image-1']['tmp_name'], $imageMedia1);
+      move_uploaded_file($_FILES['media-image-2']['tmp_name'], $imageMedia2);
+      move_uploaded_file($_FILES['media-image-3']['tmp_name'], $imageMedia3);
+      move_uploaded_file($_FILES['media-image-4']['tmp_name'], $imageMedia4);
+      move_uploaded_file($_FILES['media-image-5']['tmp_name'], $imageMedia5);
+      move_uploaded_file($_FILES['media-image-6']['tmp_name'], $imageMedia6);
+
+      $mediaImages = array($imageMedia1, $imageMedia2, $imageMedia3, $imageMedia4, $imageMedia5, $imageMedia6);
 
       try {
 
@@ -132,30 +141,46 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
       }
 
-      //return $this->_redirectUrl('/' . $categoryUrl . '/' . $productSku . '.html');
-      return $this->_redirectUrl('customerasaproduct/packages/selectpackage');
+      // Adding all media images
+      /*
+      foreach ($mediaImages as $image) {
+        if ($image != $uploaddir) {
+          $product->addImageToMediaGallery($image, array('image','thumbnail','small_image'), false, false);
+          $product->save();
+        }
+      }
+      */
+
+      // Redirecting to select package page
+      $this->_redirect('customerasaproduct/packages/selectpackage');
+      return;
 
     }
 
     public function updateAction() {
 
-      $params = $this->getRequest()->getParams();
-
-      $category = Mage::getModel('catalog/category')->load($params['category']);
-      $categoryUrlHtml =  substr($category->getUrl(), strrpos($category->getUrl(), '/') + 1);
-      $categoryUrl = explode(".", $categoryUrlHtml)[0];
+      if( !Mage::getSingleton( 'customer/session' )->isLoggedIn() ) {
+        return $this->_redirect();
+      }
 
       // Important for Product save and Product update
       Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
+      $params = $this->getRequest()->getParams();
       $customer = Mage::getSingleton('customer/session')->getCustomer();
-      $product = Mage::getModel('catalog/product')->load($customer->getBusinessPage());
 
+      // Used for the URL key
+      $category = Mage::getModel('catalog/category')->load($params['category']);
+      $categoryUrlHtml = substr($category->getUrl(), strrpos($category->getUrl(), '/') + 1);
+      $categoryUrl = explode(".", $categoryUrlHtml)[0];
+
+      // Loading existing product
+      $product = Mage::getModel('catalog/product')->load($customer->getBusinessPage());
       $productUrlKey = $product->getUrlKey();
 
+      // Image upload
       $uploaddir = Mage::getBaseDir('media') . DS . 'uploads' . DS ;
       $imageCover = $uploaddir . basename($_FILES['cover-image']['name']);
-
       $imageMedia1 = $uploaddir . basename($_FILES['media-image-1']['name']);
       $imageMedia2 = $uploaddir . basename($_FILES['media-image-2']['name']);
       $imageMedia3 = $uploaddir . basename($_FILES['media-image-3']['name']);
@@ -169,14 +194,9 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
         echo "Upload failed";
       }
 
+      // Need to be moved in Helper
       move_uploaded_file($_FILES['media-image-1']['tmp_name'], $imageMedia1);
-
-      if (move_uploaded_file($_FILES['media-image-2']['tmp_name'], $imageMedia2)) {
-        echo "File is valid, and was successfully uploaded.\n";
-      } else {
-        echo "Upload failed";
-      }
-
+      move_uploaded_file($_FILES['media-image-2']['tmp_name'], $imageMedia2);
       move_uploaded_file($_FILES['media-image-3']['tmp_name'], $imageMedia3);
       move_uploaded_file($_FILES['media-image-4']['tmp_name'], $imageMedia4);
       move_uploaded_file($_FILES['media-image-5']['tmp_name'], $imageMedia5);
@@ -221,8 +241,6 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
                 ->setShortDescription($params['about-us'])
 
                 ->setCategoryIds(array($params['category'])) //assign product to categories
-
-                //->setMediaGallery (array('images'=>array (), 'values'=>array ())) //media gallery initialization
                 ->addImageToMediaGallery($imageCover, array('cover_image'), false);  //array('image','thumbnail','small_image'), false, false) //assigning image, thumb and small image to media gallery
 
         $product->save();
@@ -235,6 +253,7 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
       }
 
+      // Adding all media images
       foreach ($mediaImages as $image) {
         if ($image != $uploaddir) {
           $product->addImageToMediaGallery($image, array('image','thumbnail','small_image'), false, false);

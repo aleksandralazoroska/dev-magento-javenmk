@@ -2,12 +2,23 @@
 
 class Javen_CustomerAsAProduct_Model_Observer {
 
-			public function customerLogin(Varien_Event_Observer $observer) {
-				//Mage::dispatchEvent('admin_session_user_login_success', array('user'=>$user));
-				//$user = $observer->getEvent()->getUser();
-				//$user->doSomething();
+			public function customerRegisterSuccess(Varien_Event_Observer $observer) {
+				/*
+				$response = Mage::app()->getFrontController()->getResponse();
+    		$response->setRedirect(Mage::getUrl('customerasaproduct'));
 
-        //Mage::log('Ilche Bedelovski Developer', null, 'development.log');
+				//Mage::log($response, null, 'development.log');
+
+				try {
+
+    			Mage::app()->getFrontController()->sendResponse();
+
+				} catch(Exception $e){
+
+	        Mage::log($e->getMessage());
+
+	      }
+				*/
 
 			}
 

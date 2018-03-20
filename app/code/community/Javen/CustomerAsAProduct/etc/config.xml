@@ -2,7 +2,7 @@
 <config>
   <modules>
     <Javen_CustomerAsAProduct>
-      <version>0.1.0</version>
+      <version>0.4.5</version>
     </Javen_CustomerAsAProduct>
   </modules>
   <frontend>
@@ -14,6 +14,7 @@
             <frontName>customerasaproduct</frontName>
           </args>
       </customerasaproduct>
+      <!--
       <customer>
         <args>
           <modules>
@@ -21,6 +22,7 @@
           </modules>
         </args>
       </customer>
+      -->
     </routers>
 		<layout>
 		  <updates>
@@ -48,16 +50,16 @@
   	  </customerasaproduct>
 	  </models>
   <events>
-	  <customer_login> <!-- identifier of the event we want to catch -->
+	  <customer_register_success> <!-- identifier of the event we want to catch -->
         <observers>
-          <customer_login_handler> <!-- identifier of the event handler -->
+          <notify_user> <!-- identifier of the event handler -->
             <type>model</type> <!-- class method call type; valid are model, object and singleton -->
             <class>customerasaproduct/observer</class> <!-- observers class alias -->
-            <method>customerLogin</method>  <!-- observer's method to be called -->
+            <method>customerRegisterSuccess</method>  <!-- observer's method to be called -->
             <args></args> <!-- additional arguments passed to observer -->
-          </customer_login_handler>
+          </notify_user>
         </observers>
-      </customer_login>
+      </customer_register_success>
     </events>
     <resources>
       <customerasaproduct_setup>

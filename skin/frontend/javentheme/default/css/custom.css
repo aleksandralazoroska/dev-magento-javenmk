@@ -280,7 +280,8 @@ label {
 .customerasaproduct-packages-index .main-container,
 .customer-account-edit .main-container,
 .customerasaproduct-packages-selectpackage .main-container,
-.checkout-cart-index .main-container {
+.checkout-cart-index .main-container,
+.iwd-opc-index-index .main-container {
   min-height: calc(100vh - 241px);
 }
 

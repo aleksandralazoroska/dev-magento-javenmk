@@ -13,4 +13,17 @@
             </action>
         </reference>
     </catalog_category_view>
+    <customer_account_create>
+      <reference name="customer_form_register">
+        <action method="setData"><key>show_address_fields</key><value>1</value></action>
+      </reference>
+    </customer_account_create>
+    <catalog_category_default>
+      <reference name="root">
+        <remove name="paypal.partner.right.logo"/>
+      </reference>
+      <reference name="right">
+        <remove name="cart_sidebar"/>
+      </reference>
+    </catalog_category_default>
 </layout>
