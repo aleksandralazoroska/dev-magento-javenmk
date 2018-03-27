@@ -593,6 +593,88 @@ a.product-shop-share-page {
   font-size: 16px;
 }
 
+/* Product Marketing page */
+
+.marketing-packages-container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.marketing-packages-container h2 {
+  text-transform: none;
+  font-size: 30px;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+.marketing-packages-container ul {
+  float: left;
+  margin-bottom: 60px;
+}
+
+.marketing-packages-container li {
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  float: left;
+  width: 100%;
+  height: 173px;
+}
+
+.marketing-package-info {
+  float: left;
+  height: 100%;
+  display: table;
+  width: 60%;
+  margin-right: 20px;
+}
+
+.marketing-package-info p {
+  font-size: 15px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.marketing-package-image {
+  float: left;
+  height: 100%;
+  display: table;
+}
+
+.marketing-package-image img {
+  float: left;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.marketing-package-price {
+  float: right;
+  margin-right: 20px;
+  display: table;
+  height: 100%;
+}
+
+.marketing-package-price-container {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.marketing-package-price p {
+  text-transform: none;
+}
+
+.marketing-packages-container .package-price {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.marketing-packages-container .package-short-desc {
+  font-size: 18px;
+}
+
+/* Product Marketing page */
+
 /* Category Page */
 
 .category-title h3 {

@@ -281,7 +281,10 @@ label {
 .customer-account-edit .main-container,
 .customerasaproduct-packages-selectpackage .main-container,
 .checkout-cart-index .main-container,
-.iwd-opc-index-index .main-container {
+.iwd-opc-index-index .main-container,
+.customerasaproduct-packages-marketing .main-container,
+.cms-payments-options .main-container,
+.cms-terms-and-conditions .main-container {
   min-height: calc(100vh - 241px);
 }
 
@@ -370,6 +373,33 @@ label {
   opacity: 1;
 }
 
+.cms-payments-options .std h4 {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.cms-payments-options .std p {
+  font-family: "Roboto";
+  margin-top: 50px;
+  color: grey;
+  text-align: left;
+  text-decoration: none;
+  font-style: normal;
+}
+
+.cms-terms-and-conditions .std h4 {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.cms-terms-and-conditions .std p {
+  font-family: "Roboto";
+  margin-top: 50px;
+  color: grey;
+  text-align: left;
+  text-decoration: none;
+  font-style: normal;
+}
 /* Footer */
 
 /* Advanced Search */

@@ -29,6 +29,7 @@
 $_product    = $this->getProduct();
 $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
 ?>
+<h2><?php echo $this->__('Promote my page'); ?></h2>
 <?php if ($_product->isSaleable() && count($_attributes)):?>
     <dl>
     <?php foreach($_attributes as $_attribute): ?>
@@ -48,25 +49,50 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
 <?php endif;?>
 <div id="r"></div>
 <script type="text/javascript">
-jQuery(document).ready(function() {
-  jQuery("#attribute<?php echo $_attribute->getAttributeId() ?> option").each(function(i, e) {
-      if(jQuery(this).val() == '')
-      {}
-      else
-      {
-      jQuery("<input type='radio' name='r' />")
-          .attr("value", jQuery(this).val())
-          .attr("checked", i == 0)
-          .click(function () {
-              jQuery("#attribute<?php echo $_attribute->getAttributeId() ?>").val(jQuery(this).val());
-          })
-          .appendTo("#r");
-          jQuery("<span >&nbsp;&nbsp;&nbsp;"+jQuery(this).html()+"&nbsp;&nbsp;&nbsp;</span>")
-          .appendTo("#r");
-      }
 
+  jQuery(document).ready(function() {
+    jQuery("#attribute<?php echo $_attribute->getAttributeId() ?> option").each(function(i, e) {
+
+        if(jQuery(this).val() == '') {
+
+        }
+        else {
+          jQuery("<div id='product-option-row-" + i + "' class='product-option-row' />")
+              .attr("value", jQuery(this).val())
+              .appendTo("#r");
+
+          jQuery("<input type='radio' name='r' />")
+              .attr("value", jQuery(this).val())
+              .attr("checked", i == 0)
+              .click(function () {
+                  jQuery("#attribute<?php echo $_attribute->getAttributeId() ?>").val(jQuery(this).val());
+              })
+              .appendTo("#product-option-row-" + i);
+
+          var sku = '<?php echo "marketing-package-main-product-package-" . "' + i + '"; ?>';
+
+          //var descTag = '<p><?php //echo Mage::getModel("catalog/product")->loadByAttribute("sku", $sku)->getDescription(); ?></p>';
+
+
+          //var sku = 'marketing-package-main-product-package-' + i;
+          //var descTag = "<p><?php //echo Mage::getModel('catalog/product')->loadByAttribute('sku', )->getDescription(); ?></p>"
+
+          //jQuery(descTag)
+            //  .appendTo("#product-option-row-" + i);
+
+          jQuery("<span >&nbsp;&nbsp;&nbsp;" + jQuery(this).html() + "&nbsp;&nbsp;&nbsp;</span>")
+              .appendTo("#product-option-row-" + i);
+
+          var image = 'images/promote-package-' + i + '.png';
+          var imageTag = '<img src="<?php echo $this->getSkinUrl("' + image + '") ?>" />'
+
+          jQuery(imageTag.replace("base", "javentheme"))
+              .attr("value", jQuery(this).val())
+              .appendTo("#product-option-row-" + i);
+
+        }
+
+    });
   });
-});
-
 
 </script>

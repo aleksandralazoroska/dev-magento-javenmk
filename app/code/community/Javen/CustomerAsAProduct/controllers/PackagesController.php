@@ -16,4 +16,11 @@ class Javen_CustomerAsAProduct_PackagesController extends Mage_Core_Controller_F
 
   }
 
+  public function marketingAction() {
+
+    $this->loadLayout();
+    $this->renderLayout();
+
+  }
+
 }

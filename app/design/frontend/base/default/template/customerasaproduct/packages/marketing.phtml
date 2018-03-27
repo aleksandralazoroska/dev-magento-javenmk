@@ -1,0 +1,41 @@
+<!-- Packages -->
+<?php
+  $attrSetName = 'Packages';
+  $attributeSetId = Mage::getModel('eav/entity_attribute_set')
+      ->load($attrSetName, 'attribute_set_name')
+      ->getAttributeSetId();
+
+  $products = Mage::getModel('catalog/product')->getCollection();
+  $products->addAttributeToFilter('attribute_set_id',$attributeSetId);
+  $products->addAttributeToSelect('*');
+
+  $products->load();
+
+  // Homepage salable products
+  $packagesProducts = array('87', '88', '89', '90', '91', '92');
+?>
+
+<div class="marketing-packages-container">
+  <h2><?php echo $this->__("Marketing") ?></h2>
+  <ul>
+    <?php foreach ($products as $prod): ?>
+      <?php if (in_array($prod->getId(), $packagesProducts)): ?>
+        <li>
+          <div class="marketing-package-info">
+            <p><?php echo $prod->getDescription(); ?></p>
+          </div>
+          <div class="marketing-package-image">
+            <img src="<?php echo Mage::helper('catalog/image')->init($prod, 'image')->resize(200,150); ?>" />
+          </div>
+          <div class="marketing-package-price">
+            <div class="marketing-package-price-container" >
+              <p class="package-price"><?php echo round($prod->getPrice(), 0); ?></p>
+              <p class="package-short-desc"><?php echo $prod->getShortDescription(); ?></p>
+              <p><button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Add to Cart')) ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+            </div>
+          </div>
+        </li>
+      <?php endif; ?>
+    <?php endforeach; ?>
+  </ul>
+</div>
