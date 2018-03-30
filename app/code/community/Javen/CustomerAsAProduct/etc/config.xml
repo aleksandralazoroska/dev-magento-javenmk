@@ -59,8 +59,18 @@
             <args></args> <!-- additional arguments passed to observer -->
           </notify_user>
         </observers>
-      </customer_register_success>
-    </events>
+    </customer_register_success>
+    <sales_order_place_after>
+        <observers>
+          <javen_customerasaproduct>
+            <type>model</type>
+            <class>customerasaproduct/observer</class>
+            <method>marketingPromotedProduct</method>
+            <args></args>
+          </javen_customerasaproduct>
+        </observers>
+    </sales_order_place_after>
+  </events>
     <resources>
       <customerasaproduct_setup>
         <setup>

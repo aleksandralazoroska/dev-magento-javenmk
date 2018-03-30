@@ -491,21 +491,6 @@ body.cms-home .main-container {
   background-color: white;
 }
 
-.home-container-promotions {
-  width: 100%;
-  text-align: center;
-  display: inline-block;
-  background-color: #00bfa5;
-  height: 300px;
-  padding-top: 60px;
-}
-
-.home-container-promotions-container h2 {
-  text-transform: none;
-  font-size: 24px;
-  color: white;
-}
-
 .product-view {
   width: 1200px;
   margin: 0 auto;
@@ -847,6 +832,56 @@ a.product-shop-share-page {
 
 
 /* Select Package Page */
+
+/* Promote Packages */
+
+.home-container-promotions {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  background-color: #00bfa5;
+  height: 300px;
+  padding-top: 40px;
+}
+
+.home-container-promotions-container h2 {
+  text-transform: none;
+  font-size: 24px;
+  color: white;
+}
+
+.home-container-promotions-container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.promote-packages-container {
+
+}
+
+.promot-packages-box {
+  width: 20%;
+  float: left;
+  padding-top: 20px;
+}
+
+.promote-package-image {
+  width: 200px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.promote-package-image img {
+  width: 200px;
+  height: 150px;
+  border-radius: 5px;
+}
+.promote-product-name {
+  color: white;
+  font-size: 18px;
+}
+
+/* Promote Packages */
 
 /* Cart Page */
 
