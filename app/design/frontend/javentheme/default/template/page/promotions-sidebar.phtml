@@ -1,0 +1,26 @@
+<?php
+  $attrSetName = 'Companies';
+  $attributeSetId = Mage::getModel('eav/entity_attribute_set')
+      ->load($attrSetName, 'attribute_set_name')
+      ->getAttributeSetId();
+
+  $products = Mage::getModel('catalog/product')->getCollection();
+  $products->addAttributeToFilter('attribute_set_id',$attributeSetId);
+  $products->addAttributeToFilter('marketing_promoted', '3'); // this is important for the type of the marketing product and price
+  $products->addAttributeToSelect('*');
+
+  $products->load();
+?>
+<div class="sidebar-promotions-container">
+  <h2><?php echo $this->__("Promovirani biznisi") ?></h2>
+  <div class="sidebar-packages-container">
+    <?php foreach ($products as $prod): ?>
+        <div class="promot-packages-box">
+          <div class="promote-package-image">
+            <a href="<?php echo $prod->getUrlKey() . '.html'; ?>"><img src="<?php echo Mage::helper('catalog/image')->init($prod, 'thumbnail')->resize(200,150); ?>" /></a>
+            <p class="promote-product-name"><?php echo $prod->getName(); ?></p>
+          </div>
+        </div>
+    <?php endforeach; ?>
+  </div>
+</div>

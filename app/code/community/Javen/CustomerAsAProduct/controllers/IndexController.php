@@ -34,6 +34,9 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
       $product = Mage::getModel('catalog/product');
       $productSku = strtolower(preg_replace('/\s+/', '-', $params['name']) . "-" .date("ymdhis"));
 
+      $imagesArray = Mage::helper('customerasaproduct')->coverImageUpload($_FILES);
+
+      /*
       // Image upload
       $uploaddir = Mage::getBaseDir('media') . DS . 'uploads' . DS ;
       $imageCover = $uploaddir . basename($_FILES['cover-image']['name']);
@@ -59,6 +62,7 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
       move_uploaded_file($_FILES['media-image-6']['tmp_name'], $imageMedia6);
 
       $mediaImages = array($imageMedia1, $imageMedia2, $imageMedia3, $imageMedia4, $imageMedia5, $imageMedia6);
+      */
 
       try {
 
@@ -125,8 +129,8 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
                    )
         )
 
-        ->setCategoryIds(array($params['category'])) //assign product to categories
-        ->addImageToMediaGallery($imageCover, 'cover_image', false);
+        ->setCategoryIds(array($params['category'])); //assign product to categories
+        //->addImageToMediaGallery($imageCover, 'cover_image', false);
 
         $product->save();
 
@@ -142,14 +146,17 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
       }
 
       // Adding all media images
-      /*
-      foreach ($mediaImages as $image) {
-        if ($image != $uploaddir) {
-          $product->addImageToMediaGallery($image, array('image','thumbnail','small_image'), false, false);
+      foreach ($imagesArray as $key => $value) {
+
+        if ($key == 'cover-image') {
+          $product->addImageToMediaGallery($value, array('cover_image'), false);
+          $product->save();
+        } else {
+          $product->addImageToMediaGallery($value, array('image','thumbnail','small_image'), false, false);
           $product->save();
         }
+
       }
-      */
 
       // Redirecting to select package page
       $this->_redirect('customerasaproduct/packages/selectpackage');
@@ -178,6 +185,9 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
       $product = Mage::getModel('catalog/product')->load($customer->getBusinessPage());
       $productUrlKey = $product->getUrlKey();
 
+      $imagesArray = Mage::helper('customerasaproduct')->coverImageUpload($_FILES);
+
+      /*
       // Image upload
       $uploaddir = Mage::getBaseDir('media') . DS . 'uploads' . DS ;
       $imageCover = $uploaddir . basename($_FILES['cover-image']['name']);
@@ -203,6 +213,7 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
       move_uploaded_file($_FILES['media-image-6']['tmp_name'], $imageMedia6);
 
       $mediaImages = array($imageMedia1, $imageMedia2, $imageMedia3, $imageMedia4, $imageMedia5, $imageMedia6);
+      */
 
       try {
 
@@ -240,8 +251,8 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
                 ->setDescription($params['about-us'])
                 ->setShortDescription($params['about-us'])
 
-                ->setCategoryIds(array($params['category'])) //assign product to categories
-                ->addImageToMediaGallery($imageCover, array('cover_image'), false);  //array('image','thumbnail','small_image'), false, false) //assigning image, thumb and small image to media gallery
+                ->setCategoryIds(array($params['category'])); //assign product to categories
+                //->addImageToMediaGallery($imageCover, array('cover_image'), false);  //array('image','thumbnail','small_image'), false, false) //assigning image, thumb and small image to media gallery
 
         $product->save();
 
@@ -254,11 +265,26 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
       }
 
       // Adding all media images
+      /*
       foreach ($mediaImages as $image) {
         if ($image != $uploaddir) {
           $product->addImageToMediaGallery($image, array('image','thumbnail','small_image'), false, false);
           $product->save();
         }
+      }
+      */
+
+      // Adding all media images
+      foreach ($imagesArray as $key => $value) {
+
+        if ($key == 'cover-image') {
+          $product->addImageToMediaGallery($value, array('cover_image'), false);
+          $product->save();
+        } else {
+          $product->addImageToMediaGallery($value, array('image','thumbnail','small_image'), false, false);
+          $product->save();
+        }
+
       }
 
       return $this->_redirectUrl('/' . $productUrlKey . '.html');

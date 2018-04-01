@@ -24,6 +24,7 @@
       </reference>
       <reference name="right">
         <remove name="cart_sidebar"/>
+	<block type="core/template" template="page/promotions-sidebar.phtml" />
       </reference>
     </catalog_category_default>
 </layout>

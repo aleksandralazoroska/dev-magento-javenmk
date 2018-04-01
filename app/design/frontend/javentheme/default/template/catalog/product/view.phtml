@@ -48,22 +48,16 @@
               </div>
 
               <div class="product-shop">
-
-
                   <?php echo $this->getChildHtml('alert_urls') ?>
-
                   <?php echo $this->getChildHtml('other');?>
-
                   <?php if ($_product->isSaleable() && $this->hasOptions()):?>
                       <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
                   <?php endif;?>
-
                   <div class="price-info">
                       <?php echo $this->getPriceHtml($_product); ?>
                       <?php echo $this->getChildHtml('bundle_prices') ?>
                       <?php echo $this->getTierPriceHtml() ?>
                   </div>
-
               </div>
               <div class="add-to-cart-wrapper">
                   <?php echo $this->getChildHtml('product_type_data') ?>
@@ -143,236 +137,243 @@
   </div>
 
 <?php else: ?>
+  <?php // Check if the product is paied ?>
 
-  <div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
-  <div class="product-view">
-      <div class="product-essential">
-          <form action="<?php echo $this->getSubmitUrl($_product, array('_secure' => $this->_isSecure())) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
-              <?php echo $this->getBlockHtml('formkey') ?>
-              <div class="no-display">
-                  <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
-                  <input type="hidden" name="related_product" id="related-products-field" value="" />
-              </div>
-              <a class="product-edit-page button" href="<?php echo Mage::getBaseUrl() . 'customerasaproduct'; ?>"><?php echo $this->__("Edit my page"); ?></a>
-              <div class="product-cover-img-box">
-                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'cover_image') ?>" />
-                <div class="product-name">
-                  <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+    <div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
+    <div class="product-view">
+        <?php if($_product->getIsActive() == true): ?>
+        <div class="product-essential">
+            <form action="<?php echo $this->getSubmitUrl($_product, array('_secure' => $this->_isSecure())) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+                <?php echo $this->getBlockHtml('formkey') ?>
+                <div class="no-display">
+                    <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+                    <input type="hidden" name="related_product" id="related-products-field" value="" />
                 </div>
-              </div>
-
-              <div class="product-shop">
-                  <!--
+                <a class="product-edit-page button" href="<?php echo Mage::getBaseUrl() . 'customerasaproduct'; ?>"><?php echo $this->__("Edit my page"); ?></a>
+                <div class="product-cover-img-box">
+                  <img src="<?php echo $this->helper('catalog/image')->init($_product, 'cover_image') ?>" />
                   <div class="product-name">
-                      <span class="h1"><?php //echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span>
+                    <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
                   </div>
-                  -->
+                </div>
 
-                  <!--
-                  <div class="extra-info">
-                      <?php //echo $this->getReviewsSummaryHtml($_product, 'default', false)?>
-                      <?php //echo $this->getChildHtml('product_type_availability'); ?>
-                  </div>
-                  -->
-
-                  <?php //echo $this->getChildHtml('alert_urls') ?>
-                  <div class="product-shop-information">
-                    <h4><?php echo $this->__("Information"); ?></h4>
-                    <h1><?php echo $_product->getData('phone'); ?></h1>
-                    <p><?php echo $this->__($_product->getResource()->getAttribute('email')->getFrontendLabel()) . " " . $_product->getData('email'); ?></p>
-                    <p><?php echo $this->__($_product->getResource()->getAttribute('address')->getFrontendLabel()) . " " . $_product->getData('address'); ?></p>
-                    <p><?php echo $this->__($_product->getResource()->getAttribute('city')->getFrontendLabel()) . " " .$_product->getData('city_attr'); ?></p>
-
-                    <div class="product-shop-social">
-                      <a href="https://www.instagram.com/"><img src="<?php echo $this->getSkinUrl('images/instagram.svg') ?>" alt=""/></a>
-                      <a href="https://twitter.com/"><img src="<?php echo $this->getSkinUrl('images/twitter-box.svg') ?>" alt=""/></a>
-                      <a href="https://www.facebook.com/"><img src="<?php echo $this->getSkinUrl('images/facebook-box.svg') ?>" alt=""/></a>
-                      <a href="https://www.web.com/"><img src="<?php echo $this->getSkinUrl('images/web.svg') ?>" alt=""/></a>
+                <div class="product-shop">
+                    <!--
+                    <div class="product-name">
+                        <span class="h1"><?php //echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span>
                     </div>
-                  </div>
+                    -->
 
-                  <div class="product-shop-working-hours">
-                    <h4><?php echo $this->__("Working hours"); ?></h4>
-                    <p><?php echo $this->__($_product->getResource()->getAttribute('monday')->getFrontendLabel()) . " " . $_product->getData('monday') . " - " . $_product->getData('monday_to'); ?></p>
-                    <p><?php echo $this->__($_product->getResource()->getAttribute('tuesday')->getFrontendLabel()) . " " . $_product->getData('tuesday') . " - " . $_product->getData('tuesday_to'); ?></p>
-                    <p><?php echo $this->__($_product->getResource()->getAttribute('wednesday')->getFrontendLabel()) . " " . $_product->getData('wednesday') . " - " . $_product->getData('wednesday_to'); ?></p>
-                    <p><?php echo $this->__($_product->getResource()->getAttribute('thursday')->getFrontendLabel()) . " " . $_product->getData('thursday') . " - " . $_product->getData('thursday_to'); ?></p>
-                    <p><?php echo $this->__($_product->getResource()->getAttribute('friday')->getFrontendLabel()) . " " . $_product->getData('friday') . " - " . $_product->getData('friday_to'); ?></p>
-                    <p><?php echo $this->__($_product->getResource()->getAttribute('saturday')->getFrontendLabel()) . " " . $_product->getData('saturday') . " - " . $_product->getData('saturday_to'); ?></p>
-                    <p><?php echo $this->__($_product->getResource()->getAttribute('sunday')->getFrontendLabel()) . " " . $_product->getData('sunday') . " - " . $_product->getData('sunday_to'); ?></p>
-                  </div>
+                    <!--
+                    <div class="extra-info">
+                        <?php //echo $this->getReviewsSummaryHtml($_product, 'default', false)?>
+                        <?php //echo $this->getChildHtml('product_type_availability'); ?>
+                    </div>
+                    -->
 
-                  <?php
-                    $_helper = $this->helper('catalog/output');
-                    $lat = $_product->getData('map_lat');
-                    $lng = $_product->getData('map_lng');
-                  ?>
+                    <?php //echo $this->getChildHtml('alert_urls') ?>
+                    <div class="product-shop-information">
+                      <h4><?php echo $this->__("Information"); ?></h4>
+                      <h1><?php echo $_product->getData('phone'); ?></h1>
+                      <p><?php echo $this->__($_product->getResource()->getAttribute('email')->getFrontendLabel()) . " " . $_product->getData('email'); ?></p>
+                      <p><?php echo $this->__($_product->getResource()->getAttribute('address')->getFrontendLabel()) . " " . $_product->getData('address'); ?></p>
+                      <p><?php echo $this->__($_product->getResource()->getAttribute('city')->getFrontendLabel()) . " " .$_product->getData('city_attr'); ?></p>
 
-                  <!-- Google Map location -->
-                  <div class="product-shop-map">
-                   <h4><?php echo $this->__("Map"); ?></h4>
-                   <div id="map" class="product-shop-google-map"></div>
-                    <script async defer
-                      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTtEBEusRONeeNTQmL9f3LLLHHJYneHvU&callback=initMap">
-                    </script>
-                    <script type="text/javascript">
-                      window.onload = function() {
+                      <div class="product-shop-social">
+                        <a href="https://www.instagram.com/"><img src="<?php echo $this->getSkinUrl('images/instagram.svg') ?>" alt=""/></a>
+                        <a href="https://twitter.com/"><img src="<?php echo $this->getSkinUrl('images/twitter-box.svg') ?>" alt=""/></a>
+                        <a href="https://www.facebook.com/"><img src="<?php echo $this->getSkinUrl('images/facebook-box.svg') ?>" alt=""/></a>
+                        <a href="https://www.web.com/"><img src="<?php echo $this->getSkinUrl('images/web.svg') ?>" alt=""/></a>
+                      </div>
+                    </div>
 
-                         var myLatLng = {lat: <?php echo $lat; ?>, lng: <?php echo $lng; ?>};
+                    <div class="product-shop-working-hours">
+                      <h4><?php echo $this->__("Working hours"); ?></h4>
+                      <p><?php echo $this->__($_product->getResource()->getAttribute('monday')->getFrontendLabel()) . " " . $_product->getData('monday') . " - " . $_product->getData('monday_to'); ?></p>
+                      <p><?php echo $this->__($_product->getResource()->getAttribute('tuesday')->getFrontendLabel()) . " " . $_product->getData('tuesday') . " - " . $_product->getData('tuesday_to'); ?></p>
+                      <p><?php echo $this->__($_product->getResource()->getAttribute('wednesday')->getFrontendLabel()) . " " . $_product->getData('wednesday') . " - " . $_product->getData('wednesday_to'); ?></p>
+                      <p><?php echo $this->__($_product->getResource()->getAttribute('thursday')->getFrontendLabel()) . " " . $_product->getData('thursday') . " - " . $_product->getData('thursday_to'); ?></p>
+                      <p><?php echo $this->__($_product->getResource()->getAttribute('friday')->getFrontendLabel()) . " " . $_product->getData('friday') . " - " . $_product->getData('friday_to'); ?></p>
+                      <p><?php echo $this->__($_product->getResource()->getAttribute('saturday')->getFrontendLabel()) . " " . $_product->getData('saturday') . " - " . $_product->getData('saturday_to'); ?></p>
+                      <p><?php echo $this->__($_product->getResource()->getAttribute('sunday')->getFrontendLabel()) . " " . $_product->getData('sunday') . " - " . $_product->getData('sunday_to'); ?></p>
+                    </div>
 
-                         var map = new google.maps.Map(document.getElementById('map'), {
-                           zoom: 15,
-                           center: myLatLng
-                         });
+                    <?php
+                      $_helper = $this->helper('catalog/output');
+                      $lat = $_product->getData('map_lat');
+                      $lng = $_product->getData('map_lng');
+                    ?>
 
-                         var marker = new google.maps.Marker({
-                           position: myLatLng,
-                           map: map,
-                           title: 'Hello World!'
-                         });
+                    <!-- Google Map location -->
+                    <div class="product-shop-map">
+                     <h4><?php echo $this->__("Map"); ?></h4>
+                     <div id="map" class="product-shop-google-map"></div>
+                      <script async defer
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTtEBEusRONeeNTQmL9f3LLLHHJYneHvU&callback=initMap">
+                      </script>
+                      <script type="text/javascript">
+                        window.onload = function() {
 
-                      };
-                    </script>
-                  </div>
+                           var myLatLng = {lat: <?php echo $lat; ?>, lng: <?php echo $lng; ?>};
 
-                  <?php echo $this->getChildHtml('other');?>
+                           var map = new google.maps.Map(document.getElementById('map'), {
+                             zoom: 15,
+                             center: myLatLng
+                           });
 
-                  <?php if ($_product->isSaleable() && $this->hasOptions()):?>
-                      <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
-                  <?php endif;?>
+                           var marker = new google.maps.Marker({
+                             position: myLatLng,
+                             map: map,
+                             title: 'Hello World!'
+                           });
+
+                        };
+                      </script>
+                    </div>
+
+                    <?php echo $this->getChildHtml('other');?>
+
+                    <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                        <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                    <?php endif;?>
 
 
 
-              <?php if ($_product->getShortDescription()):?>
-                  <div class="short-description">
-                      <h4><?php echo $this->__("About us"); ?></h4>
-                      <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
-                  </div>
-              <?php endif;?>
+                <?php if ($_product->getShortDescription()):?>
+                    <div class="short-description">
+                        <h4><?php echo $this->__("About us"); ?></h4>
+                        <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+                    </div>
+                <?php endif;?>
 
-              <a class="product-shop-share-page button"><?php echo $this->__("Share this page"); ?></a>
-              <div class="product-page-border"></div>
-              <div class="product-image-product-image-zoom">
-                 <p><?php echo $this->__("Photogallery"); ?></p>
+                <a class="product-shop-share-page button"><?php echo $this->__("Share this page"); ?></a>
+                <div class="product-page-border"></div>
+                <div class="product-image-product-image-zoom">
+                   <p><?php echo $this->__("Photogallery"); ?></p>
+                </div>
+
+                 <div class="product-img-box">
+                     <?php echo $this->getChildHtml('media') ?>
+                 </div>
+
+                <?php //echo $this->getChildHtml('media') ?>
+
+
+
+                <div class="clearer"></div>
+                <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                    <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+                <?php endif;?>
+            </form>
+            <script type="text/javascript">
+            //<![CDATA[
+                var productAddToCartForm = new VarienForm('product_addtocart_form');
+                productAddToCartForm.submit = function(button, url) {
+                    if (this.validator.validate()) {
+                        var form = this.form;
+                        var oldUrl = form.action;
+
+                        if (url) {
+                           form.action = url;
+                        }
+                        var e = null;
+                        try {
+                            this.form.submit();
+                        } catch (e) {
+                        }
+                        this.form.action = oldUrl;
+                        if (e) {
+                            throw e;
+                        }
+
+                        if (button && button != 'undefined') {
+                            button.disabled = true;
+                        }
+                    }
+                }.bind(productAddToCartForm);
+
+                productAddToCartForm.submitLight = function(button, url){
+                    if(this.validator) {
+                        var nv = Validation.methods;
+                        delete Validation.methods['required-entry'];
+                        delete Validation.methods['validate-one-required'];
+                        delete Validation.methods['validate-one-required-by-name'];
+                        // Remove custom datetime validators
+                        for (var methodName in Validation.methods) {
+                            if (methodName.match(/^validate-datetime-.*/i)) {
+                                delete Validation.methods[methodName];
+                            }
+                        }
+
+                        if (this.validator.validate()) {
+                            if (url) {
+                                this.form.action = url;
+                            }
+                            this.form.submit();
+                        }
+                        Object.extend(Validation.methods, nv);
+                    }
+                }.bind(productAddToCartForm);
+            //]]>
+            </script>
+             </div>
+             <div class="product-page-border1"></div>
+
+              <div class="product-shop-promotions">
+                <p><?php echo $this->__("Action, sales, promotions"); ?></p>
+                <div class="promotions-container"></div>
               </div>
 
-               <div class="product-img-box">
-                   <?php echo $this->getChildHtml('media') ?>
-               </div>
-
-              <?php //echo $this->getChildHtml('media') ?>
-
+              <div class="product-page-related">
+                <p><?php echo $this->__("Similar related businesses"); ?></p>
+                <?php echo $this->getChildHtml('related_products') ?>
+              </div>
 
 
-              <div class="clearer"></div>
-              <?php if ($_product->isSaleable() && $this->hasOptions()):?>
-                  <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
-              <?php endif;?>
-          </form>
-          <script type="text/javascript">
-          //<![CDATA[
-              var productAddToCartForm = new VarienForm('product_addtocart_form');
-              productAddToCartForm.submit = function(button, url) {
-                  if (this.validator.validate()) {
-                      var form = this.form;
-                      var oldUrl = form.action;
+        <!--
+        <div class="product-collateral toggle-content tabs">
+            <?php //if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')):?>
+                <dl id="collateral-tabs" class="collateral-tabs">
+                    <?php //foreach ($detailedInfoGroup as $alias => $html):?>
+                        <dt class="tab"><span><?php //echo $this->escapeHtml($this->getChildData($alias, 'title')) ?></span></dt>
+                        <dd class="tab-container">
+                            <div class="tab-content"><?php //echo $html ?></div>
+                        </dd>
+                    <?php //endforeach;?>
+                </dl>
+            <?php //endif; ?>
+        </div>
+        -->
 
-                      if (url) {
-                         form.action = url;
-                      }
-                      var e = null;
-                      try {
-                          this.form.submit();
-                      } catch (e) {
-                      }
-                      this.form.action = oldUrl;
-                      if (e) {
-                          throw e;
-                      }
+        <?php echo $this->getChildHtml('upsell_products') ?>
+        <?php //echo $this->getChildHtml('product_additional_data') ?>
 
-                      if (button && button != 'undefined') {
-                          button.disabled = true;
-                      }
-                  }
-              }.bind(productAddToCartForm);
-
-              productAddToCartForm.submitLight = function(button, url){
-                  if(this.validator) {
-                      var nv = Validation.methods;
-                      delete Validation.methods['required-entry'];
-                      delete Validation.methods['validate-one-required'];
-                      delete Validation.methods['validate-one-required-by-name'];
-                      // Remove custom datetime validators
-                      for (var methodName in Validation.methods) {
-                          if (methodName.match(/^validate-datetime-.*/i)) {
-                              delete Validation.methods[methodName];
-                          }
-                      }
-
-                      if (this.validator.validate()) {
-                          if (url) {
-                              this.form.action = url;
-                          }
-                          this.form.submit();
-                      }
-                      Object.extend(Validation.methods, nv);
-                  }
-              }.bind(productAddToCartForm);
-          //]]>
-          </script>
-           </div>
-           <div class="product-page-border1"></div>
-
-            <div class="product-shop-promotions">
-              <p><?php echo $this->__("Action, sales, promotions"); ?></p>
-              <div class="promotions-container"></div>
-            </div>
-
-            <div class="product-page-related">
-              <p><?php echo $this->__("Similar related businesses"); ?></p>
-              <?php echo $this->getChildHtml('related_products') ?>
-            </div>
-
-
-      <!--
-      <div class="product-collateral toggle-content tabs">
-          <?php //if ($detailedInfoGroup = $this->getChildGroup('detailed_info', 'getChildHtml')):?>
-              <dl id="collateral-tabs" class="collateral-tabs">
-                  <?php //foreach ($detailedInfoGroup as $alias => $html):?>
-                      <dt class="tab"><span><?php //echo $this->escapeHtml($this->getChildData($alias, 'title')) ?></span></dt>
-                      <dd class="tab-container">
-                          <div class="tab-content"><?php //echo $html ?></div>
-                      </dd>
-                  <?php //endforeach;?>
-              </dl>
-          <?php //endif; ?>
       </div>
-      -->
 
-      <?php echo $this->getChildHtml('upsell_products') ?>
-      <?php //echo $this->getChildHtml('product_additional_data') ?>
+      <?php else: ?>
+        <?php echo $this->__("Your order is still not confirmed"); ?>
+      <?php endif; ?>
 
     </div>
-  </div>
 
 
-  <script type="text/javascript">
+    <script type="text/javascript">
 
-    var url = "<?php echo Mage::getUrl('customerasaproduct/index/popularity');?>";
+      var url = "<?php echo Mage::getUrl('customerasaproduct/index/popularity');?>";
 
-    $j(document).ready(function(){
+      $j(document).ready(function(){
 
-      jQuery.ajax({
-          url: url,
-          dataType: 'json',
-          data: { product_id: <?php echo $_product->getId() ?> },
-          success: function(data){
-              //Your minicart html
-          }
+        jQuery.ajax({
+            url: url,
+            dataType: 'json',
+            data: { product_id: <?php echo $_product->getId() ?> },
+            success: function(data){
+                //Your minicart html
+            }
+        });
+
       });
 
-    });
-
-  </script>
+    </script>
 
 <?php endif; ?>

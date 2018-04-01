@@ -28,27 +28,56 @@ class Javen_CustomerAsAProduct_Model_Observer {
         $order = $event->getOrder();
 
 				$productSku = '';
+				$productAttributeSetId = '';
 
         foreach ($order->getAllVisibleItems() as $item) {
 						$productSku = $item->getProduct()->getSku();
+						$productAttributeSetId = $item->getProduct()->getAttributeSetId();
         }
 
-				if (strpos($productSku, 'marketing-package-main-product-package') !== false ) {
+				$attributeSetModel = Mage::getModel("eav/entity_attribute_set");
+				$attributeSetModel->load($productAttributeSetId);
+				$attributeSetName  = $attributeSetModel->getAttributeSetName();
 
-					$marketingProductId = substr($productSku, strrpos( $productSku, '-' ) + 1);
+				// Load customer by ID
+				$customer = Mage::getModel('customer/customer')->load($order->getCustomerId());
+				$businessPage = $customer->getBusinessPage();
 
-					// Load customer by ID
-					$customer = Mage::getModel('customer/customer')->load($order->getCustomerId());
-					$businessPage = $customer->getBusinessPage();
+				try {
 
-					// Load Product by Business ID
-					$product = Mage::getModel('catalog/product')->load($businessPage);
-					$product->setMarketingPromoted($marketingProductId);
-					$product->save();
+					// This is for the Marketing packages
+					if ($attributeSetName == 'Packages') {
 
-				}
+						if (strpos($productSku, 'marketing-package-main-product-package') !== false ) {
 
-				//Mage::log($quote, null, 'development.log');
+							$marketingProductId = substr($productSku, strrpos( $productSku, '-' ) + 1);
+
+							// Load Product by Business ID
+							$product = Mage::getModel('catalog/product')->load($businessPage);
+							$product->setIsBusinessPromoted(true);
+							$product->setMarketingPromoted($marketingProductId);
+							$product->save();
+
+						} else {
+
+							// Load Product by Business ID
+							$product = Mage::getModel('catalog/product')->load($businessPage);
+							$product->setIsActive(true);
+							$product->setPackageId($productSku);
+							$product->save();
+
+						}
+
+					}
+
+				} catch(Exception $e){
+
+	        Mage::log($e->getMessage());
+
+	      }
+
+				//Mage::log("in", null, 'development.log');
+				return false;
 
 			}
 
