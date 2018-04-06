@@ -36,34 +36,6 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
       $imagesArray = Mage::helper('customerasaproduct')->coverImageUpload($_FILES);
 
-      /*
-      // Image upload
-      $uploaddir = Mage::getBaseDir('media') . DS . 'uploads' . DS ;
-      $imageCover = $uploaddir . basename($_FILES['cover-image']['name']);
-      $imageMedia1 = $uploaddir . basename($_FILES['media-image-1']['name']);
-      $imageMedia2 = $uploaddir . basename($_FILES['media-image-2']['name']);
-      $imageMedia3 = $uploaddir . basename($_FILES['media-image-3']['name']);
-      $imageMedia4 = $uploaddir . basename($_FILES['media-image-4']['name']);
-      $imageMedia5 = $uploaddir . basename($_FILES['media-image-5']['name']);
-      $imageMedia6 = $uploaddir . basename($_FILES['media-image-6']['name']);
-
-      if (move_uploaded_file($_FILES['cover-image']['tmp_name'], $imageCover)) {
-        echo "File is valid, and was successfully uploaded.\n";
-      } else {
-        echo "Upload failed";
-      }
-
-      // Need to be moved in Helper
-      move_uploaded_file($_FILES['media-image-1']['tmp_name'], $imageMedia1);
-      move_uploaded_file($_FILES['media-image-2']['tmp_name'], $imageMedia2);
-      move_uploaded_file($_FILES['media-image-3']['tmp_name'], $imageMedia3);
-      move_uploaded_file($_FILES['media-image-4']['tmp_name'], $imageMedia4);
-      move_uploaded_file($_FILES['media-image-5']['tmp_name'], $imageMedia5);
-      move_uploaded_file($_FILES['media-image-6']['tmp_name'], $imageMedia6);
-
-      $mediaImages = array($imageMedia1, $imageMedia2, $imageMedia3, $imageMedia4, $imageMedia5, $imageMedia6);
-      */
-
       try {
 
         $product->setWebsiteIds(array(1)) //website ID the product is assigned to, as an array
@@ -120,9 +92,6 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
         ->setDescription($params['about-us'])
         ->setShortDescription($params['about-us'])
 
-        //->setMediaGallery (array('images'=>array (), 'values'=>array ())) //media gallery initialization
-        //->addImageToMediaGallery('media/catalog/product/1/0/10243-1.png', array('image','thumbnail','small_image'), false, false) //assigning image, thumb and small image to media gallery
-
         ->setStockData(array(
                        'is_in_stock' => 1, //Stock Availability
                        'qty' => 9999999 //qty
@@ -130,7 +99,6 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
         )
 
         ->setCategoryIds(array($params['category'])); //assign product to categories
-        //->addImageToMediaGallery($imageCover, 'cover_image', false);
 
         $product->save();
 
@@ -144,6 +112,8 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
         Mage::log($e->getMessage());
 
       }
+
+      $product = Mage::getModel('catalog/product')->load($customer->getBusinessPage());
 
       // Adding all media images
       foreach ($imagesArray as $key => $value) {
@@ -185,36 +155,6 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
       $product = Mage::getModel('catalog/product')->load($customer->getBusinessPage());
       $productUrlKey = $product->getUrlKey();
 
-      $imagesArray = Mage::helper('customerasaproduct')->coverImageUpload($_FILES);
-
-      /*
-      // Image upload
-      $uploaddir = Mage::getBaseDir('media') . DS . 'uploads' . DS ;
-      $imageCover = $uploaddir . basename($_FILES['cover-image']['name']);
-      $imageMedia1 = $uploaddir . basename($_FILES['media-image-1']['name']);
-      $imageMedia2 = $uploaddir . basename($_FILES['media-image-2']['name']);
-      $imageMedia3 = $uploaddir . basename($_FILES['media-image-3']['name']);
-      $imageMedia4 = $uploaddir . basename($_FILES['media-image-4']['name']);
-      $imageMedia5 = $uploaddir . basename($_FILES['media-image-5']['name']);
-      $imageMedia6 = $uploaddir . basename($_FILES['media-image-6']['name']);
-
-      if (move_uploaded_file($_FILES['cover-image']['tmp_name'], $imageCover)) {
-        echo "File is valid, and was successfully uploaded.\n";
-      } else {
-        echo "Upload failed";
-      }
-
-      // Need to be moved in Helper
-      move_uploaded_file($_FILES['media-image-1']['tmp_name'], $imageMedia1);
-      move_uploaded_file($_FILES['media-image-2']['tmp_name'], $imageMedia2);
-      move_uploaded_file($_FILES['media-image-3']['tmp_name'], $imageMedia3);
-      move_uploaded_file($_FILES['media-image-4']['tmp_name'], $imageMedia4);
-      move_uploaded_file($_FILES['media-image-5']['tmp_name'], $imageMedia5);
-      move_uploaded_file($_FILES['media-image-6']['tmp_name'], $imageMedia6);
-
-      $mediaImages = array($imageMedia1, $imageMedia2, $imageMedia3, $imageMedia4, $imageMedia5, $imageMedia6);
-      */
-
       try {
 
         $product->setName($params['name'])
@@ -248,11 +188,10 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
                 ->setSundayTo($params['sunday-to'])
 
                 // Description
-                ->setDescription($params['about-us'])
+                ->setDescription($categoryUrl)
                 ->setShortDescription($params['about-us'])
 
                 ->setCategoryIds(array($params['category'])); //assign product to categories
-                //->addImageToMediaGallery($imageCover, array('cover_image'), false);  //array('image','thumbnail','small_image'), false, false) //assigning image, thumb and small image to media gallery
 
         $product->save();
 
@@ -265,24 +204,20 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
       }
 
       // Adding all media images
-      /*
-      foreach ($mediaImages as $image) {
-        if ($image != $uploaddir) {
-          $product->addImageToMediaGallery($image, array('image','thumbnail','small_image'), false, false);
-          $product->save();
-        }
-      }
-      */
+      $imagesArray = Mage::helper('customerasaproduct')->coverImageUpload($_FILES);
 
-      // Adding all media images
-      foreach ($imagesArray as $key => $value) {
+      if (!empty($imagesArray)) {
+        Mage::log('Not empty', null, 'development.log');
+        foreach ($imagesArray as $key => $value) {
 
-        if ($key == 'cover-image') {
-          $product->addImageToMediaGallery($value, array('cover_image'), false);
-          $product->save();
-        } else {
-          $product->addImageToMediaGallery($value, array('image','thumbnail','small_image'), false, false);
-          $product->save();
+          if ($key == 'cover-image') {
+            $product->addImageToMediaGallery($value, array('cover_image'), false);
+            $product->save();
+          } else {
+            $product->addImageToMediaGallery($value, array('image','thumbnail','small_image'), false, false);
+            $product->save();
+          }
+
         }
 
       }

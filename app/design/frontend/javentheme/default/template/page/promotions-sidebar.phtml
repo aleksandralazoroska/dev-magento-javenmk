@@ -10,15 +10,34 @@
   $products->addAttributeToSelect('*');
 
   $products->load();
+
+  // Random 4 products
+  $productsAllArray = array();
+  $i = 0;
+  foreach ($products as $prod) {
+    $productsAllArray[$i] = $prod->getId();
+    $i++;
+  }
+
+  $count = count($productsAllArray);
+  if ($count >= 4) {
+    $productsRand = array_rand($productsAllArray, 4);
+  } else {
+    $productsRand = array_keys($productsAllArray);
+  }
+
 ?>
 <div class="sidebar-promotions-container">
   <h2><?php echo $this->__("Promovirani biznisi") ?></h2>
   <div class="sidebar-packages-container">
-    <?php foreach ($products as $prod): ?>
-        <div class="promot-packages-box">
+    <?php foreach ($productsRand as $value): ?>
+        <?php $prod = Mage::getModel('catalog/product')->load($productsAllArray[$value]); ?>
+        <div class="sidebar-promote-packages-box">
           <div class="promote-package-image">
-            <a href="<?php echo $prod->getUrlKey() . '.html'; ?>"><img src="<?php echo Mage::helper('catalog/image')->init($prod, 'thumbnail')->resize(200,150); ?>" /></a>
-            <p class="promote-product-name"><?php echo $prod->getName(); ?></p>
+            <a href="<?php echo $prod->getUrlKey() . '.html'; ?>">
+              <img src="<?php echo Mage::helper('catalog/image')->init($prod, 'thumbnail')->resize(200,150); ?>" />
+              <p class="promote-product-name"><?php echo $prod->getName(); ?></p>
+            </a>
           </div>
         </div>
     <?php endforeach; ?>

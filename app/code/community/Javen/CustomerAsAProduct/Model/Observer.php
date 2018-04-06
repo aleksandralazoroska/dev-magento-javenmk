@@ -24,6 +24,8 @@ class Javen_CustomerAsAProduct_Model_Observer {
 
 			public function marketingPromotedProduct(Varien_Event_Observer $observer) {
 
+				Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
+
 				$event = $observer->getEvent();
         $order = $event->getOrder();
 
@@ -52,11 +54,25 @@ class Javen_CustomerAsAProduct_Model_Observer {
 
 							$marketingProductId = substr($productSku, strrpos( $productSku, '-' ) + 1);
 
-							// Load Product by Business ID
-							$product = Mage::getModel('catalog/product')->load($businessPage);
-							$product->setIsBusinessPromoted(true);
-							$product->setMarketingPromoted($marketingProductId);
-							$product->save();
+							// Marketing promotion with marketing ID 4
+							if ($marketingProductId == 4) {
+
+								$product = Mage::getModel('catalog/product')->load($businessPage);
+								$product->setIsBusinessPromoted(true);
+								$product->setMarketingPromoted($marketingProductId);
+								$product->setMarketingPromotedSearch(1);
+								$product->save();
+
+							} else {
+
+
+								$product = Mage::getModel('catalog/product')->load($businessPage);
+								$product->setIsBusinessPromoted(true);
+								$product->setMarketingPromoted($marketingProductId);
+								$product->setMarketingPromotedSearch(0);
+								$product->save();
+
+							}
 
 						} else {
 

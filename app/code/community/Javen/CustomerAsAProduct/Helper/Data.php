@@ -18,14 +18,14 @@ class Javen_CustomerAsAProduct_Helper_Data extends Mage_Core_Helper_Abstract {
         // Checking the size and the type of the image
         if ($images[$key]['size'] < 4194304 && in_array($images[$key]['type'], $imageExtensions)) {
           if (move_uploaded_file($images[$key]['tmp_name'], $image)) {
+            // nothing
           } else {
-            Mage::log($image . ' cannot be uploaded', null, 'development.log');
+            Mage::log('Image ' . $image . ' cannot be uploaded');
           }
           $imagesArray[$key] = $image;
         } else {
-          Mage::getSingleton('checkout/session')->addError('Image cannot be uploaded');
+          Mage::log('Image ' . $image . ' cannot be uploaded');
         }
-
       }
 
     }

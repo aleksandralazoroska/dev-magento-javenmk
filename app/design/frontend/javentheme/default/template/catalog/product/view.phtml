@@ -326,7 +326,58 @@
 
               <div class="product-page-related">
                 <p><?php echo $this->__("Similar related businesses"); ?></p>
-                <?php echo $this->getChildHtml('related_products') ?>
+
+                <?php
+                  $attrSetName = 'Companies';
+                  $attributeSetId = Mage::getModel('eav/entity_attribute_set')
+                      ->load($attrSetName, 'attribute_set_name')
+                      ->getAttributeSetId();
+
+                  $categoryIds = $_product->getCategoryIds();
+
+                  $category = Mage::getModel('catalog/category');
+                  $category->load($categoryIds[0]);
+                  $products = $category->getProductCollection();
+
+                  //$products = Mage::getModel('catalog/product')->getCollection();
+                  $products->addAttributeToFilter('attribute_set_id',$attributeSetId);
+                  $products->addAttributeToFilter('marketing_promoted', '6'); // this is important for the type of the marketing product and price
+                  $products->addAttributeToSelect('*');
+
+                  $products->load();
+
+                  // Random 4 products
+                  $productsAllArray = array();
+                  $i = 0;
+                  foreach ($products as $prod) {
+                    $productsAllArray[$i] = $prod->getId();
+                    $i++;
+                  }
+
+                  $count = count($productsAllArray);
+                  if ($count >= 4) {
+                    $productsRand = array_rand($productsAllArray, 4);
+                  } else {
+                    $productsRand = array_keys($productsAllArray);
+                  }
+
+                ?>
+                <div class="product-container-promotions-container">
+                  <div class="promote-packages-container">
+                      <?php foreach ($productsRand as $value): ?>
+                          <?php $prod = Mage::getModel('catalog/product')->load($productsAllArray[$value]); ?>
+                          <div class="promote-packages-box">
+                            <div class="promote-package-image">
+                              <a href="<?php echo $prod->getUrlKey() . '.html'; ?>">
+                                <img src="<?php echo Mage::helper('catalog/image')->init($prod, 'thumbnail')->resize(200,150); ?>" />
+                                <p class="promote-product-name"><?php echo $prod->getName(); ?></p>
+                              </a>
+                            </div>
+                          </div>
+                      <?php endforeach; ?>
+                  </div>
+                </div>
+
               </div>
 
 

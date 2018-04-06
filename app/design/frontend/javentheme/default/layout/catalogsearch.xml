@@ -72,6 +72,11 @@
                 <action method="setListCollection"/>
             </block>
         </reference>
+        <!-- For sorting produts on search for Search results page -->
+        <reference name="search_result_list">
+            <action method="setDefaultDirection"><param>desc</param></action>
+            <action method="setSortBy"><param>marketing_promoted_search</param></action>
+        </reference>
     </catalogsearch_result_index>
 
     <catalogsearch_advanced_index translate="label">
