@@ -23,7 +23,13 @@
 ?>
 
 <div class="home-container-poznat">
-  <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home-block-bidi-javen')->toHtml();?>
+  
+  <?php if (Mage::app()->getStore()->getName() == 'Macedonian'): ?>
+    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home-block-bidi-javen')->toHtml();?>
+  <?php elseif (Mage::app()->getStore()->getName() == 'Albanian'): ?>
+    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home-block-bidi-javen-albanian')->toHtml();?>
+  <?php endif; ?>
+
   <div class="home-container-poznat-search">
     <form id="search_mini_form" action="<?php echo $this->helper('catalogSearch')->getResultUrl() ?>" method="get">
         <fieldset>
