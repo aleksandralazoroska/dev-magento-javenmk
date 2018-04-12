@@ -12,9 +12,6 @@
             <?php echo $this->escapeHtml($this->__('Your Cart Is Empty')); ?>
         </div>
         <div class="iwd_opc_section_delimiter"></div>
-        <div class="iwd_opc_universal_wrapper iwd_empty_cart_info">
-            <?php echo $this->escapeHtml($this->__('Looks like there\'s nothing here yet.')); ?>
-        </div>
         <div class="iwd_opc_universal_wrapper">
             <button type="button"
                     onclick="window.location='<?php echo $this->jsQuoteEscape($this->getUrl()); ?>'"
@@ -35,12 +32,5 @@
                 </button>
             </div>
         <?php } ?>
-        <div class="iwd_empty_cart_powered_by">
-            <a title="<?php echo $this->escapeHtml($this->__('Checkout Suite by IWD Agency')); ?>"
-               target="_blank"
-               href="https://www.iwdagency.com/magento-1-one-page-checkout-suite.html">
-                <?php echo $this->escapeHtml($this->__('Checkout Suite by IWD Agency')); ?>
-            </a>
-        </div>
     </div>
 </div>

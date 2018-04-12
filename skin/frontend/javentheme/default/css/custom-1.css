@@ -1022,12 +1022,25 @@ a.product-shop-share-page {
 .cart .totals .a-right {
   padding-right: 5px;
 }
+
 /* Cart Page */
+
+/* Checkout Page */
+
+.checkout-onepage-success .page-title {
+  margin-top: 60px;
+  padding-bottom: 40px;
+}
+
+.checkout-onepage-success .page-title h1 {
+  border: none;
+}
+
+/* Checkout Page */
 
 /* Error Messages */
 
 .messages li li {
-  position: absolute;
   padding: 7px 10px 7px 20px;
   background: #f4f4f4;
   font-size: 15px;
