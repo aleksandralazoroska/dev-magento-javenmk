@@ -148,6 +148,27 @@
 
 /* Login and Create*/
 
+.customer-account-logoutsuccess .col-main {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.customer-account-logoutsuccess .page-title {
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+.customer-account-logoutsuccess .page-title h1 {
+  border: none;
+}
+
+.customer-account-logoutsuccess .page-logout {
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
 .account-create {
   width: 1200px;
   margin: 0 auto;
