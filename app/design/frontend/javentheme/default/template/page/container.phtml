@@ -23,7 +23,7 @@
 ?>
 
 <div class="home-container-poznat">
-  
+
   <?php if (Mage::app()->getStore()->getName() == 'Macedonian'): ?>
     <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home-block-bidi-javen')->toHtml();?>
   <?php elseif (Mage::app()->getStore()->getName() == 'Albanian'): ?>
@@ -35,7 +35,7 @@
         <fieldset>
             <div class="mini-search">
               <input id="search" type="text" class="search-input" name="<?php echo $this->helper('catalogSearch')->getQueryParamName() ?>" value="<?php echo $this->helper('catalogSearch')->getEscapedQueryText() ?>" />
-              <select name="city" id="city" class="search-select">
+              <select name="city_attr" id="city_attr" class="search-select">
                 <?php foreach($options as $key => $value): ?>
                   <option value="<?php echo $value['label']; ?>" <?php if($key == $result['city']): ?> selected="selected" <?php endif; ?> ><?php if ($key == 0) { echo $this->__("Macedonia"); } else { echo $value['label']; }; ?></option>
                 <?php endforeach; ?>

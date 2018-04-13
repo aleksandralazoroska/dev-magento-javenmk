@@ -126,6 +126,9 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
           $product->save();
         }
 
+        // Remove the image from the temp directory
+        unlink($value);
+
       }
 
       // Redirecting to select package page
@@ -207,9 +210,8 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
       $imagesArray = Mage::helper('customerasaproduct')->coverImageUpload($_FILES);
 
       if (!empty($imagesArray)) {
-        Mage::log('Not empty', null, 'development.log');
+        
         foreach ($imagesArray as $key => $value) {
-
           if ($key == 'cover-image') {
             $product->addImageToMediaGallery($value, array('cover_image'), false);
             $product->save();
@@ -218,8 +220,16 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
             $product->save();
           }
 
+          // Remove the image from the temp directory
+          unlink($value);
         }
 
+      }
+
+      // Check if the business already bought some package
+      if ($product->getIsActive() == false) {
+        $this->_redirect('customerasaproduct/packages/selectpackage');
+        return;
       }
 
       return $this->_redirectUrl('/' . $productUrlKey . '.html');

@@ -77,6 +77,9 @@
             <action method="setDefaultDirection"><param>desc</param></action>
             <action method="setSortBy"><param>marketing_promoted_search</param></action>
         </reference>
+        <reference name="right">
+          <remove name="sale.reorder.sidebar"/>
+        </reference>
     </catalogsearch_result_index>
 
     <catalogsearch_advanced_index translate="label">

@@ -106,6 +106,9 @@ Category default layout
                 </block>
             </block>
         </reference>
+        <reference name="right">
+          <remove name="sale.reorder.sidebar"/>
+        </reference>
     </catalog_category_default>
 
 <!--

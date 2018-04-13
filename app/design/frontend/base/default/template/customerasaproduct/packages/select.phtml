@@ -16,6 +16,7 @@
 ?>
 
 <div class="select-packages-parent">
+  <h1><?php echo $this->__("Select your package"); ?></h1>
   <div class="select-packages-container">
     <?php foreach ($products as $prod): ?>
       <?php if (in_array($prod->getId(), $packagesProducts)): ?>

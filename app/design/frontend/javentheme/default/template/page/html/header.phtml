@@ -127,10 +127,38 @@
         -->
     </div>
 </header>
+<?php
+  $atributeCode = 'city';
+  $attribute = Mage::getModel('eav/config')->getAttribute('catalog_product',$atributeCode);
+  $options = $attribute->getSource()->getAllOptions();
+?>
 <?php $controllerName = Mage::app()->getFrontController()->getRequest()->getControllerName(); ?>
 <?php if( $controllerName == 'category' || $controllerName == 'product' || $controllerName == 'result' ): ?>
-  <div class="page-header-advanced-search">
-    <?php echo $this->getLayout()->createBlock('catalogsearch/advanced_form')->setTemplate('catalogsearch/advanced/form.phtml')->toHtml(); ?>
+  <div class="page-header-search">
+    <div class="home-container-poznat-search">
+      <form id="search_mini_form" action="<?php echo $this->helper('catalogSearch')->getResultUrl() ?>" method="get">
+          <fieldset>
+              <div class="mini-search">
+                <input id="search" type="text" class="search-input" name="<?php echo $this->helper('catalogSearch')->getQueryParamName() ?>" value="<?php echo $this->helper('catalogSearch')->getEscapedQueryText() ?>" />
+                <select name="city_attr" id="city_attr" class="search-select">
+                  <?php foreach($options as $key => $value): ?>
+                    <option value="<?php echo $value['label']; ?>" <?php if($key == $result['city']): ?> selected="selected" <?php endif; ?> ><?php if ($key == 0) { echo $this->__("Macedonia"); } else { echo $value['label']; }; ?></option>
+                  <?php endforeach; ?>
+                </select>
+                <div class="search-submit-parent">
+                  <input type="submit" class="search-submit" value="" alt="<?php echo $this->__('Search') ?>" />
+                </div>
+                <div id="search_autocomplete" class="search-autocomplete"></div>
+                <script type="text/javascript">
+                  //<![CDATA[
+                      var searchForm = new Varien.searchForm('search_mini_form', 'search', '<?php echo $this->__('Search') ?>');
+                      searchForm.initAutocomplete('<?php echo $this->helper('catalogSearch')->getSuggestUrl() ?>', 'search_autocomplete');
+                  //]]>
+                </script>
+              </div>
+          </fieldset>
+      </form>
+    </div>
   </div>
 <?php endif; ?>
 
