@@ -33,7 +33,12 @@
               <p class="package-short-desc"><?php echo $this->__("for"); ?></p>
               <p class="package-short-desc"><?php echo $prod->getShortDescription(); ?></p>
               <?php if (Mage::getSingleton('customer/session')->isLoggedIn()): ?>
-                <p><a class="button tn-cart" href="<?php echo Mage::helper('checkout/cart')->getAddUrl($prod); ?>"><?php echo $this->__("Add to Cart") ?></a></p>
+                <?php $customer = Mage::getSingleton('customer/session')->getCustomer(); ?>
+                <?php if ($customer->getBusinessPage() != 0 && $customer->getBusinessPage() != ''): ?>
+                  <p><a class="button tn-cart" href="<?php echo Mage::helper('checkout/cart')->getAddUrl($prod); ?>"><?php echo $this->__("Add to Cart") ?></a></p>
+                <?php else: ?>
+                  <p><?php echo $this->__('Create business ') ?><a href="<?php echo Mage::getUrl('customerasaproduct'); ?>" ><?php echo $this->__('here') ?></a></p>
+                <?php endif; ?>
               <?php else: ?>
                 <p><?php echo $this->__('Log in ') ?><a href="<?php echo Mage::getUrl('customer/account'); ?>" ><?php echo $this->__('here') ?></a></p>
               <?php endif; ?>
