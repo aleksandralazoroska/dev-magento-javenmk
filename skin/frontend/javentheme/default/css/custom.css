@@ -367,9 +367,10 @@ label {
  .footer-custom-right-up img {
   width: 64px;
   color: #FF9800;
-  margin-left: 110px;
-  margin-top: 50px;
   opacity: 0.5;
+  position: fixed;
+  bottom: 40px;
+  right: 15px;
 }
 
 .footer-custom-right-up img:hover {
@@ -648,7 +649,7 @@ label {
 
 .product-image-gallery .gallery-image.visible {
   height: 400px;
-  margin: 0 auto;
+  float: left;
 }
 
 .product-shop .more-views  {

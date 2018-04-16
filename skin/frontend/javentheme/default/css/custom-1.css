@@ -47,6 +47,7 @@
   background-color: #fff6e5;
 }
 
+
 .store-language-container .form-language-dropdown a:hover {
   text-decoration: none;
 }
@@ -1047,6 +1048,14 @@ a.product-shop-share-page {
 
 .cart .totals .a-right {
   padding-right: 5px;
+}
+
+.checkout-types .button {
+  border-radius: 5px;
+}
+
+.cart-table .button {
+  border-radius: 5px;
 }
 
 /* Cart Page */

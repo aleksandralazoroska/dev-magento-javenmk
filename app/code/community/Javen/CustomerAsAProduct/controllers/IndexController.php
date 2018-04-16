@@ -115,21 +115,24 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
       $product = Mage::getModel('catalog/product')->load($customer->getBusinessPage());
 
+      $product->addImageToMediaGallery($imagesArray['cover-image'], array('cover_image'), false, false);
+
+      // Remove the image from the temp directory and removing the cover image from the array
+      unlink($imagesArray['cover-image']);
+      unset($imagesArray['cover-image']);
+
       // Adding all media images
       foreach ($imagesArray as $key => $value) {
 
-        if ($key == 'cover-image') {
-          $product->addImageToMediaGallery($value, array('cover_image'), false);
-          $product->save();
-        } else {
-          $product->addImageToMediaGallery($value, array('image','thumbnail','small_image'), false, false);
-          $product->save();
-        }
+        // Uploading media images
+        $product->addImageToMediaGallery($value, array('image','thumbnail','small_image'), false, false);
 
         // Remove the image from the temp directory
         unlink($value);
 
       }
+
+      $product->save();
 
       // Redirecting to select package page
       $this->_redirect('customerasaproduct/packages/selectpackage');
@@ -210,19 +213,19 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
       $imagesArray = Mage::helper('customerasaproduct')->coverImageUpload($_FILES);
 
       if (!empty($imagesArray)) {
-        
+
+        // Adding all media images
         foreach ($imagesArray as $key => $value) {
-          if ($key == 'cover-image') {
-            $product->addImageToMediaGallery($value, array('cover_image'), false);
-            $product->save();
-          } else {
-            $product->addImageToMediaGallery($value, array('image','thumbnail','small_image'), false, false);
-            $product->save();
-          }
+
+          // Uploading media images
+          $product->addImageToMediaGallery($value, array('image','thumbnail','small_image'), false, false);
 
           // Remove the image from the temp directory
           unlink($value);
+
         }
+
+        $product->save();
 
       }
 
