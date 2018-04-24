@@ -2,8 +2,48 @@
 @media only screen
 and (min-device-width : 320px)
 and (max-device-width : 480px) {
+
+  /* Header */
   .page-header {
     max-width: 480px;
+    height: auto;
+  }
+
+  .page-header .skip-links {
+    border: none;
+    width: 80px;
+    float: left;
+    padding-left: 25px;
+  }
+
+  .header-mobile-links-btn {
+    margin-top: 3px;
+    display: inline-block;
+    margin-left: 40px;
+  }
+
+  #header-mobile-links-btn:hover {
+    cursor: pointer;
+  }
+
+  .page-header-container {
+    min-height: 60px;
+  }
+
+  .page-header-container .store-language-container {
+    float: left;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .store-language-container .form-language-visible .language-flag {
+    margin-top: 0;
+  }
+
+  .store-language-container .form-language-visible .language-arrow {
+    margin-left: 10px;
+    margin-top: 11px;
   }
 
   .logo {
@@ -14,8 +54,31 @@ and (max-device-width : 480px) {
     display: none;
   }
 
+  .header-mobile-links {
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+
+  .mobile-header {
+    width: 300px;
+    margin-left: 0 !important;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    text-transform: none;
+  }
+
+  /* Header */
+
+  /* Main Container */
+
   .main-container .col-main {
     margin-bottom: 0;
+  }
+
+  .main-container .col2-right-layout {
+    width: auto;
   }
 
   .home-container-poznat {
@@ -25,6 +88,7 @@ and (max-device-width : 480px) {
   .home-container-poznat-search {
     width: auto;
     border-radius: 0;
+    padding: 20px 0;
   }
 
   .home-container-bidi-javen h1 {
@@ -131,6 +195,10 @@ and (max-device-width : 480px) {
     float: none;
   }
 
+  /* Main Container */
+
+  /* Footer */
+
   .footer-custom {
     width: auto;
   }
@@ -155,5 +223,183 @@ and (max-device-width : 480px) {
     width: 300px;
     padding-bottom: 20px;
   }
+
+  /* Footer */
+
+  /* Category */
+
+  .page-header-search .mini-search {
+    text-align: center;
+  }
+
+  .page-header-search {
+    height: 262px !important;
+    padding-top: 0;
+  }
+
+  .catalog-category-view .main-container, .catalogsearch-result-index .main-container, .catalog-product-view .main-container {
+    width: auto !important;
+    min-width: auto !important;
+  }
+
+  .main-container .col-main {
+    text-align: center;
+  }
+
+  .category-products .count-container {
+    float: none !important;
+    display: inline-block;
+  }
+
+  .category-products .toolbar .sorter label {
+    float: none;
+  }
+
+  .category-products .toolbar .sorter {
+    margin-bottom: 20px;
+  }
+
+  .category-products .toolbar .sorter .sort-by {
+    float: none;
+    margin-right: 0;
+  }
+
+  .category-products .toolbar .pager .amount {
+    margin: 0;
+  }
+
+  .category-products .products-list .product-image {
+    float: none;
+    margin: 0 auto;
+  }
+
+  .category-products .products-list .product-info .product-name {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .category-products .products-list .product-info p {
+    text-align: center;
+  }
+
+  .category-products .products-list .product-shop {
+    float: none;
+    width: 100%;
+  }
+
+  .category-products .products-list .product-info {
+    float: none;
+    padding-left: 0
+  }
+
+  .category-products .category-map {
+    width: auto;
+  }
+
+  /* Category */
+
+  /* Login and Register */
+
+  .account-login {
+    width: auto;
+  }
+
+  .account-login .col2-set {
+    width: 300px;
+    padding-left: 0;
+    margin: 0 auto;
+  }
+
+  .account-login .input-box {
+    margin: 0 auto;
+    width: 300px;
+  }
+
+  .account-login .buttons-set a {
+    width: 300px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .account-login .please-register {
+    margin-bottom: 40px;
+  }
+
+  .account-create {
+    width: auto;
+  }
+
+  .account-create .col2-set {
+    width: 300px;
+    padding-left: 0;
+    margin: 0 auto;
+  }
+
+  .account-create .input-box {
+    margin: 0 auto;
+    width: 300px;
+  }
+
+  .account-create .buttons-set a {
+    width: 300px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .account-create .please-register {
+    margin-bottom: 40px;
+  }
+
+  .account-create .fieldset {
+    margin-left: 0;
+  }
+
+  .account-create .fieldset .legend {
+    margin-left: 0;
+  }
+
+  .account-create .form-list {
+    margin-left: 0;
+  }
+
+  .account-create .buttons-set {
+    width: 300px;
+    margin-left: 0;
+    padding-left: 0;
+    margin: 0 auto;
+  }
+
+  .account-create .buttons-set button.button {
+    margin-bottom: 20px;
+  }
+
+  /* Login and Register */
+
+  /* Payments and Terms */
+
+  .cms-payments-options .std p {
+    width: 300px;
+  }
+
+  .cms-payments-options .std h4 {
+    width: 300px;
+  }
+
+  .cms-terms-and-conditions .std p {
+    width: 300px;
+  }
+
+  .cms-terms-and-conditions .std h4 {
+    width: 300px;
+  }
+
+  /* Marketing Page */
+
+  .marketing-packages-container {
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  /* Marketing Page */
 
 }
