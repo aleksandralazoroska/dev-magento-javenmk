@@ -31,6 +31,15 @@
 			</customerasaproduct>
 		  </updates>
 		</layout>
+    <translate>
+      <modules>
+        <Javen_CustomerAsAProduct>
+          <files>
+            <default>Javen_CustomerAsAProduct.csv</default>
+          </files>
+        </Javen_CustomerAsAProduct>
+      </modules>
+    </translate>
   </frontend>
   <global>
     <helpers>

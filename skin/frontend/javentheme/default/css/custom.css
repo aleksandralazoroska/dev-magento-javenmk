@@ -414,6 +414,7 @@ label {
   height: 224px;
   background: linear-gradient(to right, #F57C00, #FF9800);
   padding-top: 60px;
+  text-align: center;
 }
 
 .page-header-search .search-submit {
@@ -665,6 +666,11 @@ label {
 
 .more-views ul {
   padding-right: 20px;
+}
+
+.product-image-thumbs li {
+  width: 200px;
+  text-align: center;
 }
 
 .more-views img {

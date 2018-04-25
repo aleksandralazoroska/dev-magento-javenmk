@@ -40,12 +40,6 @@
                   <option value="<?php echo $value['label']; ?>" <?php if($key == $result['city']): ?> selected="selected" <?php endif; ?> ><?php if ($key == 0) { echo $this->__("Macedonia"); } else { echo $value['label']; }; ?></option>
                 <?php endforeach; ?>
               </select>
-              <!--
-              <select name="cat" id="cat" class="search-select">
-                 <option value=""><?php //echo $this->__('All Departments') ?></option>
-                 <?php //echo $extra_options ?>
-              </select>
-              -->
               <div class="search-submit-parent">
                 <input type="submit" class="search-submit" value="" alt="<?php echo $this->__('Search') ?>" />
               </div>
@@ -60,6 +54,35 @@
         </fieldset>
     </form>
   </div>
+
+  <div class="home-container-poznat-search">
+    <?php $block = Mage::app()->getLayout()->createBlock('catalogsearch/advanced_form'); ?>
+    <form action="<?php echo Mage::getUrl('catalogsearch/advanced/result/') ?>" method="get" id="form-validate">
+        <div class="fieldset advanced-search">
+            <ul class="form-list" id="advanced-search-list">
+                <?php foreach ($block->getSearchableAttributes() as $_attribute): ?>
+                <?php $_code = $_attribute->getAttributeCode() ?>
+                <li>
+                    <?php if ($_code == 'description'): ?>
+                      <input type="text" name="description" id="description" value="<?php echo $block->escapeHtml($block->getAttributeValue($_attribute)) ?>" title="<?php echo $block->escapeHtml($block->getAttributeLabel($_attribute)) ?>"  class="input-text <?php echo $block->getAttributeValidationClass($_attribute) ?>" maxlength="<?php echo $maxQueryLength;?>" />
+                    <?php elseif ($_code == 'city_attr'): ?>
+                      <select name="city_attr" id="city_attr" class="search-select">
+                          <?php foreach($options as $key => $value): ?>
+                              <option value="<?php echo $value['label']; ?>" <?php if($key == $result['city']): ?> selected="selected" <?php endif; ?> ><?php if ($key == 0) { echo $this->__("Macedonia"); } else { echo $value['label']; }; ?></option>
+                          <?php endforeach; ?>
+                      </select>
+                    <?php endif; ?>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+            <div class="search-submit-parent">
+                <input type="submit" class="search-submit" value="" alt="<?php echo $this->__('Search') ?>" />
+            </div>
+            <script type="text/javascript">decorateList('advanced-search-list')</script>
+        </div>
+    </form>
+  </div>
+
 </div>
 
 <?php echo $this->getChildHtml(‘footerSearch’) ?>

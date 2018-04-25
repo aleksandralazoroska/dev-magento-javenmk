@@ -41,9 +41,10 @@
     <?php echo $this->getChildHtml('form_fields_before')?>
     <?php echo $this->getMessagesBlock()->toHtml() ?>
     <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="form-validate">
-    <input type="hidden" name="success_url" value="<?php echo Mage::getUrl('customerasaproduct/index/index') ?>" />
+
         <div class="fieldset">
-            <input type="hidden" name="success_url" value="<?php echo $this->getSuccessUrl() ?>" />
+            <input type="hidden" name="success_url" value="<?php echo Mage::getUrl('customerasaproduct/index/index') ?>" />
+            <!-- <input type="hidden" name="success_url" value="<?php //echo $this->getSuccessUrl() ?>" />-->
             <input type="hidden" name="error_url" value="<?php echo $this->getErrorUrl() ?>" />
             <input type="hidden" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
             <h2 class="legend"><?php echo $this->__('Personal Information') ?></h2>

@@ -34,4 +34,18 @@ class Javen_CustomerAsAProduct_Helper_Data extends Mage_Core_Helper_Abstract {
 
   }
 
+  // A method for translating city keywords
+  public function trasnlateSearchKwCity($city) {
+
+    return $city . ' ' . Mage::helper('customerasaproduct')->__($city);
+
+  }
+
+  // A method for translating description keywords
+  public function trasnlateSearchKwDesc($name, $category) {
+
+    return $name . ' ' . $category . ' ' . Mage::helper('customerasaproduct')->__($category);
+
+  }
+
 }

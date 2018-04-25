@@ -375,6 +375,7 @@ body.cms-home .main-container {
   width: 1200px;
   margin: 0 auto;
   border-radius: 5px;
+  display: inline-block;
 }
 
 #search {
@@ -422,6 +423,46 @@ body.cms-home .main-container {
   background-size: 40px;
 }
 
+.advanced-search {
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+.advanced-search .form-list {
+  margin: 0;
+  padding: 0;
+}
+
+.advanced-search .form-list li {
+  float: left;
+  margin-bottom: 0;
+}
+
+.advanced-search input.input-text {
+  width: 520px;
+  height: 64px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 0;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-right: 20px;
+}
+
+.advanced-search select.search-select {
+  width: 528px;
+  height: 64px;
+  border: 0;
+  border-radius: 5px;
+  background-color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-right: 20px;
+  margin-top: 0;
+  font-size: 18px;
+  font-family: "Roboto";
+}
 
 .home-container-categories {
   width: 1200px;

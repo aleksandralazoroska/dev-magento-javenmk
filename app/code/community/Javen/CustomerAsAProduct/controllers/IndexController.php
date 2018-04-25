@@ -36,6 +36,15 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
       $imagesArray = Mage::helper('customerasaproduct')->coverImageUpload($_FILES);
 
+      // Search Keywords for City
+      $cityTranslatedArray = '';
+      $cityTranslatedArray = Mage::helper('customerasaproduct')->trasnlateSearchKwCity($params['city']);
+
+      // Search Keywords for Description
+      $descTranslatedArray = '';
+      $descTranslatedArray = Mage::helper('customerasaproduct')->trasnlateSearchKwDesc($params['name'], $categoryUrl);
+
+
       try {
 
         $product->setWebsiteIds(array(1)) //website ID the product is assigned to, as an array
@@ -59,7 +68,7 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
         ->setAddress($params['address'])
         ->setMapLat($params['map-lat'])
         ->setMapLng($params['map-lng'])
-        ->setCityAttr($params['city'])
+        ->setCityAttr($cityTranslatedArray)
 
         //Custom Social
         ->setWebpage($params['webpage'])
@@ -89,7 +98,7 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
         //->setMetaKeyword('test meta keyword 2')
         //->setMetaDescription('test meta description 2')
 
-        ->setDescription($params['about-us'])
+        ->setDescription($descTranslatedArray)
         ->setShortDescription($params['about-us'])
 
         ->setStockData(array(
@@ -161,6 +170,14 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
       $product = Mage::getModel('catalog/product')->load($customer->getBusinessPage());
       $productUrlKey = $product->getUrlKey();
 
+      // Search Keywords for City
+      $cityTranslatedArray = '';
+      $cityTranslatedArray = Mage::helper('customerasaproduct')->trasnlateSearchKwCity($params['city']);
+
+      // Search Keywords for Description
+      $descTranslatedArray = '';
+      $descTranslatedArray = Mage::helper('customerasaproduct')->trasnlateSearchKwDesc($params['name'], $categoryUrl);
+
       try {
 
         $product->setName($params['name'])
@@ -169,7 +186,7 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
                 ->setPhone($params['telephone'])
                 ->setPhone2($params['telephone-2'])
                 ->setAddress($params['address'])
-                ->setCityAttr($params['city'])
+                ->setCityAttr($cityTranslatedArray)
 
                 //Custom Social
                 ->setWebpage($params['webpage'])
@@ -194,7 +211,7 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
                 ->setSundayTo($params['sunday-to'])
 
                 // Description
-                ->setDescription($categoryUrl)
+                ->setDescription($descTranslatedArray)
                 ->setShortDescription($params['about-us'])
 
                 ->setCategoryIds(array($params['category'])); //assign product to categories
