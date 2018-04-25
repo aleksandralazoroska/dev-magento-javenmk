@@ -379,6 +379,7 @@ and (max-device-width : 480px) {
 
   .cms-payments-options .std p {
     width: 300px;
+    text-align: center;
   }
 
   .cms-payments-options .std h4 {
@@ -393,6 +394,8 @@ and (max-device-width : 480px) {
     width: 300px;
   }
 
+  /* Payments and Terms */
+
   /* Marketing Page */
 
   .marketing-packages-container {
@@ -400,6 +403,60 @@ and (max-device-width : 480px) {
     margin: 0 auto;
   }
 
+  .marketing-packages-container li {
+    height: auto;
+  }
+
+  .marketing-package-info {
+    float: none;
+    width: 100%;
+    margin-right: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .marketing-package-image {
+    margin: 0 auto;
+    float: none;
+  }
+
+  .marketing-package-price {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    float: none;
+    margin-right: 0;
+    margin: 0 auto;
+  }
+
   /* Marketing Page */
+
+  /* Create Business Page */
+
+  .customerasaproduct-container {
+    width: auto;
+    padding-left: 0;
+  }
+
+  .customerasaproduct-container .group-select li {
+    width: 300px;
+  }
+
+  .customerasaproduct-container .input-box input {
+    width: 300px;
+  }
+
+  .customerasaproduct-container .input-box select {
+    width: 300px;
+  }
+
+  .customerasaproduct-container2 .input-box textarea {
+    width: 300px;
+  }
+
+  .customerasaproduct-container .customerasaproduct-map {
+    width: 300px !important;
+  }
+
+  /* Create Business Page */
 
 }
