@@ -49,7 +49,10 @@
     <?php elseif (Mage::app()->getStore()->getStoreId() == 2): ?>
       <img class="language-flag" src="<?php echo $this->getSkinUrl('/images/albanski.svg') ?>" />
     <?php endif; ?>
-    <span><?php echo $this->__(Mage::app()->getStore()->getName()); ?></span>
+    <?php if(preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"])): ?>
+    <?php else: ?>
+      <span><?php echo $this->__(Mage::app()->getStore()->getName()); ?></span>
+    <?php endif; ?>
     <img class="language-arrow" src="<?php echo $this->getSkinUrl('/images/arrow.png') ?>" />
 </div>
 <div id="form-language-dropdown" class="form-language-dropdown" style="display: none">

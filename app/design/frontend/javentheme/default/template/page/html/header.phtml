@@ -45,38 +45,61 @@
 <?php $useragent = $_SERVER['HTTP_USER_AGENT']; ?>
 
 <header id="header" class="page-header">
+  
+  <?php // Mobile version ?>
+  <?php if(preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"])): ?>
 
-    <?php if(preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"])): ?>
-
-      <div class="page-header-container">
-        <a class="logo" href="<?php echo $this->getUrl('') ?>">
-            <img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" class="large" />
-            <img src="<?php echo $this->getLogoSrcSmall() ?>" alt="<?php echo $this->getLogoAlt() ?>" class="small" />
-        </a>
-        <div class="skip-links">
-          <div class="account-cart-wrapper">
-            <div class="store-language-container">
-              <?php echo $this->getChildHtml('store_language') ?>
-            </div>
+    <div class="page-header-container">
+      <a class="logo" href="<?php echo $this->getUrl('') ?>">
+          <img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" class="large" />
+          <img src="<?php echo $this->getLogoSrcSmall() ?>" alt="<?php echo $this->getLogoAlt() ?>" class="small" />
+      </a>
+      <div class="skip-links">
+        <div class="account-cart-wrapper">
+          <div class="store-language-container">
+            <?php echo $this->getChildHtml('store_language') ?>
           </div>
         </div>
-        <a id="header-mobile-links-btn" class="header-mobile-links-btn">
-          <img class="header-mobile-menu" width="60" src="<?php echo $this->getSkinUrl('images/mobile_menu_button.png'); ?>" />
-        </a>
+        <?php if( !Mage::getSingleton( 'customer/session' )->isLoggedIn() ): ?>
+          <a id="header-mobile-links-btn" class="header-mobile-links-btn">
+            <img class="header-mobile-menu" width="60" src="<?php echo $this->getSkinUrl('images/mobile_menu_button.png'); ?>" />
+          </a>
+        <?php else: ?>
+          <div class="header-top-name" id="header-top-account">
+            <img class="header-top-account-img" height="45" width="45" src="<?php echo $this->getSkinUrl('images/account-circle.svg'); ?>" />
+            <img class="header-top-account-arrow" height="25" width="25" src="<?php echo $this->getSkinUrl('images/menu-down.svg'); ?>" />
+          </div>
+        <?php endif; ?>
       </div>
+    </div>
 
-      <div style="display: none" class="header-mobile-links">
-        <a class="button mobile-header" id="login-button" href="<?php echo $this->helper('customer')->getAccountUrl(); ?>" data-target-element="#header-account" class="skip-link skip-account">
-            <span class="icon"></span>
-            <span class="label"><?php echo $this->__('Login'); ?></span>
-        </a>
-        <a class="button mobile-header" href="<?php echo $this->helper('customer')->getRegisterUrl(); ?>" data-target-element="#header-account" class="skip-link skip-account">
-            <span class="icon"></span>
-            <span class="label"><?php echo $this->__('Register'); ?></span>
-        </a>
-      </div>
+    <?php if( !Mage::getSingleton( 'customer/session' )->isLoggedIn() ): ?>
+
+    <div style="display: none" class="header-mobile-links">
+      <a class="button mobile-header" id="login-button" href="<?php echo $this->helper('customer')->getAccountUrl(); ?>" data-target-element="#header-account" class="skip-link skip-account">
+          <span class="icon"></span>
+          <span class="label"><?php echo $this->__('Login'); ?></span>
+      </a>
+      <a class="button mobile-header" href="<?php echo $this->helper('customer')->getRegisterUrl(); ?>" data-target-element="#header-account" class="skip-link skip-account">
+          <span class="icon"></span>
+          <span class="label"><?php echo $this->__('Register'); ?></span>
+      </a>
+    </div>
 
     <?php else: ?>
+
+      <div class="header-top-links" id="header-top-links" style="display: none">
+        <ul>
+          <li><a href="<?php echo Mage::getUrl('customer/account/index/'); ?>"><?php echo $this->__("My Account"); ?></a></li>
+          <li><a href="<?php echo Mage::getUrl('customerasaproduct'); ?>"><?php echo $this->__("My Page"); ?></a></li>
+          <li><a href="<?php echo Mage::getUrl('customer/account/logout'); ?>"><?php echo $this->__("Log Out"); ?></a></li>
+        </ul>
+      </div>
+
+    <?php endif; ?>
+
+  <?php // Desktop version ?>
+  <?php else: ?>
 
     <div class="page-header-container">
         <a class="logo" href="<?php echo $this->getUrl('') ?>">
@@ -84,25 +107,7 @@
             <img src="<?php echo $this->getLogoSrcSmall() ?>" alt="<?php echo $this->getLogoAlt() ?>" class="small" />
         </a>
 
-        <?php // In order for the language switcher to display next to logo on smaller viewports, it will be moved here.
-              // See app.js for details ?>
-
-        <!-- Skip Links -->
-
         <div class="skip-links">
-            <!--
-            <a href="#header-nav" class="skip-link skip-nav">
-                <span class="icon"></span>
-                <span class="label"><?php //echo $this->__('Menu'); ?></span>
-            </a>
-            -->
-            <!--
-            <a href="#header-search" class="skip-link skip-search">
-                <span class="icon"></span>
-                <span class="label"><?php //echo $this->__('Search'); ?></span>
-            </a>
-            -->
-
 
             <div class="account-cart-wrapper">
 
@@ -114,6 +119,7 @@
                 </div>
 
                 <?php if( !Mage::getSingleton( 'customer/session' )->isLoggedIn() ): ?>
+
                   <a class="button" id="login-button" href="<?php echo $this->helper('customer')->getAccountUrl(); ?>" data-target-element="#header-account" class="skip-link skip-account">
                       <span class="icon"></span>
                       <span class="label"><?php echo $this->__('Login'); ?></span>
@@ -122,7 +128,9 @@
                       <span class="icon"></span>
                       <span class="label"><?php echo $this->__('Register'); ?></span>
                   </a>
+
                 <?php else: ?>
+
                   <div class="header-top-name" id="header-top-account">
                     <p><?php echo Mage::getSingleton('customer/session')->getCustomer()->getName(); ?></p>
                     <img class="header-top-account-img" height="45" width="45" src="<?php echo $this->getSkinUrl('images/account-circle.svg'); ?>" />
@@ -135,6 +143,7 @@
                       <li><a href="<?php echo Mage::getUrl('customer/account/logout'); ?>"><?php echo $this->__("Log Out"); ?></a></li>
                     </ul>
                   </div>
+
                 <?php endif; ?>
 
                 <div class="header-minicart">
@@ -142,34 +151,11 @@
                 </div>
             </div>
 
-
         </div>
 
-
-
-        <!-- Navigation -->
-        <!--
-        <div id="header-nav" class="skip-content">
-            <?php //echo $this->getChildHtml('topMenu') ?>
-        </div>
-        -->
-
-        <!-- Search -->
-        <!--
-        <div id="header-search" class="skip-content">
-            <?php //echo $this->getChildHtml('topSearch') ?>
-        </div>
-        -->
-
-        <!-- Account -->
-        <!--
-        <div id="header-account" class="skip-content">
-            <?php //echo $this->getChildHtml('topLinks') ?>
-        </div>
-        -->
     </div>
 
-    <?php endif; ?>
+  <?php endif; ?>
 
 </header>
 <?php

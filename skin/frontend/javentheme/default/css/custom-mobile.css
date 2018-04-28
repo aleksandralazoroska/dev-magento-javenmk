@@ -11,15 +11,15 @@ and (max-device-width : 480px) {
 
   .page-header .skip-links {
     border: none;
-    width: 80px;
+    width: 180px;
     float: left;
     padding-left: 25px;
   }
 
   .header-mobile-links-btn {
-    margin-top: 3px;
+    margin-top: -10px;
     display: inline-block;
-    margin-left: 40px;
+    margin-left: 45px;
   }
 
   #header-mobile-links-btn:hover {
@@ -32,9 +32,25 @@ and (max-device-width : 480px) {
 
   .page-header-container .store-language-container {
     float: left;
-    width: 100%;
+    width: auto;
     max-width: 100%;
     margin: 0;
+  }
+
+  .page-header-container .header-top-name {
+    margin-top: -7px;
+  }
+
+  .header-top-links {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 20px;
+  }
+
+  .header-top-links a {
+    color: #9e9e9e;
+    font-size: 16px;
   }
 
   .store-language-container .form-language-visible .language-flag {
@@ -73,6 +89,11 @@ and (max-device-width : 480px) {
 
   /* Main Container */
 
+  .col2-right-layout, .col2-left-layout {
+    width: auto !important;
+    min-width: auto !important;
+  }
+
   .main-container .col-main {
     margin-bottom: 0;
   }
@@ -86,7 +107,7 @@ and (max-device-width : 480px) {
   }
 
   .home-container-poznat-search {
-    width: auto;
+    width: 100%;
     border-radius: 0;
     padding: 20px 0;
   }
@@ -107,16 +128,20 @@ and (max-device-width : 480px) {
 
   .home-container-bidi-javen {
     padding-top: 60px;
-    padding-bottom: 100px;
+    padding-bottom: 60px;
   }
 
-  .home-container-poznat-search .search-input {
+  .home-container-poznat-search .advanced-search .form-list li {
+    float: none;
+  }
+
+  .home-container-poznat-search .advanced-search input.input-text {
     width: 300px !important;
     margin-right: 0;
     margin-bottom: 15px;
   }
 
-  .home-container-poznat-search .search-select {
+  .home-container-poznat-search .advanced-search select.search-select {
     width: 300px;
     margin-right: 0;
     margin-bottom: 15px;
@@ -298,6 +323,99 @@ and (max-device-width : 480px) {
 
   /* Category */
 
+  /* Product */
+
+  .product-view {
+    width: auto;
+  }
+
+  .product-cover-img-box, .product-img-box {
+    width: auto;
+  }
+
+  .product-cover-img-box img {
+    max-width: 100%;
+  }
+
+  .product-shop-information {
+    float: none;
+    margin: 0 auto;
+  }
+
+  .product-shop-information p {
+    text-align: center;
+  }
+
+  .product-shop-social {
+    float: none;
+  }
+
+  .product-shop-working-hours {
+    float: none;
+    display: inline-block;
+    padding-right: 0;
+  }
+
+  .product-shop-working-hours p {
+    text-align: center;
+  }
+
+  .product-shop-map {
+    width: auto;
+    float: none;
+  }
+
+  .product-shop-google-map {
+    float: none;
+    width: auto;
+  }
+
+  .product-page-border {
+    width: 100%;
+    float: none;
+  }
+
+  .product-image-gallery {
+    width: auto;
+    float: none;
+  }
+
+  .product-image-gallery .gallery-image.visible {
+    float: none;
+  }
+
+  .product-shop .more-views {
+    float: none;
+    width: auto;
+    margin-right: 0;
+  }
+
+  .product-shop .more-views ul {
+    padding-right: 0;
+  }
+
+  .product-image-thumbs li {
+    width: auto;
+  }
+
+  .product-shop-promotions {
+    float: none;
+    width: auto;
+  }
+
+  .product-page-border1 {
+    width: 100%;
+    float: none;
+    display: inline-block;
+  }
+
+  .product-page-related {
+    float: none;
+    width: auto;
+  }
+
+  /* Product */
+
   /* Login and Register */
 
   .account-login {
@@ -375,6 +493,49 @@ and (max-device-width : 480px) {
 
   /* Login and Register */
 
+  /* My Account */
+
+  .my-account {
+    width: auto;
+  }
+
+  .my-account .dashboard {
+    margin-top: 20px;
+  }
+
+  .my-account .dashboard .col-1 {
+    width: 100%;
+    float: none;
+  }
+
+  .my-account .dashboard .box-content p {
+    text-align: center;
+  }
+
+  .my-account .dashboard .button {
+    margin-right: 0;
+  }
+
+  .my-account .dashboard .col-2 {
+    width: 100%;
+    float: none;
+  }
+
+  .my-account .dashboard .payment-card {
+    margin: 0 auto;
+  }
+
+  .my-account .dashboard .col-3 {
+    width: 100%;
+    float: none;
+  }
+
+  .my-account .dashboard .col-3 .data-table th {
+    text-align: center;
+  }
+
+  /* My Account */
+
   /* Payments and Terms */
 
   .cms-payments-options .std p {
@@ -439,6 +600,7 @@ and (max-device-width : 480px) {
 
   .customerasaproduct-container .group-select li {
     width: 300px;
+    margin: 0 auto;
   }
 
   .customerasaproduct-container .input-box input {
@@ -449,12 +611,33 @@ and (max-device-width : 480px) {
     width: 300px;
   }
 
+  .customerasaproduct-container1 {
+    padding-top: 0;
+  }
+
+  .customerasaproduct-container .input-box .working-hours input {
+    width: 300px;
+    margin-right: 0;
+  }
+
   .customerasaproduct-container2 .input-box textarea {
     width: 300px;
   }
 
   .customerasaproduct-container .customerasaproduct-map {
     width: 300px !important;
+  }
+
+  .customerasaproduct-container4 .input-box textarea {
+    width: 300px;
+  }
+
+  .customerasaproduct-container .buttons-set {
+    text-align: center;
+  }
+
+  .customerasaproduct-container .buttons-set .button {
+    width: 300px;
   }
 
   /* Create Business Page */
