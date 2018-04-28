@@ -423,6 +423,14 @@ body.cms-home .main-container {
   background-size: 40px;
 }
 
+.catalogsearch-advanced-result .category-products {
+  padding-top: 40px;
+}
+
+.catalogsearch-advanced-result .error-msg {
+  margin-top: 40px;
+}
+
 .advanced-search {
   background: none;
   border: 0;

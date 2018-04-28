@@ -129,6 +129,10 @@ Advanced search results
                 <action method="setListCollection"/>
             </block>
         </reference>
+        <reference name="right">
+          <remove name="cart_sidebar"/>
+  	      <block type="core/template" template="page/promotions-sidebar.phtml" />
+        </reference>
     </catalogsearch_advanced_result>
 
     <catalogsearch_term_popular translate="label">

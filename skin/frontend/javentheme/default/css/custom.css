@@ -292,7 +292,10 @@ label {
   min-height: calc(100vh - 321px);
 }
 
-.catalog-category-view .main-container, .catalogsearch-result-index .main-container, .catalog-product-view .main-container {
+.catalog-category-view .main-container,
+.catalogsearch-result-index .main-container,
+.catalog-product-view .main-container,
+.catalogsearch-advanced-result .main-container {
   min-height: calc(100vh - 465px);
 }
 

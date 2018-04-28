@@ -219,7 +219,7 @@
                 <?php $_code = $_attribute->getAttributeCode() ?>
                 <li>
                     <?php if ($_code == 'description'): ?>
-                      <input type="text" name="description" id="description" value="<?php echo $block->escapeHtml($block->getAttributeValue($_attribute)) ?>" title="<?php echo $block->escapeHtml($block->getAttributeLabel($_attribute)) ?>"  class="input-text <?php echo $block->getAttributeValidationClass($_attribute) ?>" maxlength="<?php echo $maxQueryLength;?>" />
+                      <input type="text" name="description" id="description" onfocus="if(this.value == '<?php echo $this->__('Search') ?>') { this.value = ''; }" value="<?php echo $this->__('Search') ?>" title="<?php echo $block->escapeHtml($block->getAttributeLabel($_attribute)) ?>"  class="input-text <?php echo $block->getAttributeValidationClass($_attribute) ?>" maxlength="<?php echo $maxQueryLength;?>" />
                     <?php elseif ($_code == 'city_attr'): ?>
                       <select name="city_attr" id="city_attr" class="search-select">
                           <?php foreach($options as $key => $value): ?>
