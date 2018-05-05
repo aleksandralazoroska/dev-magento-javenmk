@@ -69,3 +69,7 @@
     <!--<button type="button" class="button" title="<?php //echo Mage::helper('core')->quoteEscape($this->__('Continue Shopping')) ?>" onclick="window.location='<?php //echo $this->getUrl() ?>'"><span><span><?php //echo $this->__('Continue Shopping') ?></span></span></button>-->
     <a class="button" href="<?php echo Mage::getBaseUrl() . $productUrlKey ?>"><?php echo $this->__("Your business page") ?></a>
 </div>
+<p style="margin-top: 20px" ><?php echo $this->__('Suggested marketing packages'); ?></p>
+<div class="buttons-set">
+  <a class="button" href="<?php echo Mage::getBaseUrl() . 'customerasaproduct/packages/marketing' ?>"><?php echo $this->__("Marketing page") ?></a>
+</div>

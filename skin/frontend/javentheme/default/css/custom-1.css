@@ -1137,3 +1137,18 @@ a.product-shop-share-page {
   width: 1200px;
   background-color: #f4f4f4;
 }
+
+/*  Payment and Terms Albanian */
+
+.cms-page-view .std h4 {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 18px;
+}
+
+.cms-page-view .std p {
+  text-align: left;
+  color: grey;
+  margin-top: 30px;
+  font-size: 15px;
+}

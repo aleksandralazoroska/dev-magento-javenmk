@@ -1,7 +1,7 @@
-/* Smartphones (portrait and landscape) ----------- */
+/* From 480px to 640px width */
 @media only screen
-and (min-device-width : 320px)
-and (max-device-width : 480px) {
+and (min-device-width : 480px)
+and (max-device-width : 640px) {
 
   /* Header */
   .page-header {
@@ -78,7 +78,7 @@ and (max-device-width : 480px) {
   }
 
   .mobile-header {
-    width: 300px;
+    width: 500px;
     margin-left: 0 !important;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -136,23 +136,25 @@ and (max-device-width : 480px) {
   }
 
   .home-container-poznat-search .advanced-search input.input-text {
-    width: 300px !important;
+    width: 500px !important;
     margin-right: 0;
     margin-bottom: 15px;
+    text-align: center;
   }
 
   .home-container-poznat-search .advanced-search select.search-select {
-    width: 300px;
+    width: 500px;
     margin-right: 0;
     margin-bottom: 15px;
+    text-align: center;
   }
 
   .home-container-poznat-search .search-submit {
-    width: 300px;
+    width: 500px;
   }
 
   .home-container-categories {
-    width: 300px;
+    width: 500px;
     padding-left: 0;
   }
 
@@ -161,7 +163,7 @@ and (max-device-width : 480px) {
   }
 
   .home-container-za {
-    width: 300px;
+    width: 500px;
     margin-bottom: 60px;
   }
 
@@ -185,7 +187,7 @@ and (max-device-width : 480px) {
   }
 
   .home-container-vlozi-bottom {
-    width: 300px;
+    width: 500px;
     display: inline-block;
     padding-left: 0;
   }
@@ -201,7 +203,7 @@ and (max-device-width : 480px) {
   }
 
   .home-container-packages-box {
-    width: 300px;
+    width: 500px;
     margin: 0 auto;
     float: none;
     margin-bottom: 20px;
@@ -240,12 +242,12 @@ and (max-device-width : 480px) {
 
   .footer-custom-right-kontakt {
     padding-left: 0;
-    width: 300px;
+    width: 500px;
   }
 
   .footer-custom-right-fb {
     padding-left: 0;
-    width: 300px;
+    width: 500px;
     padding-bottom: 20px;
   }
 
@@ -423,18 +425,18 @@ and (max-device-width : 480px) {
   }
 
   .account-login .col2-set {
-    width: 300px;
+    width: 500px;
     padding-left: 0;
     margin: 0 auto;
   }
 
   .account-login .input-box {
     margin: 0 auto;
-    width: 300px;
+    width: 500px;
   }
 
   .account-login .buttons-set a {
-    width: 300px;
+    width: 500px;
     text-align: center;
     margin-bottom: 20px;
   }
@@ -448,18 +450,18 @@ and (max-device-width : 480px) {
   }
 
   .account-create .col2-set {
-    width: 300px;
+    width: 500px;
     padding-left: 0;
     margin: 0 auto;
   }
 
   .account-create .input-box {
     margin: 0 auto;
-    width: 300px;
+    width: 500px;
   }
 
   .account-create .buttons-set a {
-    width: 300px;
+    width: 500px;
     text-align: center;
     margin-bottom: 20px;
   }
@@ -481,7 +483,7 @@ and (max-device-width : 480px) {
   }
 
   .account-create .buttons-set {
-    width: 300px;
+    width: 500px;
     margin-left: 0;
     padding-left: 0;
     margin: 0 auto;
@@ -500,7 +502,7 @@ and (max-device-width : 480px) {
   }
 
   .my-account .form-list input {
-    width: 300px;
+    width: 500px;
   }
 
   .my-account .buttons-set {
@@ -512,8 +514,9 @@ and (max-device-width : 480px) {
   }
 
   .my-account .buttons-set button.button {
-    width: 300px;
+    width: 500px;
   }
+
 
   /* Login and Register */
 
@@ -563,25 +566,20 @@ and (max-device-width : 480px) {
   /* Payments and Terms */
 
   .cms-payments-options .std p {
-    width: 300px;
-    margin: 0 auto;
-  }
-
-  .cms-payments-options .std h4 {
-    width: 300px;
-  }
-
-  .cms-terms-and-conditions .std p {
-    width: 300px;
-    margin: 0 auto;
-  }
-
-  .cms-page-view .std p {
+    width: 500px;
     text-align: center;
   }
 
+  .cms-payments-options .std h4 {
+    width: 500px;
+  }
+
+  .cms-terms-and-conditions .std p {
+    width: 500px;
+  }
+
   .cms-terms-and-conditions .std h4 {
-    width: 300px;
+    width: 500px;
   }
 
   /* Payments and Terms */
@@ -589,7 +587,7 @@ and (max-device-width : 480px) {
   /* Marketing Page */
 
   .marketing-packages-container {
-    width: 300px;
+    width: 500px;
     margin: 0 auto;
   }
 
@@ -628,16 +626,16 @@ and (max-device-width : 480px) {
   }
 
   .customerasaproduct-container .group-select li {
-    width: 300px;
+    width: 500px;
     margin: 0 auto;
   }
 
   .customerasaproduct-container .input-box input {
-    width: 300px;
+    width: 500px;
   }
 
   .customerasaproduct-container .input-box select {
-    width: 300px;
+    width: 500px;
   }
 
   .customerasaproduct-container1 {
@@ -645,20 +643,20 @@ and (max-device-width : 480px) {
   }
 
   .customerasaproduct-container .input-box .working-hours input {
-    width: 300px;
+    width: 500px;
     margin-right: 0;
   }
 
   .customerasaproduct-container2 .input-box textarea {
-    width: 300px;
+    width: 500px;
   }
 
   .customerasaproduct-container .customerasaproduct-map {
-    width: 300px !important;
+    width: 500px !important;
   }
 
   .customerasaproduct-container4 .input-box textarea {
-    width: 300px;
+    width: 500px;
   }
 
   .customerasaproduct-container .buttons-set {
@@ -666,7 +664,7 @@ and (max-device-width : 480px) {
   }
 
   .customerasaproduct-container .buttons-set .button {
-    width: 300px;
+    width: 500px;
   }
 
   /* Create Business Page */

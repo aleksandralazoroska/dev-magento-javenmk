@@ -131,6 +131,7 @@ Advanced search results
         </reference>
         <reference name="right">
           <remove name="cart_sidebar"/>
+          <remove name="sale.reorder.sidebar"></remove>
   	      <block type="core/template" template="page/promotions-sidebar.phtml" />
         </reference>
     </catalogsearch_advanced_result>

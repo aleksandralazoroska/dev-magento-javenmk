@@ -177,7 +177,12 @@
                       <h1><?php echo $_product->getData('phone'); ?></h1>
                       <p><?php echo $this->__($_product->getResource()->getAttribute('email')->getFrontendLabel()) . " " . $_product->getData('email'); ?></p>
                       <p><?php echo $this->__($_product->getResource()->getAttribute('address')->getFrontendLabel()) . " " . $_product->getData('address'); ?></p>
-                      <p><?php echo $this->__($_product->getResource()->getAttribute('city')->getFrontendLabel()) . " " .$_product->getData('city_attr'); ?></p>
+
+                      <?php $city_array = $_product->getData('city_attr'); ?>
+                      <?php $city = explode(' ', $city_array, 2); ?>
+                      <?php $city2 = explode(' ', $city_array, 3); ?>
+
+                      <p><?php echo $this->__($_product->getResource()->getAttribute('city')->getFrontendLabel()) . " " . $city[0] ?></p>
 
                       <div class="product-shop-social">
                         <a href="https://www.instagram.com/"><img src="<?php echo $this->getSkinUrl('images/instagram.svg') ?>" alt=""/></a>

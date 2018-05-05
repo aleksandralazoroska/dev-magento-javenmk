@@ -115,7 +115,10 @@
 
                       <p><?php echo Mage::getModel('catalog/product')->load($_product->getId())->getPhone(); ?></p>
                       <p><?php echo Mage::getModel('catalog/product')->load($_product->getId())->getAddress() ?></p>
-                      <p><?php echo Mage::getModel('catalog/product')->load($_product->getId())->getCityAttr() ?></p>
+                      <?php $city_array = Mage::getModel('catalog/product')->load($_product->getId())->getCityAttr(); ?>
+                      <?php $city = explode(' ', $city_array, 2); ?>
+                      <?php $city2 = explode(' ', $city_array, 3); ?>
+                      <p><?php echo $city[0] ?></p>
 
 
 
@@ -210,8 +213,11 @@
                     }
                     ?>
                     <p><?php echo Mage::getModel('catalog/product')->load($_product->getId())->getPhone(); ?></p>
-                    <p><?php echo Mage::getModel('catalog/product')->load($_product->getId())->getAddress() ?></p>
-                    <p><?php echo Mage::getModel('catalog/product')->load($_product->getId())->getCityAttr() ?></p>
+                    <p><?php echo Mage::getModel('catalog/product')->load($_product->getId())->getAddress(); ?></p>
+                    <?php $city_array = Mage::getModel('catalog/product')->load($_product->getId())->getCityAttr(); ?>
+                    <?php $city = explode(' ', $city_array, 2); ?>
+                    <?php $city2 = explode(' ', $city_array, 3); ?>
+                    <p><?php echo $city[0] ?></p>
 
                     <?php
 
