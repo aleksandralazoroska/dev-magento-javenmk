@@ -284,7 +284,8 @@ label {
 .customerasaproduct-packages-marketing .main-container,
 .cms-payments-options .main-container,
 .cms-terms-and-conditions .main-container,
-.cms-page-view .main-container {
+.cms-page-view .main-container,
+.cms-no-route .main-container {
   min-height: calc(100vh - 241px);
 }
 

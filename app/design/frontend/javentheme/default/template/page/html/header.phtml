@@ -45,7 +45,7 @@
 <?php $useragent = $_SERVER['HTTP_USER_AGENT']; ?>
 
 <header id="header" class="page-header">
-  
+
   <?php // Mobile version ?>
   <?php if(preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"])): ?>
 
@@ -145,6 +145,10 @@
                   </div>
 
                 <?php endif; ?>
+
+                <a href="<?php echo Mage::getUrl('checkout/cart'); ?>" class="header-cart-btn">
+                    <img width="35" src="<?php echo $this->getSkinUrl('images/cart-orange.svg'); ?>" />
+                </a>
 
                 <div class="header-minicart">
                     <?php echo $this->getChildHtml('minicart_head'); ?>

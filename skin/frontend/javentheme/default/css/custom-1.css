@@ -59,7 +59,7 @@
 }
 
 .page-header-container .header-top-name {
-  float: right;
+  float: left;
   color: #FF9800;
   margin-top: -5px;
   cursor: pointer;
@@ -111,6 +111,11 @@
 
 .page-header-container .header-top-links a:hover {
   text-decoration: none;
+}
+
+.page-header-container .header-cart-btn {
+  float: right;
+  padding-left: 20px;
 }
 
 .form-language {
