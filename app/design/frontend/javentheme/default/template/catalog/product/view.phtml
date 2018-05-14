@@ -185,10 +185,10 @@
                       <p><?php echo $this->__($_product->getResource()->getAttribute('city')->getFrontendLabel()) . " " . $city[0] ?></p>
 
                       <div class="product-shop-social">
-                        <a href="https://www.instagram.com/"><img src="<?php echo $this->getSkinUrl('images/instagram.svg') ?>" alt=""/></a>
-                        <a href="https://twitter.com/"><img src="<?php echo $this->getSkinUrl('images/twitter-box.svg') ?>" alt=""/></a>
-                        <a href="https://www.facebook.com/"><img src="<?php echo $this->getSkinUrl('images/facebook-box.svg') ?>" alt=""/></a>
-                        <a href="https://www.web.com/"><img src="<?php echo $this->getSkinUrl('images/web.svg') ?>" alt=""/></a>
+                        <a href="<?php echo $_product->getData('instagram') ?>" target="_blank" ><img src="<?php echo $this->getSkinUrl('images/instagram.svg') ?>" alt=""/></a>
+                        <a href="<?php echo $_product->getData('twitter') ?>" target="_blank" ><img src="<?php echo $this->getSkinUrl('images/twitter-box.svg') ?>" alt=""/></a>
+                        <a href="<?php echo $_product->getData('facebook') ?>" target="_blank" ><img src="<?php echo $this->getSkinUrl('images/facebook-box.svg') ?>" alt=""/></a>
+                        <a href="<?php echo $_product->getData('webpage') ?>" target="_blank" ><img src="<?php echo $this->getSkinUrl('images/web.svg') ?>" alt=""/></a>
                       </div>
                     </div>
 

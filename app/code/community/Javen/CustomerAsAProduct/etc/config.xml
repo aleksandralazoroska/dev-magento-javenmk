@@ -14,15 +14,6 @@
             <frontName>customerasaproduct</frontName>
           </args>
       </customerasaproduct>
-      <!--
-      <customer>
-        <args>
-          <modules>
-            <Javen_CustomerAsAProduct before="Mage_Customer">Javen_CustomerAsAProduct</Javen_CustomerAsAProduct>
-          </modules>
-        </args>
-      </customer>
-      -->
     </routers>
 		<layout>
 		  <updates>
