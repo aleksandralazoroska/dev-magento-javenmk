@@ -94,10 +94,6 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
         ->setPrice(1.00)
 
-        //->setMetaTitle('test meta title 2')
-        //->setMetaKeyword('test meta keyword 2')
-        //->setMetaDescription('test meta description 2')
-
         ->setDescription($descTranslatedArray)
         ->setShortDescription($params['about-us'])
 
@@ -127,21 +123,28 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
       $product->addImageToMediaGallery($imagesArray['cover-image'], array('cover_image'), false, false);
 
       // Remove the image from the temp directory and removing the cover image from the array
-      unlink($imagesArray['cover-image']);
+      //unlink($imagesArray['cover-image']);
       unset($imagesArray['cover-image']);
 
-      // Adding all media images
-      foreach ($imagesArray as $key => $value) {
+      try {
 
-        // Uploading media images
-        $product->addImageToMediaGallery($value, array('image','thumbnail','small_image'), false, false);
+        // Adding all media images
+        foreach ($imagesArray as $key => $value) {
 
-        // Remove the image from the temp directory
-        unlink($value);
+          // Uploading media images
+          $product->addImageToMediaGallery($value, array('image','thumbnail','small_image'), false, false);
 
+          // Remove the image from the temp directory
+          unlink($value);
+
+        }
+
+        $product->save();
+
+      } catch(Exception $e){
+        Mage::getSingleton('core/session')->addError('Invalid image type.');
+        Mage::log($e->getMessage());
       }
-
-      $product->save();
 
       // Redirecting to select package page
       $this->_redirect('customerasaproduct/packages/selectpackage');
@@ -229,21 +232,28 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
       // Adding all media images
       $imagesArray = Mage::helper('customerasaproduct')->coverImageUpload($_FILES);
 
-      if (!empty($imagesArray)) {
+      try {
 
-        // Adding all media images
-        foreach ($imagesArray as $key => $value) {
+        if (!empty($imagesArray)) {
 
-          // Uploading media images
-          $product->addImageToMediaGallery($value, array('image','thumbnail','small_image'), false, false);
+          // Adding all media images
+          foreach ($imagesArray as $key => $value) {
 
-          // Remove the image from the temp directory
-          unlink($value);
+            // Uploading media images
+            $product->addImageToMediaGallery($value, array('image','thumbnail','small_image'), false, false);
+
+            // Remove the image from the temp directory
+            unlink($value);
+
+          }
+
+          $product->save();
 
         }
 
-        $product->save();
-
+      } catch(Exception $e){
+        Mage::getSingleton('core/session')->addError('Invalid image type!');
+        Mage::log($e->getMessage());
       }
 
       // Check if the business already bought some package
