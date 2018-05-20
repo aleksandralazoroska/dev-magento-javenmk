@@ -15,6 +15,8 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
     public function postAction() {
 
+      Mage::log(date("h:i:sa"), null, 'developer.log');
+
       if( !Mage::getSingleton( 'customer/session' )->isLoggedIn() ) {
         return $this->_redirect();
       }
@@ -48,62 +50,65 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
       try {
 
         $product->setWebsiteIds(array(1)) //website ID the product is assigned to, as an array
-        ->setAttributeSetId(10) //'Companies' attribute set
-        ->setTypeId('virtual') //product type
-        ->setCreatedAt(strtotime('now')) //product creation time
+          ->setAttributeSetId(10) //'Companies' attribute set
+          ->setTypeId('virtual') //product type
+          ->setCreatedAt(strtotime('now')) //product creation time
 
-        ->setSku($productSku) //SKU
-        ->setName($params['name'])
-        ->setWeight(1.0000)
-        ->setStatus(1)
-        ->setTaxClassId(0)
-        ->setVisibility(Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH) //catalog and search visibility
-        ->setUrlKey($productSku)
+          ->setSku($productSku) //SKU
+          ->setName($params['name'])
+          ->setWeight(1.0000)
+          ->setStatus(1)
+          ->setTaxClassId(0)
+          ->setVisibility(Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH) //catalog and search visibility
+          ->setUrlKey($productSku)
 
-        //Custom Informations
-        ->setPhone($params['telephone'])
-        ->setPhone2($params['telephone-2'])
-        ->setEmail($customer->getEmail())
-        ->setCoverPicture()
-        ->setAddress($params['address'])
-        ->setMapLat($params['map-lat'])
-        ->setMapLng($params['map-lng'])
-        ->setCityAttr($cityTranslatedArray)
+          //Custom Informations
+          ->setPhone($params['telephone'])
+          ->setPhone2($params['telephone-2'])
+          ->setEmail($customer->getEmail())
+          ->setCoverPicture()
+          ->setAddress($params['address'])
+          ->setMapLat($params['map-lat'])
+          ->setMapLng($params['map-lng'])
+          ->setCityAttr($cityTranslatedArray)
 
-        //Custom Social
-        ->setWebpage($params['webpage'])
-        ->setFacebook($params['facebook'])
-        ->setTwitter($params['twitter'])
-        ->setInstagram($params['instagram'])
+          //Custom Social
+          ->setWebpage($params['webpage'])
+          ->setFacebook($params['facebook'])
+          ->setTwitter($params['twitter'])
+          ->setInstagram($params['instagram'])
 
-        //Custom Working Hours
-        ->setMonday($params['monday-from'])
-        ->setMondayTo($params['monday-to'])
-        ->setTuesday($params['tuesday-from'])
-        ->setTuesdayTo($params['tuesday-to'])
-        ->setWednesday($params['wednesday-from'])
-        ->setWednesdayTo($params['wednesday-to'])
-        ->setThursday($params['thursday-from'])
-        ->setThursdayTo($params['thursday-to'])
-        ->setFriday($params['friday-from'])
-        ->setFridayTo($params['friday-to'])
-        ->setSaturday($params['saturday-from'])
-        ->setSaturdayTo($params['saturday-to'])
-        ->setSunday($params['sunday-from'])
-        ->setSundayTo($params['sunday-to'])
+          //Custom Working Hours
+          ->setMonday($params['monday-from'])
+          ->setMondayTo($params['monday-to'])
+          ->setTuesday($params['tuesday-from'])
+          ->setTuesdayTo($params['tuesday-to'])
+          ->setWednesday($params['wednesday-from'])
+          ->setWednesdayTo($params['wednesday-to'])
+          ->setThursday($params['thursday-from'])
+          ->setThursdayTo($params['thursday-to'])
+          ->setFriday($params['friday-from'])
+          ->setFridayTo($params['friday-to'])
+          ->setSaturday($params['saturday-from'])
+          ->setSaturdayTo($params['saturday-to'])
+          ->setSunday($params['sunday-from'])
+          ->setSundayTo($params['sunday-to'])
 
-        ->setPrice(1.00)
+          //Actions and Promotions
+          ->setCompanyPromotions($params['company-promotions'])
 
-        ->setDescription($descTranslatedArray)
-        ->setShortDescription($params['about-us'])
+          ->setPrice(1.00)
 
-        ->setStockData(array(
-                       'is_in_stock' => 1, //Stock Availability
-                       'qty' => 9999999 //qty
-                   )
-        )
+          ->setDescription($descTranslatedArray)
+          ->setShortDescription($params['about-us'])
 
-        ->setCategoryIds(array($params['category'])); //assign product to categories
+          ->setStockData(array(
+                         'is_in_stock' => 1, //Stock Availability
+                         'qty' => 9999999 //qty
+                     )
+          )
+
+          ->setCategoryIds(array($params['category'])); //assign product to categories
 
         $product->save();
 
@@ -212,6 +217,9 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
                 ->setSaturdayTo($params['saturday-to'])
                 ->setSunday($params['sunday-from'])
                 ->setSundayTo($params['sunday-to'])
+
+                //Actions and Promotions
+                ->setCompanyPromotions($params['company-promotions'])
 
                 // Description
                 ->setDescription($descTranslatedArray)

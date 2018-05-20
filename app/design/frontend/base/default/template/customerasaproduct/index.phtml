@@ -212,19 +212,19 @@
       <div class="customerasaproduct-container4">
         <label for="promotions" ><?php echo $this->__("Actions, sale, promotions"); ?></label>
         <div class="input-box">
-          <textarea name="promotions" id="promotions" title="promotions" value="" class="input-text" type="text" maxlength="200"></textarea>
+          <textarea name="company-promotions" id="promotions" title="promotions" value="" class="input-text" type="text" maxlength="200"><?php echo $_product->getCompanyPromotions(); ?></textarea>
       </div>
       </div>
 
     </fieldset>
     <?php if ($this->getBusinessDetails() != ''): ?>
       <div class="buttons-set">
-          <a class="button" type=""><span><?php echo $this->__("Cancel") ?></span></a>
+          <a class="button" href="<?php echo Mage::getUrl('customer/account'); ?>" type=""><span><?php echo $this->__("Cancel") ?></span></a>
           <button class="form-button-confirm button" type="submit"><span><?php echo $this->__("Update") ?></span></button>
       </div>
     <?php else: ?>
       <div class="buttons-set">
-          <a class="button" type=""><span><?php echo $this->__("Cancel") ?></span></a>
+          <a class="button" href="<?php echo Mage::getUrl('customer/account'); ?>" type=""><span><?php echo $this->__("Cancel") ?></span></a>
           <button class="form-button-confirm button" type="submit"><span><?php echo $this->__("Submit") ?></span></button>
       </div>
     <?php endif; ?>

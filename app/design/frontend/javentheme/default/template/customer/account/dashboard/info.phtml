@@ -49,6 +49,7 @@
         <a class="button button-white" ><?php echo $this->__('Update the payment card') ?></a>
         <a class="button" ><?php echo $this->__('Add new payment card') ?></a>
       </div>
+      <p class="payment-card-note" ><?php echo $this->__("If the Bank Transaction method is used, you don't need to place a payment details here."); ?></p>
     </div>
     <div class="col-3">
       <div class="box-title">
@@ -87,6 +88,9 @@
         <?php else: ?>
             <p><?php echo $this->__('You have placed no orders yet.') ?></p>
         <?php endif ?>
+      </div>
+      <div>
+        <a class="button" href="<?php echo $this->getUrl('customerasaproduct/packages/marketing') ?>"><?php echo $this->__('Additional marketing offers') ?></a>
       </div>
     </div>
     <?php //if( $this->isNewsletterEnabled() ): ?>

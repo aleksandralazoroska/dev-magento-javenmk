@@ -305,6 +305,12 @@
   margin-bottom: 60px;
 }
 
+.my-account .col-2 .payment-card-note {
+  text-align: left;
+  margin-top: 20px;
+  font-style: normal !important;
+}
+
 .my-account .dashboard .col-3 {
   width: 33.3%;
   float: left;
@@ -1110,6 +1116,14 @@ a.product-shop-share-page {
 
 .cart-table .button {
   border-radius: 5px;
+}
+
+.iwd_opc_small_button, .iwd_opc_button {
+  background-color: #FF9800 !important;
+}
+
+.iwd_empty_desc {
+  margin-top: 40px;
 }
 
 /* Cart Page */
