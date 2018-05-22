@@ -8,7 +8,7 @@
 
 ?>
 <div class="customerasaproduct-container">
-  <form id="business-register" enctype="multipart/form-data" method="post" action="<?php if ($this->getBusinessDetails() != '') { echo Mage::getUrl('customerasaproduct/index/update'); } else { echo Mage::getUrl('customerasaproduct/index/post'); } ?>">
+  <form id="business-register" enctype="multipart/form-data" onsubmit="<?php if ($this->getBusinessDetails() == '') { echo 'return(validateCover());'; } else { echo ''; } ?>" method="post" action="<?php if ($this->getBusinessDetails() != '') { echo Mage::getUrl('customerasaproduct/index/update'); } else { echo Mage::getUrl('customerasaproduct/index/post'); } ?>">
     <fieldset class="group-select">
       <h3 class="legend"><?php echo $this->__("Design your business page"); ?></h3>
       <h4 class="legend"><?php echo $this->__("Basic details"); ?></h4>
@@ -47,7 +47,8 @@
           </div>
           <div class="input-box">
             <label for="cover-image"><?php echo $this->__("Cover Image"); ?></label><br />
-            <input name="cover-image" id="cover-image" title="Cover Image" value="" class="" type="file" />
+            <input name="cover-image" id="cover-image" title="Cover Image" value="" class="<?php if ($this->getBusinessDetails() == '') { echo 'required-entry'; } else { echo ''; } ?>" type="file" />
+            <p class="cover-image-validation" style="display: none; color: red; text-align: left; margin-top: 10px;"><?php echo $this->__("Please attach a cover image.") ?></p>
           </div>
           <div class="input-box">
             <label for="telephone-1"><?php echo $this->__("Telephone 1"); ?></label><br />
@@ -279,6 +280,16 @@
 </script>
 <script type="text/javascript">
     //< ![CDATA[
+
+        // Validate cover image
+        function validateCover(){
+          var inp = document.getElementById('cover-image');
+          if(inp.files.length === 0){
+              $j(".cover-image-validation").css('display','block');
+              return false;
+          }
+        }
+
         var businessRegister = new VarienForm('business-register');
 
         Validation.add('validate-hours', 'Please enter a valid working hours in the following format: 08:00', function(v) {

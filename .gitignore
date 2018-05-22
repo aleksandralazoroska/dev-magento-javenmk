@@ -43,3 +43,6 @@
 
 error_log
 .ftpquota
+
+test
+/test
