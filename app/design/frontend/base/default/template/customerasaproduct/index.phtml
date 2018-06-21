@@ -17,7 +17,7 @@
           <input name="product-id" style="display: none" value="<?php echo $_product->getId() ?>" class="" />
           <div class="input-box">
             <label for="name"><?php echo $this->__("Name"); ?></label><br />
-            <input name="name" id="name" title="Name" value="<?php echo $_product->getName() ?>" class="required-entry input-text validate-alphanum-with-spaces" type="text" />
+            <input name="name" id="name" title="Name" value="<?php echo $_product->getName() ?>" class="required-entry input-text" maxlength="30" type="text" />
           </div>
           <div class="input-box">
             <label for="category"><?php echo $this->__("Category"); ?></label><br />
@@ -77,9 +77,9 @@
               <?php endforeach; ?>
             </select>
           </div>
-          <div class="input-box">
+          <div class="input-box address-map">
             <label for="Address"><?php echo $this->__("Address"); ?></label><br />
-            <input name="address" id="address" title="Address" value="<?php echo $_product->getAddress(); ?>" class="required-entry input-text maxlength="50"" type="text" />
+            <input name="address" id="address" title="Address" value="<?php echo $_product->getAddress(); ?>" class="required-entry input-text" maxlength="50" type="text" />
             <input id="map-submit" type="button" class="button button-submit-map" value="<?php echo $this->__("Mark map"); ?>" />
             <input onclick="clearOverlays();" type=button class="button button-submit-map" value="<?php echo $this->__("Delete markers"); ?>" />
             <p><small style="float: left;"><?php echo $this->__("* Street format: [Street] [Street Number], [City]"); ?></small></p>

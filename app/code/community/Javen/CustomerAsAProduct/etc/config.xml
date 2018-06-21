@@ -93,4 +93,24 @@
       </customerasaproduct_read>
     </resources>
   </global>
+  <crontab>
+    <jobs>
+        <javen_customerasaproduct_notifier_packages>
+          <schedule>
+            <cron_expr>0 21 * * *</cron_expr>
+          </schedule>
+          <run>
+            <model>customerasaproduct/observer::notifyPackages</model>
+          </run>
+        </javen_customerasaproduct_notifier_packages>
+        <javen_customerasaproduct_notifier_promotions>
+          <schedule>
+            <cron_expr>10 21 * * *</cron_expr>
+          </schedule>
+          <run>
+            <model>customerasaproduct/observer::notifyPromotions</model>
+          </run>
+        </javen_customerasaproduct_notifier_promotions>
+    </jobs>
+  </crontab>
 </config>

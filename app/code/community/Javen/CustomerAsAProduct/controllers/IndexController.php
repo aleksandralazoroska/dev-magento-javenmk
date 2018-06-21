@@ -15,8 +15,6 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
     public function postAction() {
 
-      Mage::log(date("h:i:sa"), null, 'developer.log');
-
       if( !Mage::getSingleton( 'customer/session' )->isLoggedIn() ) {
         return $this->_redirect();
       }

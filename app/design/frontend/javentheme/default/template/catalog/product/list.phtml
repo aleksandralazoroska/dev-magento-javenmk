@@ -120,12 +120,11 @@
                       <?php $city2 = explode(' ', $city_array, 3); ?>
                       <p><?php echo $city[0] ?></p>
 
-
-
                       <?php
 
                         date_default_timezone_set("Europe/Berlin");
 
+                        // Working hours setting
                         $weakdays = array('sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday');
                         $today = date('w');
 
@@ -133,17 +132,45 @@
                         $endTime = Mage::getModel('catalog/product')->load($_product->getId())->getData($weakdays[$today] . '_to');
                         $currentTime = date('H:i');
 
-                        $time1 = DateTime::createFromFormat('H:i', $currentTime);
-                        $time2 = DateTime::createFromFormat('H:i', $startTime);
-                        $time3 = DateTime::createFromFormat('H:i', $endTime);
+                        $current = explode(":", $currentTime, 2);
+                        $start = explode(":", $startTime, 2);
+                        $end = explode(":", $endTime, 2);
+
+                        $currentMins = $current[0] * 60 + $current[1];
+                        $startMins = $start[0] * 60 + $start[1];
+                        $endMins = $end[0] * 60 + $end[1];
 
                       ?>
 
-                      <?php if ($time1 > $time2 && $time1 < $time3): ?>
-                        <p style="color: green"><?php echo $this->__("Open"); ?></p>
+                      <?php if ($endMins < $startMins): ?>
+                        <?php
+
+                            // Get total working hours
+                            $total = 1440 - ($startMins - $endMins);
+                            $t1 = $startMins;
+                            $t2 = $startMins + $total;
+
+                            // Override the currentMins value if we have aftermidnight ours
+                            if ($currentMins < $startMins) {
+                              $currentMins = $currentMins + 1440;
+                            }
+
+                        ?>
+                        <?php if ( $currentMins > $t1 && $currentMins < $t2 ): ?>
+                          <p style="color: green"><?php echo $this->__("Open"); ?></p>
+                        <?php else: ?>
+                          <p style="color: red"><?php echo $this->__("Closed"); ?></p>
+                        <?php endif; ?>
+
                       <?php else: ?>
-                        <p style="color: red"><?php echo $this->__("Closed"); ?></p>
-                      <?php endif ?>
+
+                        <?php if ($currentMins > $startMins && $currentMins < $endMins): ?>
+                          <p style="color: green"><?php echo $this->__("Open"); ?></p>
+                        <?php else: ?>
+                          <p style="color: red"><?php echo $this->__("Closed"); ?></p>
+                        <?php endif ?>
+
+                      <?php endif; ?>
 
                       <p><a href="<?php echo $_product->getProductUrl() ?>" ><?php echo $this->__('More informations'); ?></a></p>
 

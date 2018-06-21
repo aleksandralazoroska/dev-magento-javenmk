@@ -5,7 +5,7 @@ and (max-device-width : 1024px) {
 
   /* Header */
   .page-header {
-    max-width: 480px;
+    max-width: auto;
     height: auto;
   }
 
@@ -13,12 +13,20 @@ and (max-device-width : 1024px) {
     border: none;
     width: 180px;
     padding-left: 25px;
+    float: right;
+    margin-right: 80px;
+  }
+
+  .account-cart-wrapper {
+    position: inherit;
+    margin-top: 16px;
   }
 
   .header-mobile-links-btn {
     margin-top: -10px;
     display: inline-block;
     margin-left: 45px;
+    float: right;
   }
 
   #header-mobile-links-btn:hover {
@@ -38,6 +46,7 @@ and (max-device-width : 1024px) {
 
   .page-header-container .header-top-name {
     margin-top: -7px;
+    margin-left: 30px;
   }
 
   .header-top-links {
@@ -104,7 +113,7 @@ and (max-device-width : 1024px) {
   .home-container-poznat-search {
     width: auto;
     border-radius: 0;
-    padding: 20px 0;
+    padding: 20px;
   }
 
   .home-container-bidi-javen h1 {
@@ -204,6 +213,7 @@ and (max-device-width : 1024px) {
 
   .home-container-promotions {
     width: 100%;
+    height: auto;
   }
 
   .home-container-promotions-container {
@@ -211,8 +221,13 @@ and (max-device-width : 1024px) {
   }
 
   .promote-packages-box {
-    width: 100%;
-    float: none;
+    width: 50%;
+    float: left;
+  }
+
+  .promote-packages-container {
+    display: inline-block;
+    margin-bottom: 40px;
   }
 
   /* Main Container */
@@ -292,6 +307,16 @@ and (max-device-width : 1024px) {
     margin: 0;
   }
 
+  .category-products .products-list li {
+    width: 50%;
+    float: left;
+  }
+
+  .category-products .products-list li .product-image img {
+    width: auto;
+    height: 100px;
+  }
+
   .category-products .products-list .product-image {
     float: none;
     margin: 0 auto;
@@ -337,8 +362,7 @@ and (max-device-width : 1024px) {
   }
 
   .product-shop-information {
-    float: none;
-    margin: 0 auto;
+    width: 50%;
   }
 
   .product-shop-information p {
@@ -350,7 +374,9 @@ and (max-device-width : 1024px) {
   }
 
   .product-shop-working-hours {
-    float: none;
+    float: right;
+    width: 50%;
+    max-width: 50%;
     display: inline-block;
     padding-right: 0;
   }
@@ -360,7 +386,9 @@ and (max-device-width : 1024px) {
   }
 
   .product-shop-map {
-    width: auto;
+    width: 600px;
+    display: inline-block;
+    margin: 0 auto;
     float: none;
   }
 
@@ -433,9 +461,18 @@ and (max-device-width : 1024px) {
   }
 
   .account-login .buttons-set a {
-    width: 700px;
+    width: 500px;
     text-align: center;
     margin-bottom: 20px;
+    margin-right: 0;
+  }
+
+  .customer-account-login .buttons-set .button {
+    width: 500px !important;
+  }
+
+  .customer-account-login .col2-set .buttons-set {
+    text-align: center;
   }
 
   .account-login .please-register {
@@ -621,6 +658,21 @@ and (max-device-width : 1024px) {
 
   /* Marketing Page */
 
+  /* Select Package */
+
+  .select-packages-parent {
+    width: auto;
+  }
+
+  .select-packages-box {
+    width: 600px;
+    float: none;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  /* Select Package */
+
   /* Create Business Page */
 
   .customerasaproduct-container {
@@ -666,9 +718,27 @@ and (max-device-width : 1024px) {
     text-align: center;
   }
 
+  .customerasaproduct-container .buttons-set a {
+    margin-right: 0;
+  }
+
+  .customerasaproduct-container .buttons-set button.button {
+    margin-top: 10px;
+  }
+
   .customerasaproduct-container .buttons-set .button {
     width: 700px;
   }
+
+  .customerasaproduct-container .address-map {
+    text-align: left;
+  }
+
+  .customerasaproduct-container .address-map h4 {
+    text-align: center;
+  }
+
+
 
   /* Create Business Page */
 

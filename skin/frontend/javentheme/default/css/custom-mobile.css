@@ -209,6 +209,7 @@ and (max-device-width : 480px) {
 
   .home-container-promotions {
     width: 100%;
+    height: auto;
   }
 
   .home-container-promotions-container {
@@ -218,6 +219,10 @@ and (max-device-width : 480px) {
   .promote-packages-box {
     width: 100%;
     float: none;
+  }
+
+  .promote-packages-container {
+    margin-bottom: 40px;
   }
 
   /* Main Container */
@@ -619,6 +624,20 @@ and (max-device-width : 480px) {
   }
 
   /* Marketing Page */
+
+  /* Select Package */
+
+  .select-packages-parent {
+    width: auto;
+  }
+
+  .select-packages-box {
+    float: none;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  /* Select Package */
 
   /* Create Business Page */
 
