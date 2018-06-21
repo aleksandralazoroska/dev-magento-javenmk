@@ -46,3 +46,11 @@ error_log
 
 test
 /test
+
+javen.mk
+/javen.mk
+
+app/design/frontend/base/default/template/mygateway/
+/app/design/frontend/base/default/template/mygateway
+
+cron.log
