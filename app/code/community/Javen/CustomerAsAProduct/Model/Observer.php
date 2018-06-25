@@ -122,7 +122,7 @@ class Javen_CustomerAsAProduct_Model_Observer {
 	        // Change it to true
 	        if (($productIsActive == true) && isset($paymentDatePackage) && array_key_exists($productPackageId, $packages) ) {
 
-						Mage::log("Product " . $productId . " has been checked for notification.", null, 'cron.log');
+						Mage::log("Product " . $productId . " has been checked for package notification.", null, 'cron.log');
 
 	          $customer = Mage::getModel("customer/customer");
 	          $customer->setWebsiteId(1);
@@ -141,33 +141,24 @@ class Javen_CustomerAsAProduct_Model_Observer {
 
 	          if ($days > $notifyDate && $productEmailSent == 0) {
 
-	            $templateId = 1;
-	            $emailTemplate = Mage::getModel('core/email_template')->load($templateId);
-
-	            $processedTemplate = $emailTemplate->getProcessedTemplate($emailTemplate);
-
-	            // Sending variables to the template
-	            $emailTemplateVariables = array(
-	              'customer_name' => $customer->getName(),
-	            );
-
-	            $processedTemplate = $emailTemplate->getProcessedTemplate($emailTemplateVariables);
-	            $processedSubject = "Payment Notify Packages";
-
-	            // Email details
-	            $mail = Mage::getModel('core/email')
-	                 ->setToName($customer->getName())
-	                 ->setToEmail($customer->getEmail())
-	                 ->setBody($processedTemplate)
-	                 ->setSubject($processedSubject)
-	                 ->setFromEmail('contact@javen.mk')
-	                 ->setFromName('Javen Advertajzing dooel')
-	                 ->setType('html');
+							$storeId = Mage::app()->getStore()->getId();
+							$emailTemplateId = 1;
+							$emailBcc = array("javen@javen.mk");
+							$emailCc = array();
+							$email = $productEmail;
+							$emailSubject='Payment Notification';
+							$sender = Array('name' => 'Javen Advertajzing Dooel Bitola','email' => 'contact@javen.mk');
+							$vars = Array();
 
 	            try {
 
 	                // Sending email
-	                $mail->send();
+									$translate=Mage::getModel('core/email_template');
+									$translate->getMail()->addCc($emailCc);
+									$translate->setTemplateSubject($emailSubject)
+														->addBCC($emailBcc)
+														->sendTransactional($emailTemplateId, $sender, $email, null, $vars, $storeId);
+									$translate->setTranslateInline(true);
 
 	                Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
@@ -216,121 +207,114 @@ class Javen_CustomerAsAProduct_Model_Observer {
 		  public function notifyPromotions() {
 
 				$productCollection = Mage::getModel('catalog/product')
-	                        ->getCollection()
-	                        ->addAttributeToSelect('payment_date_promotions')
-	                        ->addAttributeToSelect('sku')
-	                        ->addAttributeToSelect('id')
-	                        ->addAttributeToSelect('email')
-	                        ->addAttributeToSelect('marketing_promoted')
-	                        ->addAttributeToSelect('is_active')
-	                        ->addAttributeToSelect('payment_email_sent_promotions');
+													->getCollection()
+													->addAttributeToSelect('payment_date_promotions')
+													->addAttributeToSelect('sku')
+													->addAttributeToSelect('id')
+													->addAttributeToSelect('email')
+													->addAttributeToSelect('marketing_promoted')
+													->addAttributeToSelect('is_active')
+													->addAttributeToSelect('payment_email_sent_promotions');
 
 
-	      $promotions = array('1' => 31,
-	                          '2' => 31,
-	                          '3' => 31,
-	                          '4' => 31,
-	                          '5' => 31,
-	                          '6' => 31,
-	                    );
+				$promotions = array('1' => 31,
+														'2' => 31,
+														'3' => 31,
+														'4' => 31,
+														'5' => 31,
+														'6' => 31,
+											);
 
-	      foreach ($productCollection as $product) {
+				foreach ($productCollection as $product) {
 
-	        $productId = $product->getId();
-	        $productSku = $product->getSku();
-	        $paymentDatePromotions = $product->getPaymentDatePromotions();
-	        $productEmail = $product->getEmail();
-	        $productMarketingPromoted = $product->getMarketingPromoted();
-	        $productIsActive = $product->getIsActive();
-	        $productEmailSent = $product->getPaymentEmailSentPromotions();
+					$productId = $product->getId();
+					$productSku = $product->getSku();
+					$paymentDatePromotions = $product->getPaymentDatePromotions();
+					$productEmail = $product->getEmail();
+					$productMarketingPromoted = $product->getMarketingPromoted();
+					$productIsActive = $product->getIsActive();
+					$productEmailSent = $product->getPaymentEmailSentPromotions();
 
-	        if (($productIsActive == true) && isset($paymentDatePromotions) && array_key_exists($productMarketingPromoted, $promotions)) {
+					if (($productIsActive == true) && isset($paymentDatePromotions) && array_key_exists($productMarketingPromoted, $promotions)) {
 
-	          $customer = Mage::getModel("customer/customer");
-	          $customer->setWebsiteId(1);
-	          $customer->loadByEmail($productEmail);
+						Mage::log("Product " . $productId . " has been checked for promotions notification.", null, 'cron.log');
 
-	          $today = date("Ymd");
+						$customer = Mage::getModel("customer/customer");
+						$customer->setWebsiteId(1);
+						$customer->loadByEmail($productEmail);
 
-	          $paymentTimestamp = strtotime($paymentDatePromotions);
-	          $todayTimestamp = strtotime($today);
+						$today = date("Ymd");
 
-	          $difference = $todayTimestamp - $paymentTimestamp;
-	          $days = floor($difference / (60*60*24) );
+						$paymentTimestamp = strtotime($paymentDatePromotions);
+						$todayTimestamp = strtotime($today);
 
-	          $notifyDate = $promotions[$productMarketingPromoted] - 5;
-	          $deactivateDate = $promotions[$productMarketingPromoted] + 5;
+						$difference = $todayTimestamp - $paymentTimestamp;
+						$days = floor($difference / (60*60*24) );
 
-	          if ($days > $notifyDate && $productEmailSent == 0) {
+						$notifyDate = $promotions[$productMarketingPromoted] - 5;
+						$deactivateDate = $promotions[$productMarketingPromoted] + 5;
 
-	            $templateId = 3;
-	            $emailTemplate = Mage::getModel('core/email_template')->load($templateId);
+						if ($days > $notifyDate && $productEmailSent == 0) {
 
-	            $processedTemplate = $emailTemplate->getProcessedTemplate($emailTemplate);
+							 $storeId = Mage::app()->getStore()->getId();
+							 $emailTemplateId = 3;
+							 $emailBcc = array("javen@javen.mk");
+							 $emailCc = array();
+							 $email = $productEmail;
+							 $emailSubject='Payment Notification';
+							 $sender = Array('name' => 'Javen Advertajzing Dooel Bitola','email' => 'contact@javen.mk');
+							 $vars = Array();
 
-	            // Sending variables to the template
-	            $emailTemplateVariables = array(
-	              'customer_name' => $customer->getName(),
-	            );
+							try {
 
-	            $processedTemplate = $emailTemplate->getProcessedTemplate($emailTemplateVariables);
-	            $processedSubject = "Payment Notify Promotions";
+									// Sending email
+									$translate=Mage::getModel('core/email_template');
+									$translate->getMail()->addCc($emailCc);
+									$translate->setTemplateSubject($emailSubject)
+														->addBCC($emailBcc)
+														->sendTransactional($emailTemplateId, $sender, $email, null, $vars, $storeId);
+									$translate->setTranslateInline(true);
 
-	            // Email details
-	            $mail = Mage::getModel('core/email')
-	                 ->setToName($customer->getName())
-	                 ->setToEmail($customer->getEmail())
-	                 ->setBody($processedTemplate)
-	                 ->setSubject($processedSubject)
-	                 ->setFromEmail('contact@javen.mk')
-	                 ->setFromName('Javen Advertajzing dooel')
-	                 ->setType('html');
+									Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
-	            try {
+									// Setting up email flag
+									$productModel = Mage::getModel('catalog/product')->load($productId);
+									$productModel->setPaymentEmailSentPromotions(1);
+									$productModel->save();
 
-	   	            // Sending email
-	   	            //$mail->send();
+									Mage::log("Notification email has been sent to: " . $customer->getName() . " for product " . $productId, null, 'cron.log');
 
-	   	            Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
+							} catch (Exception $ex) {
 
-	   	            // Setting up email flag
-	   	            //$productModel = Mage::getModel('catalog/product')->load($productId);
-	   	            //$productModel->setPaymentEmailSentPromotions(1);
-	   	            //$productModel->save();
+									Mage::log($e->getMessage());
 
-	                Mage::log("Email has been sent to: " . $customer->getName() . " for product " . $productId, null, 'cron.log');
+							}
 
-	            } catch (Exception $ex) {
+						} elseif ($days > $deactivateDate && $productEmailSent == 1) {
 
-	                Mage::log($e->getMessage());
+							try {
 
-	   	        }
+									Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
-	          } elseif ($days > $deactivateDate && $productEmailSent == 1) {
+									// Deactivating product
+									$productModel = Mage::getModel('catalog/product')->load($productId);
+									$productModel->setPaymentEmailSentPromotions(0);
+									$productModel->setMarketingPromoted(0);
+									$productModel->save();
 
-	            try {
+									Mage::log("Product " . $productId . " has been removed from promotions", null, 'cron.log');
 
-	                Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
+							} catch (Exception $ex) {
 
-	                // Deactivating product
-	                //$productModel = Mage::getModel('catalog/product')->load($productId);
-	                //$productModel->setPaymentEmailSentPromotions(0);
-	                //$productModel->setMarketingPromoted(0);
-	                //$productModel->save();
+									Mage::log($e->getMessage());
 
-	                Mage::log("Product " . $productId . " has been deactivated", null, 'cron.log');
+							}
 
-	            } catch (Exception $ex) {
+						}
 
-	                Mage::log($e->getMessage());
+					}
 
-	            }
-
-	          }
-
-	        }
-
-	      }
+				}
 
 			}
 
