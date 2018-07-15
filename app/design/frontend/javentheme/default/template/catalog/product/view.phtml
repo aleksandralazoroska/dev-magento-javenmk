@@ -149,7 +149,14 @@
                     <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
                     <input type="hidden" name="related_product" id="related-products-field" value="" />
                 </div>
-                <a class="product-edit-page button" href="<?php echo Mage::getBaseUrl() . 'customerasaproduct'; ?>"><?php echo $this->__("Edit my page"); ?></a>
+
+                <?php $customer = Mage::getSingleton('customer/session')->getCustomer(); ?>
+                <?php if( Mage::getSingleton('customer/session')->isLoggedIn() && $customer->getBusinessPage() == $_product->getId()): ?>
+                  <a class="product-edit-page button" href="<?php echo Mage::getBaseUrl() . 'customerasaproduct'; ?>"><?php echo $this->__("Edit my page"); ?></a>
+                <?php else: ?>
+                  <a class="" style="height: 20px; display: block" href=""><?php echo "" ?></a>
+                <?php endif; ?>
+
                 <div class="product-cover-img-box">
                   <img src="<?php echo $this->helper('catalog/image')->init($_product, 'cover_image') ?>" />
                   <div class="product-name">
@@ -158,20 +165,7 @@
                 </div>
 
                 <div class="product-shop">
-                    <!--
-                    <div class="product-name">
-                        <span class="h1"><?php //echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></span>
-                    </div>
-                    -->
 
-                    <!--
-                    <div class="extra-info">
-                        <?php //echo $this->getReviewsSummaryHtml($_product, 'default', false)?>
-                        <?php //echo $this->getChildHtml('product_type_availability'); ?>
-                    </div>
-                    -->
-
-                    <?php //echo $this->getChildHtml('alert_urls') ?>
                     <div class="product-shop-information">
                       <h4><?php echo $this->__("Information"); ?></h4>
                       <h1><?php echo $_product->getData('phone'); ?></h1>
@@ -185,10 +179,18 @@
                       <p><?php echo $this->__($_product->getResource()->getAttribute('city')->getFrontendLabel()) . " " . $city[0] ?></p>
 
                       <div class="product-shop-social">
-                        <a href="<?php echo $_product->getData('instagram') ?>" target="_blank" ><img src="<?php echo $this->getSkinUrl('images/instagram.svg') ?>" alt=""/></a>
-                        <a href="<?php echo $_product->getData('twitter') ?>" target="_blank" ><img src="<?php echo $this->getSkinUrl('images/twitter-box.svg') ?>" alt=""/></a>
-                        <a href="<?php echo $_product->getData('facebook') ?>" target="_blank" ><img src="<?php echo $this->getSkinUrl('images/facebook-box.svg') ?>" alt=""/></a>
-                        <a href="<?php echo $_product->getData('webpage') ?>" target="_blank" ><img src="<?php echo $this->getSkinUrl('images/web.svg') ?>" alt=""/></a>
+                        <?php if ($_product->getData('instagram') != ''): ?>
+                          <a href="<?php echo $_product->getData('instagram') ?>" target="_blank" ><img src="<?php echo $this->getSkinUrl('images/instagram.svg') ?>" alt=""/></a>
+                        <?php endif; ?>
+                        <?php if ($_product->getData('twitter') != ''): ?>
+                          <a href="<?php echo $_product->getData('twitter') ?>" target="_blank" ><img src="<?php echo $this->getSkinUrl('images/twitter-box.svg') ?>" alt=""/></a>
+                        <?php endif; ?>
+                        <?php if ($_product->getData('facebook') != ''): ?>
+                          <a href="<?php echo $_product->getData('facebook') ?>" target="_blank" ><img src="<?php echo $this->getSkinUrl('images/facebook-box.svg') ?>" alt=""/></a>
+                        <?php endif; ?>
+                        <?php if ($_product->getData('webpage') != ''): ?>
+                          <a href="<?php echo $_product->getData('webpage') ?>" target="_blank" ><img src="<?php echo $this->getSkinUrl('images/webpage.svg') ?>" alt=""/></a>
+                        <?php endif; ?>
                       </div>
                     </div>
 
@@ -251,7 +253,7 @@
                     </div>
                 <?php endif;?>
 
-                <a class="product-shop-share-page button"><?php echo $this->__("Share this page"); ?></a>
+                <a class="product-shop-share-page button" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo Mage::helper('core/url')->getCurrentUrl(); ?>&t=<?php echo "Javen.mk | " . $_product->getName() ?>" ><?php echo $this->__("Share this page"); ?></a>
                 <div class="product-page-border"></div>
                 <div class="product-image-product-image-zoom">
                    <p><?php echo $this->__("Photogallery"); ?></p>
