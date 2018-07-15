@@ -36,7 +36,7 @@
     <cms_page>
       <reference name="right">
         <remove name="cart_sidebar"/>
-        <block type="core/template" template="page/promotions-sidebar.phtml" />
+        <!-- <block type="core/template" template="page/promotions-sidebar.phtml" /> -->
       </reference>
     </cms_page>
 </layout>

@@ -35,7 +35,7 @@
           <div class="promote-packages-box">
             <div class="promote-package-image">
               <a href="<?php echo $prod->getUrlKey() . '.html'; ?>">
-                <img src="<?php echo Mage::helper('catalog/image')->init($prod, 'thumbnail')->resize(200,150); ?>" />
+                <img src="<?php echo Mage::helper('catalog/image')->init($prod, 'thumbnail'); ?>" />
                 <p class="promote-product-name"><?php echo $prod->getName(); ?></p>
               </a>
             </div>
