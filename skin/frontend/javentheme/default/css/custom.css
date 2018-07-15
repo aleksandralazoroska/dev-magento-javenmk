@@ -878,36 +878,42 @@ label {
 
 /* Forgotpassword */
 
-.customer-account-forgotpassword .page-title h1 {
-  margin-left: 690px;
-  margin-top: 60px;
-  font-family: "Roboto";
-}
-
-.customer-account-forgotpassword .fieldset .legend {
-  margin-left: 250px;
+.account-forgotpassword {
   width: 1200px;
-  text-align: center;
-  font-family: "Roboto";
+  margin: 0 auto;
+  padding-top: 60px;
 }
 
-.customer-account-forgotpassword .fieldset p {
-  width: 1200px;
-  margin-left: 250px;
+.account-forgotpassword .page-title h1 {
+  border: none;
 }
 
-.customer-account-forgotpassword .form-list li {
-  width: 400px;
-  margin-left: 600px;
-  text-align: center;
+.account-forgotpassword .fieldset {
+  margin-left: 0;
+  max-width: 100%;
 }
 
-.customer-account-forgotpassword .buttons-set {
-  margin-left: 720px;
-  max-width: 1200px;
-  margin-top: 40px;
+.account-forgotpassword .fieldset h2 {
+  margin-left: 0;
 }
 
+.account-forgotpassword .fieldset p {
+  text-align: left;
+}
+
+
+.account-forgotpassword .fieldset .form-list {
+  margin-left: 0;
+}
+
+.account-forgotpassword .fieldset .form-list .input-text {
+  width: 500px !important;
+  border-radius: 5px;
+}
+
+.account-forgotpassword .buttons-set {
+  margin-left: 0;
+}
 /* Forgotpassword */
 
 /* Customerasaproduct packages */
