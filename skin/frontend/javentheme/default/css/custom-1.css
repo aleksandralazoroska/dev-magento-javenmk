@@ -1164,6 +1164,7 @@ a.product-shop-share-page {
   text-align: center;
   margin-top: 60px;
   font-size: 18px;
+  margin-left: 60px;
 }
 
 .cms-page-view .std p {
@@ -1171,4 +1172,5 @@ a.product-shop-share-page {
   color: grey;
   margin-top: 30px;
   font-size: 15px;
+  margin-left: 100px;
 }
