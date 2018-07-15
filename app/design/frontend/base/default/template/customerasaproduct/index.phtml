@@ -47,7 +47,7 @@
           </div>
           <div class="input-box">
             <label for="cover-image"><?php echo $this->__("Cover Image"); ?></label><br />
-            <input name="cover-image" id="cover-image" title="Cover Image" value="" class="<?php if ($this->getBusinessDetails() == '') { echo 'required-entry'; } else { echo ''; } ?>" type="file" />
+            <input name="cover-image" id="cover-image" onchange="return imageValidation()" title="Cover Image" value="" class="<?php if ($this->getBusinessDetails() == '') { echo 'required-entry'; } else { echo ''; } ?>" type="file" />
             <p class="cover-image-validation" style="display: none; color: red; text-align: left; margin-top: 10px;"><?php echo $this->__("Please attach a cover image.") ?></p>
           </div>
           <div class="input-box">
@@ -213,7 +213,7 @@
       <div class="customerasaproduct-container4">
         <label for="promotions" ><?php echo $this->__("Actions, sale, promotions"); ?></label>
         <div class="input-box">
-          <textarea name="company-promotions" id="promotions" title="promotions" value="" class="input-text" type="text" maxlength="200"><?php echo $_product->getCompanyPromotions(); ?></textarea>
+          <textarea name="company-promotions" id="promotions" title="promotions" value="" class="input-text" type="text" maxlength="500"><?php echo $_product->getCompanyPromotions(); ?></textarea>
       </div>
       </div>
 
@@ -359,6 +359,17 @@
           });
 
         });
+
+        function imageValidation(){
+            var fileInput = document.getElementById('cover-image');
+            var filePath = fileInput.value;
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+            if(!allowedExtensions.exec(filePath)){
+                alert("<?php echo $this->__('Please upload file having extensions jpeg, jpg, png, gif only'); ?>");
+                fileInput.value = '';
+                return false;
+            }
+        }
 
     //]]>
 </script>
