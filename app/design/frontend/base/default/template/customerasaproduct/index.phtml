@@ -5,6 +5,7 @@
   $email = $customer->getEmail();
 
   $_product = Mage::getModel('catalog/product')->load($this->getBusinessDetails());
+  $bisinessId = $this->getBusinessDetails();
 
 ?>
 <div class="customerasaproduct-container">
@@ -47,7 +48,7 @@
           </div>
 
           <?php // Setting up cover image ?>
-          <?php if(isset($_product)): ?>
+          <?php if($bisinessId != ''): ?>
 
             <div class="gallery-images-cover">
               <?php $coverImageName = basename($_product->getCoverImage()); ?>
@@ -233,7 +234,7 @@
       <div class="customerasaproduct-container3">
         <label for="photogallery"><?php echo $this->__("Photogallery"); ?></label>
 
-          <?php if(isset($_product)): ?>
+          <?php if($bisinessId != ''): ?>
 
           <?php // max number of images ?>
           <?php $numberOfImages = 6 - count($_product->getMediaGalleryImages()); ?>
