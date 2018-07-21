@@ -152,6 +152,37 @@
   text-transform: none;
 }
 
+.account-cart-wrapper a.button:hover {
+  background-color: gold;
+}
+
+.iwd_opc_universal_wrapper .payment-cards {
+  padding-top: 20px;
+}
+
+.iwd_opc_universal_wrapper .payment-cards-icons {
+  margin: 0 auto;
+  width: 210px;
+}
+
+.iwd_opc_universal_wrapper .payment-cards-icons img {
+  float: left;
+}
+
+.iwd_opc_column_content .payment-cards {
+  padding-top: 20px;
+}
+
+.iwd_opc_column_content .payment-cards-icons {
+  margin: 0 auto;
+  width: 210px;
+}
+
+.iwd_opc_column_content .payment-cards-icons img {
+  float: left;
+  margin-bottom: 40px;
+}
+
 /* Login and Create*/
 
 .customer-account-logoutsuccess .col-main {
@@ -214,6 +245,10 @@
 
 .account-login .buttons-set button.button {
   min-width: 140px !important;
+}
+
+.account-login .buttons-set button.button:hover {
+  background-color: gold;
 }
 
 .account-login .please-register {
@@ -337,6 +372,10 @@
   margin-right: 50px;
 }
 
+.my-account .dashboard .button:hover {
+  background-color: gold;
+}
+
 .my-account .dashboard .col-2 .button-white {
   margin-top: 30px;
   margin-left: 0;
@@ -435,6 +474,10 @@ body.cms-home .main-container {
   background-size: 40px;
 }
 
+.home-container-poznat-search .search-submit:hover {
+  background-color: gold;
+}
+
 .catalogsearch-advanced-result .category-products {
   padding-top: 40px;
 }
@@ -507,6 +550,7 @@ body.cms-home .main-container {
   background-color: #ff8a65;
   border-radius: 50%;
   padding-top: 16px;
+  opacity: 1;
 }
 
 .home-container-categories img {
@@ -1115,6 +1159,10 @@ a.product-shop-share-page {
   border-radius: 5px;
 }
 
+.checkout-types .button:hover {
+  background-color: gold;
+}
+
 .cart-table .button {
   border-radius: 5px;
 }
@@ -1141,6 +1189,16 @@ a.product-shop-share-page {
 }
 
 /* Checkout Page */
+
+/* Onepage */
+
+.iwd_opc_wrapper .iwd_opc_alternative_wrapper .iwd_opc_top #iwd_opc_top_review #iwd_opc_top_review_head:hover {
+  background-color: gold;
+}
+
+
+/* Onepage */
+
 
 /* Error Messages */
 
@@ -1173,4 +1231,5 @@ a.product-shop-share-page {
   margin-top: 30px;
   font-size: 15px;
   margin-left: 100px;
+  text-align: justify;
 }
