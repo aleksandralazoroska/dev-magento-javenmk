@@ -29,32 +29,6 @@
   <?php elseif (Mage::app()->getStore()->getName() == 'Albanian'): ?>
     <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('home-block-bidi-javen-albanian')->toHtml();?>
   <?php endif; ?>
-  <!--
-  <div class="home-container-poznat-search">
-    <form id="search_mini_form" action="<?php //echo $this->helper('catalogSearch')->getResultUrl() ?>" method="get">
-        <fieldset>
-            <div class="mini-search">
-              <input id="search" type="text" class="search-input" name="<?php //echo $this->helper('catalogSearch')->getQueryParamName() ?>" value="<?php //echo $this->helper('catalogSearch')->getEscapedQueryText() ?>" />
-              <select name="city_attr" id="city_attr" class="search-select">
-                <?php //foreach($options as $key => $value): ?>
-                  <option value="<?php //echo $value['label']; ?>" <?php //if($key == $result['city']): ?> selected="selected" <?php //endif; ?> ><?php //if ($key == 0) { echo $this->__("Macedonia"); } else { echo $value['label']; }; ?></option>
-                <?php //endforeach; ?>
-              </select>
-              <div class="search-submit-parent">
-                <input type="submit" class="search-submit" value="" alt="<?php //echo $this->__('Search') ?>" />
-              </div>
-              <div id="search_autocomplete" class="search-autocomplete"></div>
-              <script type="text/javascript">
-                //<![CDATA[
-                    var searchForm = new Varien.searchForm('search_mini_form', 'search', '<?php //echo $this->__('Search') ?>');
-                    searchForm.initAutocomplete('<?php //echo $this->helper('catalogSearch')->getSuggestUrl() ?>', 'search_autocomplete');
-                //]]>
-              </script>
-            </div>
-        </fieldset>
-    </form>
-  </div>
-  -->
 
   <div class="home-container-poznat-search">
     <?php $block = Mage::app()->getLayout()->createBlock('catalogsearch/advanced_form'); ?>
@@ -77,7 +51,7 @@
                 <?php endforeach; ?>
             </ul>
             <div class="search-submit-parent">
-                <input type="submit" class="search-submit" value="" alt="<?php echo $this->__('Search') ?>" />
+                <input type="submit" class="search-submit" value="" onclick="emptyField()" alt="<?php echo $this->__('Search') ?>" />
             </div>
             <script type="text/javascript">decorateList('advanced-search-list')</script>
         </div>
@@ -88,39 +62,53 @@
 
 <?php echo $this->getChildHtml(‘footerSearch’) ?>
 <!-- Categories -->
+<!--
 <?php
-    $_helper = Mage::helper('catalog/category');
-    $categories = $_helper->getStoreCategories();
-    $i = 0;
+    //$_helper = Mage::helper('catalog/category');
+    //$categories = $_helper->getStoreCategories();
+    //$i = 0;
 ?>
 <div class="home-container-categories">
   <ol>
-    <?php foreach ($categories as $_category): ?>
+    <?php f//oreach ($categories as $_category): ?>
       <?php
-        $category = Mage::getModel('catalog/category')->load($_category->getId());
-        $i++;
+        //$category = Mage::getModel('catalog/category')->load($_category->getId());
+        //$i++;
       ?>
-        <?php if($i == 8): ?>
+        <?php //if($i == 8): ?>
           <li class="empty-li">
           </li>
-        <?php else: ?>
+        <?php //else: ?>
           <li>
-            <a style="background-color: <?php echo $category->getDescription() ?>" href="<?php echo $category->getURL(); ?>">
-              <?php $categoryImage = $category->getImage(); ?>
-              <img src="<?php echo Mage::getBaseUrl('media').'catalog/category/' . str_replace('png','svg',$categoryImage); ?>" />
+            <a style="background-color: <?php //echo $category->getDescription() ?>" href="<?php //echo $category->getURL(); ?>">
+              <?php //$categoryImage = $category->getImage(); ?>
+              <img src="<?php //echo Mage::getBaseUrl('media').'catalog/category/' . str_replace('png','svg',$categoryImage); ?>" />
             </a>
-            <p style="color: <?php echo $category->getDescription() ?>" ><?php echo $this->__($category->getName()) ?></p>
+            <p style="color: <?php //echo $category->getDescription() ?>" ><?php //echo $this->__($category->getName()) ?></p>
           </li>
-        <?php endif; ?>
-    <?php endforeach; ?>
-    <!-- Because we missed the 8th category -->
-    <?php $category = Mage::getModel('catalog/category')->load(14); ?>
+        <?php //endif; ?>
+    <?php //endforeach; ?>
+
+    <?php //$category = Mage::getModel('catalog/category')->load(14); ?>
       <li>
-        <a style="background-color: <?php echo $category->getDescription() ?>" href="<?php echo $category->getURL(); ?>">
-          <?php $categoryImage = $category->getImage(); ?>
-          <img src="<?php echo Mage::getBaseUrl('media').'catalog/category/' . str_replace('png','svg',$categoryImage) ?>" />
+        <a style="background-color: <?php //echo $category->getDescription() ?>" href="<?php //echo $category->getURL(); ?>">
+          <?php //$categoryImage = $category->getImage(); ?>
+          <img src="<?php //echo Mage::getBaseUrl('media').'catalog/category/' . str_replace('png','svg',$categoryImage) ?>" />
         </a>
-        <p style="color: <?php echo $category->getDescription() ?>" ><?php echo $this->__($category->getName()) ?></p>
+        <p style="color: <?php //echo $category->getDescription() ?>" ><?php //echo $this->__($category->getName()) ?></p>
       </li>
   </ol>
 </div>
+-->
+<script type="text/javascript">
+
+  // Empty description field if it equal to 'Search'
+  function emptyField() {
+
+    if( $j("#description").val() == '<?php echo $this->__('Search') ?>' ) {
+      $j("#description").val('');
+    }
+
+  }
+
+</script>

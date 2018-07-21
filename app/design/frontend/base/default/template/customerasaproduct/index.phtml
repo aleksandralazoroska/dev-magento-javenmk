@@ -45,11 +45,43 @@
                <?php echo $extra_options ?>
             </select>
           </div>
-          <div class="input-box">
-            <label for="cover-image"><?php echo $this->__("Cover Image"); ?></label><br />
-            <input name="cover-image" id="cover-image" onchange="return imageValidation()" title="Cover Image" value="" class="<?php if ($this->getBusinessDetails() == '') { echo 'required-entry'; } else { echo ''; } ?>" type="file" />
-            <p class="cover-image-validation" style="display: none; color: red; text-align: left; margin-top: 10px;"><?php echo $this->__("Please attach a cover image.") ?></p>
-          </div>
+
+          <?php // Setting up cover image ?>
+          <?php if(isset($_product)): ?>
+
+            <div class="gallery-images-cover">
+              <?php $coverImageName = basename($_product->getCoverImage()); ?>
+              <?php if($coverImageName != 'no_selection'): ?>
+                <?php foreach ($_product->getMediaGalleryImages() as $image): ?>
+                  <?php $imageName = basename(Mage::helper('catalog/image')->init($_product, 'image', $image->getFile())); ?>
+                  <?php // check if gallery image is a cover image ?>
+                  <?php if($imageName == $coverImageName): ?>
+                    <div class="gallery-images-box">
+                      <img src="<?php echo Mage::helper('catalog/image')->init($_product, 'image', $image->getFile())->resize(100, 100); ?>" alt="<?php echo $_product->getName() ?>" />
+                      </br>
+                      <button style="width: 106px; height: 32px;" type="button" onclick="removeImage('<?php echo $image->getFile(); ?>')"><?php echo $this->__('Remove'); ?></button>
+                    </div>
+                  <?php endif; ?>
+                <?php endforeach; ?>
+              <?php else: ?>
+                <div class="input-box">
+                  <label for="cover-image"><?php echo $this->__("Cover Image"); ?></label><br />
+                  <input name="cover-image" id="cover-image" onchange="return imageValidation()" title="Cover Image" value="" class="<?php if ($this->getBusinessDetails() == '') { echo 'required-entry'; } else { echo ''; } ?>" type="file" />
+                  <p class="cover-image-validation" style="display: none; color: red; text-align: left; margin-top: 10px;"><?php echo $this->__("Please attach a cover image.") ?></p>
+                </div>
+              <?php endif; ?>
+            </div>
+
+          <?php else: ?>
+
+            <div class="input-box">
+              <label for="cover-image"><?php echo $this->__("Cover Image"); ?></label><br />
+              <input name="cover-image" id="cover-image" onchange="return imageValidation()" title="Cover Image" value="" class="<?php if ($this->getBusinessDetails() == '') { echo 'required-entry'; } else { echo ''; } ?>" type="file" />
+              <p class="cover-image-validation" style="display: none; color: red; text-align: left; margin-top: 10px;"><?php echo $this->__("Please attach a cover image.") ?></p>
+            </div>
+
+          <?php endif; ?>
+
           <div class="input-box">
             <label for="telephone-1"><?php echo $this->__("Telephone 1"); ?></label><br />
             <input name="telephone" id="telephone-1" title="Telephone 1" value="<?php echo $_product->getPhone(); ?>" class="required-entry input-text" type="text" maxlength="20" />
@@ -200,14 +232,44 @@
 
       <div class="customerasaproduct-container3">
         <label for="photogallery"><?php echo $this->__("Photogallery"); ?></label>
-        <div class="input-box">
-          <input name="media-image-1" id="media-image-1" title="Media Image" value="" class="" type="file" />
-          <input name="media-image-2" id="media-image-2" title="Media Image" value="" class="" type="file" />
-          <input name="media-image-3" id="media-image-3" title="Media Image" value="" class="" type="file" />
-          <input name="media-image-4" id="media-image-4" title="Media Image" value="" class="" type="file" />
-          <input name="media-image-5" id="media-image-5" title="Media Image" value="" class="" type="file" />
-          <input name="media-image-6" id="media-image-6" title="Media Image" value="" class="" type="file" />
-        </div>
+
+          <?php if(isset($_product)): ?>
+
+          <?php // max number of images ?>
+          <?php $numberOfImages = 6 - count($_product->getMediaGalleryImages()); ?>
+          <?php $imageFileNames = array(); ?>
+
+          <div class="gallery-images">
+            <?php $coverImageName = basename($_product->getCoverImage()); ?>
+            <?php foreach ($_product->getMediaGalleryImages() as $image): ?>
+              <?php $imageName = basename(Mage::helper('catalog/image')->init($_product, 'image', $image->getFile())); ?>
+              <?php // check if gallery image is not a cover image ?>
+              <?php if($imageName != $coverImageName): ?>
+                <div class="gallery-images-box">
+                  <img src="<?php echo Mage::helper('catalog/image')->init($_product, 'image', $image->getFile())->resize(100, 100); ?>" alt="<?php echo $_product->getName() ?>" />
+                  </br>
+                  <button style="width: 106px; height: 32px;" type="button" onclick="removeImage('<?php echo $image->getFile(); ?>')"><?php echo $this->__('Remove'); ?></button>
+                </div>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          </div>
+
+          <div class="input-box gallery-images-upload">
+            <?php for ($i = 1; $i < $numberOfImages + 2; $i++): ?>
+              <input name="media-image-<?php echo $i ?>" id="media-image-<?php echo $i ?>" title="Media Image" value="" class="" type="file" />
+            <?php endfor; ?>
+          </div>
+
+          <?php else: ?>
+
+            <div class="input-box gallery-images-upload">
+              <?php for ($i = 1; $i < 6 + 1; $i++): ?>
+                <input name="media-image-<?php echo $i ?>" id="media-image-<?php echo $i ?>" title="Media Image" value="" class="" type="file" />
+              <?php endfor; ?>
+            </div>
+
+          <?php endif; ?>
+
       </div>
 
       <div class="customerasaproduct-container4">
@@ -369,6 +431,25 @@
                 fileInput.value = '';
                 return false;
             }
+        }
+
+        function removeImage(imagePath){
+
+          var url = "<?php echo Mage::getUrl('customerasaproduct/delete/removeimage');?>";
+
+          jQuery.ajax({
+              url: url,
+              dataType: 'json',
+              data: { product_id: <?php echo $_product->getId() ?>, image_path: imagePath },
+              success: function(data) {
+                if(data.success == true){
+                  location.reload();
+                } else {
+                  alert("The image cannot be deleted.");
+                }
+              }
+          });
+
         }
 
     //]]>

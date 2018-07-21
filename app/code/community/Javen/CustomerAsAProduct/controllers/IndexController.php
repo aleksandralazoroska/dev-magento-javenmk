@@ -19,6 +19,26 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
         return $this->_redirect();
       }
 
+      // Check if cover image is uploaded and a correct image type is presented
+      if(!file_exists($_FILES['cover-image']['tmp_name']) || !is_uploaded_file($_FILES['cover-image']['tmp_name'])) {
+
+        Mage::getSingleton('core/session')->addError('Cover image is not uploaded.');
+        return $this->_redirect('customerasaproduct');
+
+      } else {
+
+        // Allowed image types
+        $imageExtensions = array('image/jpg','image/jpeg','image/png','image/gif');
+
+        if (!($_FILES['cover-image']['size'] < 4194304) || !(in_array($_FILES['cover-image']['type'], $imageExtensions))) {
+
+          Mage::getSingleton('core/session')->addError($this->__("Unsupported image type or too large image for ") . $_FILES['cover-image']['name']);
+          return $this->_redirect('customerasaproduct');
+
+        }
+
+      }
+
       // Important for Product save and Product update
       Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
 
@@ -122,11 +142,9 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
       }
 
       $product = Mage::getModel('catalog/product')->load($customer->getBusinessPage());
-
       $product->addImageToMediaGallery($imagesArray['cover-image'], array('cover_image'), false, false);
 
       // Remove the image from the temp directory and removing the cover image from the array
-      //unlink($imagesArray['cover-image']);
       unset($imagesArray['cover-image']);
 
       try {
@@ -192,7 +210,7 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
                 ->setPhone($params['telephone'])
                 ->setPhone2($params['telephone-2'])
                 ->setAddress($params['address'])
-                ->setCityAttr($cityTranslatedArray)
+                //->setCityAttr($cityTranslatedArray)
 
                 //Custom Social
                 ->setWebpage($params['webpage'])
@@ -237,6 +255,17 @@ class Javen_CustomerAsAProduct_IndexController extends Mage_Core_Controller_Fron
 
       // Adding all media images
       $imagesArray = Mage::helper('customerasaproduct')->coverImageUpload($_FILES);
+
+      if (array_key_exists('cover-image', $imagesArray)) {
+
+        $product = Mage::getModel('catalog/product')->load($customer->getBusinessPage());
+        $product->addImageToMediaGallery($imagesArray['cover-image'], array('cover_image'), false, false);
+        $product->save();
+
+        // Remove the image from the temp directory and removing the cover image from the array
+        unset($imagesArray['cover-image']);
+
+      }
 
       try {
 

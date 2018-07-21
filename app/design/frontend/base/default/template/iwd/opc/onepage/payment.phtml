@@ -10,7 +10,13 @@ $opcHelper = $this->getOpcHelper();
 <div id="iwd_opc_payment_method_additional">
     <div id="iwd_opc_payment_method">
         <?php echo $this->getChildHtml('payment_method'); ?>
-        <div class="iwd_opc_section_delimiter"></div>
+        <!-- <div class="iwd_opc_section_delimiter"></div> -->
+        <div class="payment-cards" id="payment-cards" >
+          <div class="payment-cards-icons">
+            <img style="margin-right: 8px;" src="<?php echo $this->getSkinUrl('images/payment-mastercard.png') ?>" width="100px" />
+            <img src="<?php echo $this->getSkinUrl('images/payment-visa.png') ?>" width="100px" />
+          </div>
+        </div>
     </div>
     <?php if ($this->isShowStoreCredit()) { ?>
         <?php echo $this->getChildHtml('storecredit'); ?>
@@ -27,5 +33,24 @@ $opcHelper = $this->getOpcHelper();
             <?php } ?>
         </div>
     <?php } ?>
-    <div class="iwd_opc_section_delimiter"></div>
+    <!-- <div class="iwd_opc_section_delimiter"></div> -->
+
 </div>
+
+<script type="text/javascript">
+
+  // Show/Hide payment cards on payment type change
+  $j(function() {
+      if($j('#iwd_opc_payment_method_select').val() != 'mygateway') {
+        $j('#payment-cards').hide();
+      }
+      $j('#iwd_opc_payment_method_select').change(function(){
+          if($j('#iwd_opc_payment_method_select').val() == 'mygateway') {
+              $j('#payment-cards').show();
+          } else {
+              $j('#payment-cards').hide();
+          }
+      });
+  });
+
+</script>

@@ -54,3 +54,5 @@ app/design/frontend/base/default/template/mygateway/
 /app/design/frontend/base/default/template/mygateway
 
 cron.log
+
+shell/remove_orders.php

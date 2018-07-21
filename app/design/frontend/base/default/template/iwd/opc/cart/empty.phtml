@@ -25,6 +25,12 @@
                     title="<?php echo $this->escapeHtml($this->__('Continue Shopping')); ?>">
                 <?php echo $this->escapeHtml($this->__('Continue Shopping')); ?>
             </button>
+            <div class="payment-cards">
+              <div class="payment-cards-icons">
+                <img style="margin-right: 8px;" src="<?php echo $this->getSkinUrl('images/payment-mastercard.png') ?>" width="100px" />
+                <img src="<?php echo $this->getSkinUrl('images/payment-visa.png') ?>" width="100px" />
+              </div>
+            </div>
         </div>
         <?php if ($this->getCustomer()->getId()) { ?>
             <div class="iwd_opc_universal_wrapper">
@@ -36,6 +42,12 @@
                         title="<?php echo $this->escapeHtml($this->__('View Account')); ?>">
                     <?php echo $this->escapeHtml($this->__('View Account')); ?>
                 </button>
+                <div class="payment-cards">
+                  <div class="payment-cards-icons">
+                    <img style="margin-right: 8px;" src="<?php echo $this->getSkinUrl('images/payment-mastercard.png') ?>" width="100px" />
+                    <img src="<?php echo $this->getSkinUrl('images/payment-visa.png') ?>" width="100px" />
+                  </div>
+                </div>
             </div>
         <?php } ?>
     </div>

@@ -1,0 +1,35 @@
+<?php
+    $_helper = Mage::helper('catalog/category');
+    $categories = $_helper->getStoreCategories();
+    $i = 0;
+?>
+
+  <ol style="list-style: none;" >
+    <?php foreach ($categories as $_category): ?>
+      <?php
+        $category = Mage::getModel('catalog/category')->load($_category->getId());
+        $i++;
+      ?>
+        <?php if($i == 8): ?>
+          <li class="empty-li" style="margin-left: 0;">
+          </li>
+        <?php else: ?>
+          <li style="margin-left: 0;">
+            <a style="background-color: <?php echo $category->getDescription() ?>" href="<?php echo $category->getURL(); ?>">
+              <?php $categoryImage = $category->getImage(); ?>
+              <img src="<?php echo Mage::getBaseUrl('media').'catalog/category/' . str_replace('png','svg',$categoryImage); ?>" />
+            </a>
+            <p style="color: <?php echo $category->getDescription() ?>" ><?php echo $this->__($category->getName()) ?></p>
+          </li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+    <!-- Because we missed the 8th category -->
+    <?php $category = Mage::getModel('catalog/category')->load(14); ?>
+      <li style="margin-left: 0;">
+        <a style="background-color: <?php echo $category->getDescription() ?>" href="<?php echo $category->getURL(); ?>">
+          <?php $categoryImage = $category->getImage(); ?>
+          <img src="<?php echo Mage::getBaseUrl('media').'catalog/category/' . str_replace('png','svg',$categoryImage) ?>" />
+        </a>
+        <p style="color: <?php echo $category->getDescription() ?>" ><?php echo $this->__($category->getName()) ?></p>
+      </li>
+  </ol>
