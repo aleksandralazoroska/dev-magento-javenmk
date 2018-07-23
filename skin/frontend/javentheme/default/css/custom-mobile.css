@@ -156,6 +156,10 @@ and (max-device-width : 480px) {
     padding-left: 0;
   }
 
+  .home-container-categories li {
+    margin-bottom: 0;
+  }
+
   .home-container-categories .empty-li {
     display: none;
   }

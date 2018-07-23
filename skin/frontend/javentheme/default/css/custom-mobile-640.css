@@ -1,11 +1,11 @@
 /* From 480px to 640px width */
 @media only screen
-and (min-device-width : 480px)
-and (max-device-width : 640px) {
+and (min-device-width : 640px)
+and (max-device-width : 768px) {
 
   /* Header */
   .page-header {
-    max-width: 480px;
+    max-width: 640px;
     height: auto;
   }
 
@@ -113,7 +113,7 @@ and (max-device-width : 640px) {
   }
 
   .home-container-bidi-javen h1 {
-    font-size: 60px;
+    font-size: 48px;
   }
 
   .home-container-bidi-javen h4 {
@@ -154,7 +154,7 @@ and (max-device-width : 640px) {
   }
 
   .home-container-categories {
-    width: 450px;
+    width: 600px;
     padding-left: 0;
   }
 
@@ -259,7 +259,6 @@ and (max-device-width : 640px) {
     width: 500px;
     padding-bottom: 20px;
   }
-
 
   /* Footer */
 
@@ -576,25 +575,20 @@ and (max-device-width : 640px) {
   /* Payments and Terms */
 
   .cms-payments-options .std p {
-    text-align: justify;
-    width: 400px;
+    width: 500px;
+    text-align: center;
   }
 
   .cms-payments-options .std h4 {
-    text-align: center;
-    margin-left: 90px;
-    margin-top: 100px;
+    width: 500px;
   }
 
   .cms-terms-and-conditions .std p {
-    width: 400px;
-    text-align: justify;
+    width: 500px;
   }
 
   .cms-terms-and-conditions .std h4 {
-    text-align: center;
-    margin-left: 90px;
-    margin-top: 100px;
+    width: 500px;
   }
 
   /* Payments and Terms */
